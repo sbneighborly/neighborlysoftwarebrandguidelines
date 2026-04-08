@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* ── Reset & Base ─────────────────────────────────────────────────────── */
+    /* Reset & Base */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
@@ -22,7 +22,7 @@
     a:focus-visible { outline: 3px solid #1389FD; outline-offset: 2px; border-radius: 2px; }
     img { max-width: 100%; height: auto; }
 
-    /* ── Skip Link ────────────────────────────────────────────────────────── */
+    /* Skip Link */
     .skip-link {
       position: absolute; top: -40px; left: 0; background: #1389FD; color: #fff;
       padding: 8px 16px; z-index: 9999; border-radius: 0 0 8px 0; font-weight: 700;
@@ -30,7 +30,7 @@
     }
     .skip-link:focus { top: 0; }
 
-    /* ── Layout ───────────────────────────────────────────────────────────── */
+    /* Layout */
     .layout { display: flex; min-height: 100vh; }
     .sidebar {
       width: 260px; flex-shrink: 0; background: #fff; border-right: 1px solid #E4EAF2;
@@ -54,7 +54,7 @@
       .main { padding: 32px 20px; }
     }
 
-    /* ── Section ──────────────────────────────────────────────────────────── */
+    /* Section */
     .ds-section { margin-bottom: 72px; scroll-margin-top: 24px; }
     .ds-section-header {
       display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
@@ -67,7 +67,7 @@
     .ds-section-header h2 { font-size: 22px; font-weight: 800; color: #181B1F; }
     .ds-section-desc { font-size: 14px; color: #5A6472; margin-bottom: 28px; line-height: 1.7; }
 
-    /* ── Page Title ───────────────────────────────────────────────────────── */
+    /* Page Title */
     .page-hero {
       background: linear-gradient(135deg, #1389FD 0%, #00419D 100%);
       border-radius: 20px; padding: 48px 48px 40px; margin-bottom: 56px; color: #fff;
@@ -80,7 +80,7 @@
       border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 700; margin-top: 20px;
     }
 
-    /* ── Color Swatches ───────────────────────────────────────────────────── */
+    /* Color Swatches */
     .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
     .color-card {
       border-radius: 12px; overflow: hidden; border: 1px solid #E4EAF2;
@@ -100,7 +100,7 @@
     .badge-aa { background: #DBEAFE; color: #1E40AF; }
     .badge-aaa { background: #EDE9FE; color: #5B21B6; }
 
-    /* ── Typography ───────────────────────────────────────────────────────── */
+    /* Typography */
     .type-scale { display: flex; flex-direction: column; gap: 20px; }
     .type-row { display: flex; align-items: baseline; gap: 24px; padding: 16px 0; border-bottom: 1px solid #F0F4F8; }
     .type-meta { width: 160px; flex-shrink: 0; }
@@ -108,7 +108,7 @@
     .type-meta .type-spec { font-size: 11px; color: #9AA4AD; font-family: monospace; margin-top: 3px; }
     .type-sample { flex: 1; color: #181B1F; }
 
-    /* ── Spacing ──────────────────────────────────────────────────────────── */
+    /* Spacing */
     .spacing-grid { display: flex; flex-direction: column; gap: 12px; }
     .spacing-row { display: flex; align-items: center; gap: 16px; }
     .spacing-bar-wrap { flex: 1; background: #F0F4F8; border-radius: 4px; height: 24px; overflow: hidden; }
@@ -117,7 +117,7 @@
     .spacing-px { width: 60px; font-size: 12px; color: #7C878E; }
     .spacing-use { font-size: 12px; color: #5A6472; flex: 1; }
 
-    /* ── Component Demos ──────────────────────────────────────────────────── */
+    /* Component Demos */
     .component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
     .component-card {
       background: #fff; border: 1px solid #E4EAF2; border-radius: 16px; padding: 24px;
@@ -125,7 +125,7 @@
     }
     .component-card h4 { font-size: 13px; font-weight: 700; color: #7C878E; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px; }
 
-    /* ── Buttons ──────────────────────────────────────────────────────────── */
+    /* Buttons */
     .btn-demo { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
@@ -157,7 +157,7 @@
     .btn-lg { padding: 14px 32px; font-size: 16px; border-radius: 36px; }
     .btn-icon { width: 40px; height: 40px; padding: 0; border-radius: 50%; background: #EEF6FF; color: #1389FD; }
 
-    /* ── Form Elements ────────────────────────────────────────────────────── */
+    /* Form Elements */
     .form-group { margin-bottom: 16px; }
     .form-label { display: block; font-size: 13px; font-weight: 700; color: #3D4A56; margin-bottom: 6px; }
     .form-label .required { color: #EF4444; margin-left: 2px; }
@@ -173,7 +173,7 @@
     .form-hint { font-size: 12px; color: #7C878E; margin-top: 4px; }
     .form-error { font-size: 12px; color: #EF4444; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
 
-    /* ── Badges / Chips ───────────────────────────────────────────────────── */
+    /* Badges / Chips */
     .badge-demo { display: flex; flex-wrap: wrap; gap: 8px; }
     .badge {
       display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px;
@@ -187,7 +187,7 @@
     .badge-purple { background: #EDE9FE; color: #5B21B6; }
     .badge-primary { background: #1389FD; color: #fff; }
 
-    /* ── Cards ────────────────────────────────────────────────────────────── */
+    /* Cards */
     .card-demo { display: flex; flex-direction: column; gap: 16px; }
     .ds-card {
       background: #fff; border: 1px solid #E4EAF2; border-radius: 16px; padding: 20px;
@@ -199,7 +199,7 @@
     .ds-card h5 { font-size: 15px; font-weight: 700; color: #181B1F; margin-bottom: 6px; }
     .ds-card p { font-size: 13px; color: #5A6472; }
 
-    /* ── Alerts ───────────────────────────────────────────────────────────── */
+    /* Alerts */
     .alert {
       display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px;
       border-radius: 12px; font-size: 13px; margin-bottom: 10px;
@@ -211,7 +211,7 @@
     .alert-error { background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; }
     .alert strong { font-weight: 700; }
 
-    /* ── Progress / Stepper ───────────────────────────────────────────────── */
+    /* Progress / Stepper */
     .progress-bar-wrap { background: #E4EAF2; border-radius: 8px; height: 8px; overflow: hidden; margin-bottom: 6px; }
     .progress-bar { height: 100%; border-radius: 8px; background: linear-gradient(90deg, #1389FD, #4EABFF); transition: width 0.4s; }
     .progress-label { font-size: 12px; color: #7C878E; }
@@ -231,7 +231,7 @@
     .step-content h6 { font-size: 14px; font-weight: 700; color: #181B1F; }
     .step-content p { font-size: 12px; color: #7C878E; margin-top: 2px; }
 
-    /* ── Tabs ─────────────────────────────────────────────────────────────── */
+    /* Tabs */
     .tab-bar { display: flex; gap: 0; border-bottom: 2px solid #E4EAF2; margin-bottom: 16px; }
     .tab-btn {
       padding: 10px 18px; font-size: 13px; font-weight: 700; color: #7C878E;
@@ -242,7 +242,7 @@
     .tab-btn.active { color: #1389FD; border-bottom-color: #1389FD; }
     .tab-btn:focus-visible { outline: 2px solid #1389FD; outline-offset: 2px; border-radius: 4px 4px 0 0; }
 
-    /* ── Icon Grid ────────────────────────────────────────────────────────── */
+    /* Icon Grid */
     .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
     .icon-item {
       display: flex; flex-direction: column; align-items: center; gap: 6px;
@@ -251,7 +251,7 @@
     }
     .icon-item svg { width: 20px; height: 20px; color: #3D4A56; }
 
-    /* ── Accessibility Table ──────────────────────────────────────────────── */
+    /* Accessibility Table */
     .a11y-table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .a11y-table th {
       text-align: left; padding: 10px 14px; background: #F5F8FE;
@@ -265,7 +265,7 @@
     .fail-cell { color: #991B1B; font-weight: 700; }
     .na-cell { color: #9AA4AD; }
 
-    /* ── Logo Grid ────────────────────────────────────────────────────────── */
+    /* Logo Grid */
     .logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
     .logo-card {
       border: 1px solid #E4EAF2; border-radius: 12px; overflow: hidden;
@@ -281,7 +281,7 @@
     .logo-card-info span { font-size: 11px; color: #9AA4AD; }
     .logo-card img { max-height: 48px; width: auto; }
 
-    /* ── Token Table ──────────────────────────────────────────────────────── */
+    /* Token Table */
     .token-table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .token-table th { text-align: left; padding: 8px 12px; background: #F5F8FE; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #7C878E; border-bottom: 2px solid #E4EAF2; }
     .token-table td { padding: 9px 12px; border-bottom: 1px solid #F0F4F8; vertical-align: middle; }
@@ -289,7 +289,7 @@
     .token-table code { background: #F0F4F8; padding: 2px 6px; border-radius: 4px; font-size: 11px; color: #1389FD; font-family: monospace; }
     .token-swatch { width: 20px; height: 20px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); display: inline-block; vertical-align: middle; margin-right: 8px; }
 
-    /* ── Motion ───────────────────────────────────────────────────────────── */
+    /* Motion */
     .motion-demo { display: flex; flex-wrap: wrap; gap: 12px; }
     .motion-card {
       padding: 14px 20px; background: #fff; border: 1px solid #E4EAF2; border-radius: 12px;
@@ -297,10 +297,10 @@
     }
     .motion-card:hover { background: #EEF6FF; color: #1389FD; }
 
-    /* ── Divider ──────────────────────────────────────────────────────────── */
+    /* Divider */
     .ds-divider { border: none; border-top: 1px solid #E4EAF2; margin: 32px 0; }
 
-    /* ── Code Block ───────────────────────────────────────────────────────── */
+    /* Code Block */
     .code-block {
       background: #1A1F2E; color: #E2E8F0; border-radius: 12px; padding: 20px 24px;
       font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.7;
@@ -311,17 +311,17 @@
     .code-block .c-comment { color: #64748B; }
     .code-block .c-str { color: #FCA5A5; }
 
-    /* ── Responsive Table Wrapper ─────────────────────────────────────────── */
+    /* Responsive Table Wrapper */
     .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid #E4EAF2; }
 
-    /* ── Elevation ────────────────────────────────────────────────────────── */
+    /* Elevation */
     .elevation-demo { display: flex; flex-wrap: wrap; gap: 20px; }
     .elevation-card {
       width: 120px; height: 80px; background: #fff; border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
       font-size: 11px; font-weight: 700; color: #7C878E; text-align: center;
     }
-    /* ── Modals ───────────────────────────────────────────────────────────── */
+    /* Modals */
     .modal-backdrop {
       position: fixed; inset: 0; background: rgba(24,27,31,0.55); backdrop-filter: blur(4px);
       z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px;
@@ -362,7 +362,7 @@
       border: 1px solid #E4EAF2; overflow: hidden; margin-top: 20px;
     }
 
-    /* ── Data Tables ─────────────────────────────────────────────────────────── */
+    /* Data Tables */
     .data-table-wrap {
       background: #fff; border: 1px solid #E4EAF2; border-radius: 16px; overflow: hidden;
       box-shadow: 0 1px 4px rgba(0,0,0,0.06);
@@ -412,7 +412,7 @@
     .page-btn.active { background: #1389FD; border-color: #1389FD; color: #fff; }
     .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-    /* ── Tooltips & Popovers ─────────────────────────────────────────────────── */
+    /* Tooltips & Popovers */
     .tooltip-wrap { position: relative; display: inline-block; }
     .tooltip {
       position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
@@ -447,7 +447,7 @@
       padding: 40px 32px;
     }
 
-    /* ── Empty States ────────────────────────────────────────────────────────── */
+    /* Empty States */
     .empty-state {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; padding: 56px 32px; background: #fff;
@@ -462,7 +462,7 @@
     .empty-state p { font-size: 13px; color: #7C878E; max-width: 300px; line-height: 1.6; margin-bottom: 20px; }
     .empty-states-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 
-    /* ── Notifications / Toast ───────────────────────────────────────────────── */
+    /* Notifications / Toast */
     .toast-container {
       position: fixed; bottom: 24px; right: 24px; z-index: 2000;
       display: flex; flex-direction: column; gap: 10px; pointer-events: none;
@@ -507,7 +507,7 @@
     .notif-desc { font-size: 12px; color: #5A6472; margin-top: 2px; line-height: 1.5; }
     .notif-time { font-size: 11px; color: #9AA4AD; margin-top: 4px; }
 
-    /* ── Combination Page Frames ─────────────────────────────────────────────── */
+    /* Combination Page Frames */
     .page-frame {
       border: 1px solid #E4EAF2; border-radius: 20px; overflow: hidden;
       box-shadow: 0 4px 16px rgba(0,0,0,0.08); background: #F5F8FE;
@@ -598,7 +598,7 @@
     .program-desc { font-size: 12px; color: #5A6472; line-height: 1.5; }
     .program-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; flex-wrap: wrap; gap: 8px; }
 
-    /* ── Loading / Processing Button State ─────────────────────────────── */
+    /* Loading / Processing Button State */
     .btn-loading {
       position: relative; pointer-events: none; opacity: 0.8;
     }
@@ -617,7 +617,7 @@
       .btn-loading::after { animation: none; border: 2px solid currentColor; opacity: 0.5; }
     }
 
-    /* ── Skeleton Screens ────────────────────────────────────────────────── */
+    /* Skeleton Screens */
     .skeleton {
       background: linear-gradient(90deg, #E4EAF2 25%, #F0F4F8 50%, #E4EAF2 75%);
       background-size: 200% 100%; border-radius: 6px;
@@ -640,7 +640,7 @@
     }
     .skeleton-demo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 
-    /* ── Responsive Data Table ───────────────────────────────────────────── */
+    /* Responsive Data Table */
     .table-responsive-note {
       background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 10px;
       padding: 12px 16px; font-size: 13px; color: #92400E; margin-bottom: 16px;
@@ -682,7 +682,7 @@
       text-transform: uppercase; letter-spacing: 0.06em;
     }
 
-    /* ── Dark Mode Token Map ─────────────────────────────────────────────── */
+    /* Dark Mode Token Map */
     .dark-mode-preview {
       background: #0F172A; border-radius: 16px; padding: 24px;
       border: 1px solid #1E293B;
@@ -713,7 +713,7 @@
     .dark-token-name { font-size: 11px; font-weight: 700; color: #94A3B8; font-family: monospace; }
     .dark-token-val { font-size: 11px; color: #64748B; font-family: monospace; }
 
-    /* ── Brand Voice Expanded ────────────────────────────────────────────── */
+    /* Brand Voice Expanded */
     .voice-scenario {
       background: #fff; border: 1px solid #E4EAF2; border-radius: 14px;
       overflow: hidden; margin-bottom: 16px;
@@ -739,7 +739,7 @@
     .voice-example.dont { background: #FEF2F2; color: #991B1B; }
     .voice-reason { font-size: 11px; color: #7C878E; margin-top: 6px; line-height: 1.5; }
 
-    /* ── Governance ──────────────────────────────────────────────────────── */
+    /* Governance */
     .governance-flow {
       display: flex; align-items: center; gap: 0; flex-wrap: wrap;
       margin: 20px 0;
@@ -760,7 +760,7 @@
     }
     @media (max-width: 700px) { .gov-arrow { display: none; } .gov-step { min-width: 100%; } }
 
-    /* ── Readability / Line Length ───────────────────────────────────────── */
+    /* Readability / Line Length */
     .measure-demo {
       display: flex; flex-direction: column; gap: 16px;
     }
@@ -786,13 +786,13 @@
       border-radius: 2px;
     }
 
-    /* ── Print ────────────────────────────────────────────────────────── */── */
+    /* Print */── */
     @media print {
       .sidebar { display: none; }
       .main { padding: 20px; }
     }
 
-    /* ── Forced Colors ────────────────────────────────────────────────────── */
+    /* Forced Colors */
     @media (forced-colors: active) {
       .btn-primary, .btn-secondary, .btn-outline { border: 2px solid ButtonText !important;  }
       :focus-visible { outline: 3px solid Highlight !important; }
@@ -1131,7 +1131,7 @@
             <div class="code-block" style="margin-top:10px;font-size:11px;">@import url('fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900');</div>
           </div>
           <div class="ds-card">
-            <h5>Print — Avenir Next LT Pro</h5>
+            <h3>Print — Avenir Next LT Pro</h3>
             <p style="font-size:13px;color:#5A6472;margin-bottom:10px;">Presentations, letterhead, marketing</p>
             <p style="font-size:28px;font-weight:700;color:#181B1F;line-height:1.2;font-family:'Avenir Next LT Pro','Avenir Next',sans-serif;">Aa Bb Cc</p>
             <p style="font-size:14px;color:#5A6472;margin-top:6px;">Light · Regular · Demi · Bold</p>
@@ -1588,7 +1588,7 @@
           <div class="ds-card ds-card-interactive" tabindex="0" role="button" aria-label="View household member: Jane Smith">
             <div style="display:flex;align-items:center;justify-content:space-between;">
               <div>
-                <h5 style="margin-bottom:2px;">Jane Smith <span class="badge badge-blue" style="font-size:10px;vertical-align:middle;">Primary</span></h5>
+                <h4 style="margin-bottom:2px;">Jane Smith <span class="badge badge-blue" style="font-size:10px;vertical-align:middle;">Primary</span></h4>
                 <p>Applicant · <span style="color:#10B981;font-weight:700;">Complete ✓</span></p>
               </div>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9AA4AD" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
@@ -2730,7 +2730,7 @@
                 </div>
 
                 <hr class="ds-divider" style="margin:16px 0;" />
-                <h5>Need Help?</h5>
+                <h4>Need Help?</h4>
                 <p style="font-size:12px;color:#5A6472;line-height:1.5;margin-bottom:10px;">Your caseworker Maria Torres is available Mon–Fri, 9am–5pm.</p>
                 <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;" type="button">Message Caseworker</button>
               </div>
