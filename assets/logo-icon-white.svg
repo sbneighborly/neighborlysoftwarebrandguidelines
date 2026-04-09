@@ -5,19 +5,19 @@
 <style type="text/css">
 	.st0{fill:url(#SVGID_1_);}
 	.st1{fill:url(#SVGID_00000041292013885597888470000005049372941126787758_);}
-	.st2{fill:#0F83F5;}
+	.st2{fill:#FFFFFF;}
 </style>
 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="30.1035" y1="151.5006" x2="92.8358" y2="42.8452">
-	<stop  offset="0.1283" style="stop-color:#1387FA"/>
-	<stop  offset="0.2845" style="stop-color:#1280F1"/>
-	<stop  offset="0.472" style="stop-color:#0F74DF"/>
+	<stop  offset="0.1283" style="stop-color:#FFFFFF"/>
+	<stop  offset="0.2845" style="stop-color:#FFFFFF"/>
+	<stop  offset="0.472" style="stop-color:#FFFFFF"/>
 </linearGradient>
 <path class="st0" d="M33.7,137.5V56.9C33.7,41.5,46.1,29,61.5,29h0c15.4,0,27.8,12.5,27.8,27.8v80.6c0,15.4-12.5,27.8-27.8,27.8h0
 	C46.1,165.3,33.7,152.8,33.7,137.5z"/>
 <linearGradient id="SVGID_00000080926777879187353290000009150389175654173615_" gradientUnits="userSpaceOnUse" x1="33.8321" y1="95.3178" x2="167.0202" y2="95.3178">
-	<stop  offset="0.2546" style="stop-color:#1387FA"/>
-	<stop  offset="0.4031" style="stop-color:#1280F1"/>
-	<stop  offset="0.5831" style="stop-color:#0F74DF"/>
+	<stop  offset="0.2546" style="stop-color:#FFFFFF"/>
+	<stop  offset="0.4031" style="stop-color:#FFFFFF"/>
+	<stop  offset="0.5831" style="stop-color:#FFFFFF"/>
 </linearGradient>
 <path style="fill:url(#SVGID_00000080926777879187353290000009150389175654173615_);" d="M116.8,153.3L42.4,78.9
 	C31,67.4,31,48.8,42.4,37.3l0,0c11.5-11.5,30.1-11.5,41.6,0l74.4,74.4c11.5,11.5,11.5,30.1,0,41.6l0,0
