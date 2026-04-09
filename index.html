@@ -657,7 +657,17 @@
         <a href="#tokens">Design Tokens</a>
         <a href="#a11y">Accessibility</a>
         <a href="#governance">Governance</a>
-      </nav>
+      </ul>
+      <p class="nav-section">ADDITIONAL PATTERNS</p>
+      <ul>
+        <a href="#icons">Icons</a>
+        <a href="#notifications">Notifications</a>
+        <a href="#responsive-tables">Responsive Tables</a>
+        <a href="#dark-mode">Dark Mode Tokens</a>
+        <a href="#readability">Readability</a>
+        <a href="#brand-voice-expanded">Brand Voice (Full)</a>
+        <a href="#vpat">WCAG / VPAT</a>
+      </ul>
     </nav>
 
     <!-- ============================================================
@@ -2667,6 +2677,419 @@
               <tr><td>1.0.0</td><td>Apr 2026</td><td>Initial design system — colors, typography, spacing, buttons, forms, badges, cards, alerts, tabs.</td></tr>
             </tbody>
           </table>
+        </div>
+      </section>
+
+
+      <!-- ══ §31 ICONS ══ -->
+      <section class="ds-section" id="icons" aria-labelledby="icons-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">31</div>
+          <h2 id="icons-heading">Icons</h2>
+        </div>
+        <p class="ds-section-desc">Neighborly uses <strong>Material Icons</strong> — the same icon library bundled with MUI. Import via <code>@mui/icons-material</code>. All icons are available as individual React components. Use <code>SvgIcon</code> for custom SVGs that need to match the MUI icon API.</p>
+        <h3 class="subsection-title">Import Pattern</h3>
+        <div class="code-block">
+<span class="kw">import</span> CheckCircleIcon <span class="kw">from</span> <span class="str">'@mui/icons-material/CheckCircle'</span>;
+<span class="kw">import</span> WarningAmberIcon <span class="kw">from</span> <span class="str">'@mui/icons-material/WarningAmber'</span>;
+<span class="kw">import</span> PersonIcon <span class="kw">from</span> <span class="str">'@mui/icons-material/Person'</span>;
+
+<span class="cm">// Decorative — hidden from screen readers</span>
+&lt;<span class="tag">CheckCircleIcon</span> <span class="attr">aria-hidden</span>=<span class="val">"true"</span> /&gt;
+
+<span class="cm">// Functional (icon-only button) — must have aria-label on the parent IconButton</span>
+&lt;<span class="tag">IconButton</span> <span class="attr">aria-label</span>=<span class="val">"Delete application"</span>&gt;
+  &lt;<span class="tag">DeleteIcon</span> /&gt;
+&lt;/<span class="tag">IconButton</span>&gt;
+        </div>
+        <h3 class="subsection-title">Common Icons in Neighborly</h3>
+        <div class="demo-box">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">check_circle</span> CheckCircle</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#ED6C02;" class="material-icons">warning_amber</span> WarningAmber</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#D32F2F;" class="material-icons">error_outline</span> ErrorOutline</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#0288D1;" class="material-icons">info_outline</span> InfoOutlined</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">person</span> Person</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">group</span> Group</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">description</span> Description</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">upload_file</span> UploadFile</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">dashboard</span> Dashboard</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">assignment</span> Assignment</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">search</span> Search</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">filter_list</span> FilterList</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">edit</span> Edit</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#D32F2F;" class="material-icons">delete</span> Delete</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">add</span> Add</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">close</span> Close</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">arrow_back</span> ArrowBack</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">chevron_right</span> ChevronRight</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#3aab5c;" class="material-icons">task_alt</span> TaskAlt</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#3D4752;"><span style="font-size:22px;color:#188af4;" class="material-icons">home</span> Home</div>
+          </div>
+        </div>
+        <h3 class="subsection-title">Sizing</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>MUI Prop</th><th>Size</th><th>Use case</th></tr></thead>
+            <tbody>
+              <tr><td><code>fontSize="small"</code></td><td>20px</td><td>Inline with body text, dense UI</td></tr>
+              <tr><td><code>fontSize="medium"</code> (default)</td><td>24px</td><td>Buttons, form labels, nav items</td></tr>
+              <tr><td><code>fontSize="large"</code></td><td>35px</td><td>Empty state illustrations, hero icons</td></tr>
+              <tr><td><code>sx={{ fontSize: 56 }}</code></td><td>Custom</td><td>Large empty state icons only</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══ §32 NOTIFICATIONS ══ -->
+      <section class="ds-section" id="notifications" aria-labelledby="notif-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">32</div>
+          <h2 id="notif-heading">Notifications &amp; Snackbar</h2>
+        </div>
+        <p class="ds-section-desc">Use MUI <code>Snackbar</code> + <code>Alert</code> for all transient notifications. Snackbars appear at the bottom-right, auto-dismiss after 5 seconds, and are announced to screen readers via <code>role="alert"</code> or <code>role="status"</code>. Never use browser <code>alert()</code>.</p>
+        <h3 class="subsection-title">Live Demo</h3>
+        <div class="demo-box">
+          <div class="demo-row" style="flex-wrap:wrap;gap:10px;">
+            <button class="mui-btn btn-contained-primary" onclick="fireToast('info','ℹ️','Application saved','Your progress has been saved automatically.')">Info Toast</button>
+            <button class="mui-btn btn-contained-success" onclick="fireToast('success','✓','Application submitted','We received your application and will be in touch within 3–5 business days.')">Success Toast</button>
+            <button class="mui-btn btn-contained-warning" onclick="fireToast('warning','⚠','Documents expiring','2 uploaded documents will expire in 5 days. Please re-upload.')">Warning Toast</button>
+            <button class="mui-btn btn-contained-error" onclick="fireToast('error','✕','Submission failed','There was a problem submitting your application. Please try again.')">Error Toast</button>
+          </div>
+        </div>
+        <h3 class="subsection-title">MUI Code Pattern</h3>
+        <div class="code-block">
+<span class="kw">import</span> { Snackbar, Alert } <span class="kw">from</span> <span class="str">'@mui/material'</span>;
+
+<span class="cm">// State</span>
+<span class="kw">const</span> [open, setOpen] = useState(<span class="val">false</span>);
+
+<span class="cm">// JSX</span>
+&lt;<span class="tag">Snackbar</span>
+  <span class="attr">open</span>={open}
+  <span class="attr">autoHideDuration</span>={<span class="val">5000</span>}
+  <span class="attr">onClose</span>={() =&gt; setOpen(<span class="val">false</span>)}
+  <span class="attr">anchorOrigin</span>={{ <span class="prop">vertical</span>: <span class="str">'bottom'</span>, <span class="prop">horizontal</span>: <span class="str">'right'</span> }}
+&gt;
+  &lt;<span class="tag">Alert</span> <span class="attr">severity</span>=<span class="val">"success"</span> <span class="attr">onClose</span>={() =&gt; setOpen(<span class="val">false</span>)}&gt;
+    Application submitted successfully.
+  &lt;/<span class="tag">Alert</span>&gt;
+&lt;/<span class="tag">Snackbar</span>&gt;
+        </div>
+        <h3 class="subsection-title">When to Use Each Severity</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Severity</th><th>When to use</th><th>Neighborly example</th></tr></thead>
+            <tbody>
+              <tr><td><span class="mui-chip chip-filled-info chip-sm">info</span></td><td>Neutral system event, no action needed</td><td>"Your session will expire in 10 minutes."</td></tr>
+              <tr><td><span class="mui-chip chip-filled-success chip-sm">success</span></td><td>User action completed successfully</td><td>"Application #2024-0041 submitted."</td></tr>
+              <tr><td><span class="mui-chip chip-filled-warning chip-sm">warning</span></td><td>Something needs attention but isn't broken</td><td>"2 documents expire in 5 days."</td></tr>
+              <tr><td><span class="mui-chip chip-filled-error chip-sm">error</span></td><td>Action failed; user must take action</td><td>"Submission failed. Please try again."</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══ §33 RESPONSIVE TABLES ══ -->
+      <section class="ds-section" id="responsive-tables" aria-labelledby="resp-tables-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">33</div>
+          <h2 id="resp-tables-heading">Responsive Tables</h2>
+        </div>
+        <p class="ds-section-desc">MUI <code>DataGrid</code> handles responsive behavior automatically on large datasets. For standard <code>Table</code> components, apply the card-stacking pattern below at <code>640px</code> breakpoint. This is critical for caseworkers on tablets reviewing application lists.</p>
+        <h3 class="subsection-title">Mobile Card-Stacking Pattern</h3>
+        <div class="demo-box demo-box-gray">
+          <p class="demo-label">Resize browser below 640px to see card-stacking</p>
+          <div class="mui-table-container">
+            <table class="mui-table" aria-label="Grant applications — responsive demo">
+              <thead>
+                <tr>
+                  <th>Applicant</th>
+                  <th>Program</th>
+                  <th>Status</th>
+                  <th>Submitted</th>
+                  <th><span class="sr-only">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Applicant">Jane Smith</td>
+                  <td data-label="Program">CDBG-DR</td>
+                  <td data-label="Status"><span class="mui-chip chip-filled-info chip-sm">Under Review</span></td>
+                  <td data-label="Submitted" style="color:#9AA4AD;font-size:12px;">Mar 15, 2026</td>
+                  <td><button class="mui-btn btn-outlined-primary mui-btn-sm">Review</button></td>
+                </tr>
+                <tr>
+                  <td data-label="Applicant">Tom Rivera</td>
+                  <td data-label="Program">HOME</td>
+                  <td data-label="Status"><span class="mui-chip chip-filled-warning chip-sm">Needs Docs</span></td>
+                  <td data-label="Submitted" style="color:#9AA4AD;font-size:12px;">Mar 12, 2026</td>
+                  <td><button class="mui-btn btn-outlined-primary mui-btn-sm">Review</button></td>
+                </tr>
+                <tr>
+                  <td data-label="Applicant">Maria Gonzalez</td>
+                  <td data-label="Program">CDBG-DR</td>
+                  <td data-label="Status"><span class="mui-chip chip-filled-success chip-sm">Approved</span></td>
+                  <td data-label="Submitted" style="color:#9AA4AD;font-size:12px;">Mar 10, 2026</td>
+                  <td><button class="mui-btn btn-outlined-primary mui-btn-sm">View</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <h3 class="subsection-title">CSS Implementation</h3>
+        <div class="code-block">
+<span class="cm">/* Card-stacking for mobile — already in tokens.css */</span>
+@<span class="kw">media</span> (max-width: 640px) {
+  .mui-table <span class="tag">thead</span> { display: none; }
+  .mui-table <span class="tag">tr</span> { display: block; border-bottom: 2px solid #E5E9EF; }
+  .mui-table <span class="tag">td</span> {
+    display: flex; justify-content: space-between;
+    align-items: center; border-bottom: none;
+  }
+  .mui-table <span class="tag">td</span>::before {
+    content: attr(data-label);
+    font-weight: 600; color: #5A6472; font-size: 12px;
+  }
+}
+        </div>
+        <h3 class="subsection-title">MUI DataGrid Responsive Props</h3>
+        <div class="code-block">
+<span class="cm">// Hide columns at smaller breakpoints using columnVisibilityModel</span>
+&lt;<span class="tag">DataGrid</span>
+  <span class="attr">columns</span>={columns}
+  <span class="attr">rows</span>={rows}
+  <span class="attr">initialState</span>={{
+    <span class="prop">columns</span>: {
+      <span class="prop">columnVisibilityModel</span>: {
+        <span class="prop">submittedDate</span>: isDesktop, <span class="cm">// hide on mobile</span>
+        <span class="prop">caseworker</span>: isDesktop,
+      }
+    }
+  }}
+/&gt;
+        </div>
+      </section>
+
+      <!-- ══ §34 DARK MODE TOKENS ══ -->
+      <section class="ds-section" id="dark-mode" aria-labelledby="dark-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">34</div>
+          <h2 id="dark-heading">Dark Mode Token Map</h2>
+        </div>
+        <p class="ds-section-desc">Dark mode is not yet shipped but the token mapping is defined here to prevent a painful retrofit. When dark mode is implemented, all color references in components must use the CSS custom properties below — never hard-coded hex values. The <code>@media (prefers-color-scheme: dark)</code> block in <code>tokens.css</code> overrides the root tokens automatically.</p>
+        <h3 class="subsection-title">Token Mapping</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Token</th><th>Light Mode</th><th>Dark Mode</th><th>Usage</th></tr></thead>
+            <tbody>
+              <tr><td class="token-name">--nbl-bg</td><td><span class="token-swatch" style="background:#F5F7FA;"></span><code>#F5F7FA</code></td><td><span class="token-swatch" style="background:#0F172A;border:1px solid #334155;"></span><code>#0F172A</code></td><td>Page background</td></tr>
+              <tr><td class="token-name">--nbl-surface</td><td><span class="token-swatch" style="background:#FFFFFF;"></span><code>#FFFFFF</code></td><td><span class="token-swatch" style="background:#1E293B;border:1px solid #334155;"></span><code>#1E293B</code></td><td>Card, dialog, input backgrounds</td></tr>
+              <tr><td class="token-name">--nbl-border</td><td><span class="token-swatch" style="background:#E5E9EF;"></span><code>#E5E9EF</code></td><td><span class="token-swatch" style="background:#334155;"></span><code>#334155</code></td><td>Dividers, input borders</td></tr>
+              <tr><td class="token-name">--nbl-text-primary</td><td><span class="token-swatch" style="background:#181B1F;"></span><code>#181B1F</code></td><td><span class="token-swatch" style="background:#F1F5F9;"></span><code>#F1F5F9</code></td><td>Body text, headings</td></tr>
+              <tr><td class="token-name">--nbl-text-secondary</td><td><span class="token-swatch" style="background:#5A6472;"></span><code>#5A6472</code></td><td><span class="token-swatch" style="background:#94A3B8;"></span><code>#94A3B8</code></td><td>Supporting text, labels</td></tr>
+              <tr><td class="token-name">--nbl-primary</td><td><span class="token-swatch" style="background:#188af4;"></span><code>#188af4</code></td><td><span class="token-swatch" style="background:#60A5FA;"></span><code>#60A5FA</code></td><td>Primary actions, links</td></tr>
+              <tr><td class="token-name">--nbl-success</td><td><span class="token-swatch" style="background:#3aab5c;"></span><code>#3aab5c</code></td><td><span class="token-swatch" style="background:#4ADE80;"></span><code>#4ADE80</code></td><td>Approved, success states</td></tr>
+              <tr><td class="token-name">--nbl-warning</td><td><span class="token-swatch" style="background:#ED6C02;"></span><code>#ED6C02</code></td><td><span class="token-swatch" style="background:#FB923C;"></span><code>#FB923C</code></td><td>Needs action, warnings</td></tr>
+              <tr><td class="token-name">--nbl-error</td><td><span class="token-swatch" style="background:#D32F2F;"></span><code>#D32F2F</code></td><td><span class="token-swatch" style="background:#F87171;"></span><code>#F87171</code></td><td>Errors, denied states</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="subsection-title">Dark Mode Preview</h3>
+        <div class="demo-box demo-box-dark" style="border-radius:8px;padding:24px;">
+          <div style="background:#1E293B;border-radius:8px;padding:20px;margin-bottom:16px;border:1px solid #334155;">
+            <p style="color:#94A3B8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;">Application Status</p>
+            <p style="color:#F1F5F9;font-size:18px;font-weight:700;margin-bottom:4px;">Jane Smith</p>
+            <p style="color:#94A3B8;font-size:13px;margin-bottom:12px;">CDBG-DR · App #2024-0041 · Submitted Mar 15</p>
+            <span class="mui-chip chip-filled-info chip-sm">Under Review</span>
+          </div>
+          <div style="background:#1E293B;border-radius:8px;padding:16px;border:1px solid #334155;">
+            <p style="color:#94A3B8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Search Programs</p>
+            <input style="width:100%;padding:10px 14px;border:1px solid #334155;border-radius:8px;background:#0F172A;color:#F1F5F9;font-size:14px;font-family:inherit;box-sizing:border-box;" type="search" placeholder="Search by program name or ZIP…" aria-label="Search programs" />
+          </div>
+        </div>
+        <h3 class="subsection-title">MUI Theme Dark Mode</h3>
+        <div class="code-block">
+<span class="kw">const</span> theme = createTheme({
+  <span class="prop">palette</span>: {
+    <span class="prop">mode</span>: <span class="str">'dark'</span>, <span class="cm">// or 'light'</span>
+    <span class="prop">primary</span>: { <span class="prop">main</span>: <span class="str">'#60A5FA'</span> },
+    <span class="prop">background</span>: {
+      <span class="prop">default</span>: <span class="str">'#0F172A'</span>,
+      <span class="prop">paper</span>: <span class="str">'#1E293B'</span>,
+    },
+  },
+});
+
+<span class="cm">// Wrap app with ColorModeContext for user-toggled dark mode</span>
+&lt;<span class="tag">ThemeProvider</span> <span class="attr">theme</span>={theme}&gt;
+  &lt;<span class="tag">CssBaseline</span> /&gt;
+  &lt;<span class="tag">App</span> /&gt;
+&lt;/<span class="tag">ThemeProvider</span>&gt;
+        </div>
+      </section>
+
+      <!-- ══ §35 READABILITY ══ -->
+      <section class="ds-section" id="readability" aria-labelledby="readability-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">35</div>
+          <h2 id="readability-heading">Readability &amp; Measure</h2>
+        </div>
+        <p class="ds-section-desc"><strong>Measure</strong> is the typographic term for line length. Research consistently shows that lines between 45 and 75 characters produce the best reading speed and comprehension. Neighborly targets <strong>60–75 characters</strong> for body text, enforced via <code>max-width: 65ch</code> on all long-form text containers. This is especially important for participants who may have lower literacy levels.</p>
+        <h3 class="subsection-title">Line Length Demo</h3>
+        <div class="demo-box">
+          <p class="demo-label">✓ Optimal — 65ch max-width</p>
+          <p style="max-width:65ch;font-size:14px;line-height:1.65;color:#3D4752;background:#F5F7FA;padding:16px;border-radius:6px;border-left:3px solid #3aab5c;">Answer a few questions to find out which programs your household may qualify for. Your information is kept private and secure. No account is required to get started.</p>
+        </div>
+        <div class="demo-box" style="margin-top:12px;">
+          <p class="demo-label">✗ Too wide — no max-width constraint</p>
+          <p style="font-size:14px;line-height:1.65;color:#3D4752;background:#FFF5F5;padding:16px;border-radius:6px;border-left:3px solid #D32F2F;">Answer a few questions to find out which programs your household may qualify for. Your information is kept private and secure. No account is required to get started. The eye has to travel too far to return to the next line, causing fatigue and reducing comprehension for users with dyslexia or low literacy.</p>
+        </div>
+        <h3 class="subsection-title">Readability Rules</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Rule</th><th>Value</th><th>CSS / MUI prop</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td>Body text measure</td><td>60–75 characters</td><td><code>maxWidth: '65ch'</code></td><td>Optimal reading speed and comprehension</td></tr>
+              <tr><td>Heading measure</td><td>30–45 characters</td><td><code>maxWidth: '40ch'</code></td><td>Headings scan better when short</td></tr>
+              <tr><td>Line height (body)</td><td>1.6–1.65×</td><td><code>lineHeight: 1.65</code></td><td>Prevents lines from feeling cramped</td></tr>
+              <tr><td>Paragraph spacing</td><td>≥2× font size</td><td><code>mb: 2</code> (MUI spacing)</td><td>WCAG 1.4.12 Text Spacing</td></tr>
+              <tr><td>Justified text</td><td>Never</td><td><code>textAlign: 'left'</code></td><td>Uneven word spacing harms readability</td></tr>
+              <tr><td>All-caps body text</td><td>Never</td><td>—</td><td>Reduces reading speed by ~13%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══ §36 BRAND VOICE (FULL) ══ -->
+      <section class="ds-section" id="brand-voice-expanded" aria-labelledby="bv-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">36</div>
+          <h2 id="bv-heading">Brand Voice — Full Guide</h2>
+        </div>
+        <p class="ds-section-desc">Neighborly's voice is <strong>warm, direct, empowering, honest, and inclusive</strong>. Every string in the product — button labels, error messages, empty states, confirmation dialogs — is an opportunity to reinforce this voice. The Do/Don't examples below cover the four highest-stakes moments in the grant application experience.</p>
+
+        <h3 class="subsection-title">Error Messages</h3>
+        <div class="do-dont-grid">
+          <div class="do-box">
+            <div class="do-header">✓ Do</div>
+            <div class="do-dont-body">"Please enter a valid ZIP code (e.g., 90210)."<br><br><em>Specific, tells the user exactly what to fix and gives an example.</em></div>
+          </div>
+          <div class="dont-box">
+            <div class="dont-header">✗ Don't</div>
+            <div class="do-dont-body">"Invalid input."<br><br><em>Vague and unhelpful. The user doesn't know what went wrong or how to fix it.</em></div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title" style="margin-top:24px;">Empty States</h3>
+        <div class="do-dont-grid">
+          <div class="do-box">
+            <div class="do-header">✓ Do</div>
+            <div class="do-dont-body">"You haven't started any applications yet. Let's find programs you may qualify for."<br><br><em>Acknowledges the state, then gives a clear next step.</em></div>
+          </div>
+          <div class="dont-box">
+            <div class="dont-header">✗ Don't</div>
+            <div class="do-dont-body">"No applications found."<br><br><em>Reads like a database error. Leaves the user with no direction.</em></div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title" style="margin-top:24px;">Success Confirmations</h3>
+        <div class="do-dont-grid">
+          <div class="do-box">
+            <div class="do-header">✓ Do</div>
+            <div class="do-dont-body">"Your application has been submitted. We'll review it and get back to you within 3–5 business days."<br><br><em>Confirms the action and sets a clear expectation.</em></div>
+          </div>
+          <div class="dont-box">
+            <div class="dont-header">✗ Don't</div>
+            <div class="do-dont-body">"Form submitted successfully."<br><br><em>Technically correct but cold. Doesn't tell the user what happens next.</em></div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title" style="margin-top:24px;">Negative Eligibility Results</h3>
+        <div class="do-dont-grid">
+          <div class="do-box">
+            <div class="do-header">✓ Do</div>
+            <div class="do-dont-body">"Based on what you've shared, you may not qualify for these programs right now — but your situation can change. You can update your information at any time."<br><br><em>Softens the result, acknowledges impermanence, keeps the door open.</em></div>
+          </div>
+          <div class="dont-box">
+            <div class="dont-header">✗ Don't</div>
+            <div class="do-dont-body">"You are ineligible for all programs."<br><br><em>Blunt and final. Leaves the user feeling rejected with no hope or next step.</em></div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title" style="margin-top:24px;">Voice Principles at a Glance</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Principle</th><th>What it means</th><th>Test question</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Warm</strong></td><td>Speak like a trusted neighbor, not a bureaucrat</td><td>Would a kind neighbor say this?</td></tr>
+              <tr><td><strong>Direct</strong></td><td>Say what you mean in as few words as possible</td><td>Can any word be removed without losing meaning?</td></tr>
+              <tr><td><strong>Empowering</strong></td><td>Always give the user a next step or a path forward</td><td>Does this copy tell the user what to do next?</td></tr>
+              <tr><td><strong>Honest</strong></td><td>Never overpromise; set accurate expectations</td><td>Is this statement 100% true?</td></tr>
+              <tr><td><strong>Inclusive</strong></td><td>Avoid jargon, acronyms, and legal language</td><td>Would a 6th-grader understand this?</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══ §37 WCAG / VPAT ══ -->
+      <section class="ds-section" id="vpat" aria-labelledby="vpat-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">37</div>
+          <h2 id="vpat-heading">WCAG 2.1 AA &amp; VPAT</h2>
+        </div>
+        <p class="ds-section-desc">Neighborly Software is committed to WCAG 2.1 Level AA conformance. The table below documents how each criterion is implemented in the design system. This serves as the basis for the Voluntary Product Accessibility Template (VPAT 2.4) submitted to enterprise clients.</p>
+        <h3 class="subsection-title">Perceivable &amp; Operable</h3>
+        <div class="demo-box" style="padding:0;overflow:hidden;">
+          <table class="mui-table" aria-label="WCAG Perceivable and Operable criteria">
+            <thead><tr><th>SC</th><th>Criterion</th><th>Implementation</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>1.1.1</td><td>Non-text Content</td><td>All images have <code>alt</code>; decorative icons use <code>aria-hidden="true"</code></td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>1.3.1</td><td>Info &amp; Relationships</td><td>Semantic HTML; tables use <code>th</code> with <code>scope</code>; forms use <code>label</code></td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>1.3.3</td><td>Sensory Characteristics</td><td>Instructions never rely on shape, color, or position alone</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>1.4.1</td><td>Use of Color</td><td>Status conveyed by icon + text + color (never color alone)</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>1.4.3</td><td>Contrast (Minimum)</td><td>All text ≥4.5:1; large text ≥3:1; UI components ≥3:1</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>1.4.4</td><td>Resize Text</td><td>All text scales to 200% without loss of content or functionality</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>1.4.11</td><td>Non-text Contrast</td><td>Input borders, focus rings, and icons all ≥3:1 against background</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>1.4.12</td><td>Text Spacing</td><td>Line height ≥1.5×; letter spacing ≥0.12em; word spacing ≥0.16em</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>2.1.1</td><td>Keyboard</td><td>All functionality operable via keyboard; no keyboard traps except modal focus traps (escapable via Escape)</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>2.1.2</td><td>No Keyboard Trap</td><td>Modal focus traps are escapable via Escape key</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>2.4.1</td><td>Bypass Blocks</td><td>Skip-to-main-content link at top of every page</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>2.4.3</td><td>Focus Order</td><td>Tab order follows logical reading order</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>2.4.7</td><td>Focus Visible</td><td>3px blue outline on all focusable elements via <code>:focus-visible</code></td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>2.5.5</td><td>Target Size</td><td>Minimum 44×44px touch targets on all interactive elements</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="subsection-title" style="margin-top:24px;">Understandable &amp; Robust</h3>
+        <div class="demo-box" style="padding:0;overflow:hidden;">
+          <table class="mui-table" aria-label="WCAG Understandable and Robust criteria">
+            <thead><tr><th>SC</th><th>Criterion</th><th>Implementation</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>3.1.1</td><td>Language of Page</td><td><code>lang="en"</code> on <code>&lt;html&gt;</code>; <code>lang</code> attribute on non-English content</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>3.2.2</td><td>On Input</td><td>No automatic form submission; user must click Submit</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>3.3.1</td><td>Error Identification</td><td>Errors identified in text with <code>aria-invalid</code> and <code>aria-describedby</code></td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>3.3.2</td><td>Labels or Instructions</td><td>All required fields labeled; format hints provided via <code>helperText</code></td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>3.3.3</td><td>Error Suggestion</td><td>Error messages explain what went wrong and how to fix it</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>3.3.4</td><td>Error Prevention</td><td>Review screen before final submission; confirmation Dialogs for destructive actions</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>4.1.2</td><td>Name, Role, Value</td><td>All custom components have appropriate ARIA roles, states, and properties</td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+              <tr><td>4.1.3</td><td>Status Messages</td><td>Snackbar toasts use <code>role="status"</code> or <code>role="alert"</code></td><td><span class="mui-chip chip-filled-success chip-sm">Pass</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="subsection-title" style="margin-top:24px;">Windows High Contrast Mode</h3>
+        <p class="ds-section-desc" style="margin-bottom:12px;">All interactive elements are tested in Windows High Contrast Mode (Forced Colors). MUI components handle this automatically; custom components must include the override below.</p>
+        <div class="code-block">
+@<span class="kw">media</span> (forced-colors: active) {
+  <span class="tag">button</span>, [<span class="attr">role</span>=<span class="val">"button"</span>] {
+    border: <span class="val">2px solid ButtonText</span> !important;
+    forced-color-adjust: none;
+  }
+  :<span class="tag">focus-visible</span> {
+    outline: <span class="val">3px solid Highlight</span> !important;
+    outline-offset: <span class="val">2px</span> !important;
+  }
+}
         </div>
       </section>
 
