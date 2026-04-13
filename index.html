@@ -516,7 +516,8 @@
     .pipeline-stage.active::after { border-left-color: #188af4; }
     .pipeline-stage.done { background: #E8F5E9; color: #3aab5c; }
     .pipeline-stage.done::after { border-left-color: #E8F5E9; }
-    .pipeline-stage.denied { background: #FFEBEE; color: #D32F2F; }
+    .pipeline-stage.denied { background: #FFEBEE; color: #D32F2F; border: 1px solid #FFCDD2; }
+    .pipeline-stage.denied::after { border-left-color: #FFEBEE; }
     .pipeline-stage:first-child { border-radius: 8px 0 0 8px; }
     .pipeline-stage:last-child { border-radius: 0 8px 8px 0; }
     .pipeline-stage:last-child::after { display: none; }
@@ -623,7 +624,7 @@
       <div class="sidebar-logo">
         <img src="assets/logo-icon-circle.svg" alt="Neighborly Software" style="height:30px; width:auto; flex-shrink:0;" />
         <span style="color:#fff; font-weight:700; font-size:14px; line-height:1.2;">Neighborly<br>Software</span>
-        <span class="sidebar-version">v2.1</span>
+        <span class="sidebar-version">v2.3</span>
       </div>
       <nav>
         <span class="nav-group-label">Foundation</span>
@@ -989,13 +990,14 @@
             </div>
             <div class="type-sample" style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#9AA4AD;">Grant Program</div>
           </div>
-          <div class="type-row">
+          <div class="type-row" style="border-left:3px solid #ED6C02;padding-left:12px;border-radius:0 4px 4px 0;">
             <div class="type-meta">
               <div class="type-label">button</div>
-              <div class="type-spec">14px / 500 / 0.4px / uppercase</div>
-              <div class="type-mui">variant="button"</div>
+              <div class="type-spec">14px / 500 / 0.4px / <span style="text-decoration:line-through;color:#D32F2F;">uppercase</span> → <strong style="color:#3aab5c;">sentence case</strong></div>
+              <div class="type-mui">variant="button" (MUI Typography)</div>
             </div>
-            <div class="type-sample" style="font-size:14px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase;">Submit Application</div>
+            <div class="type-sample" style="font-size:14px; font-weight:600; letter-spacing:0.04em; text-transform:none;">Submit Application</div>
+            <p style="font-size:11px;color:#E65100;margin-top:6px;line-height:1.5;"><strong>Reconciliation note:</strong> MUI's default <code>Typography variant="button"</code> spec is uppercase, but the Neighborly theme overrides <code>MuiButton.styleOverrides.root.textTransform: 'none'</code>. In practice, all <code>&lt;Button&gt;</code> components render in sentence case. Use sentence case in all button labels. The <code>variant="button"</code> Typography variant is rarely used directly — it exists for non-button elements that need button-style text.</p>
           </div>
         </div>
 
@@ -1906,7 +1908,8 @@
 
         <h3 class="subsection-title">Application Lifecycle</h3>
         <div class="demo-box">
-          <div class="pipeline" role="list" aria-label="Application pipeline stages">
+          <!-- Primary path -->
+          <div class="pipeline" role="list" aria-label="Application pipeline stages — primary path">
             <div class="pipeline-stage done" role="listitem">Draft</div>
             <div class="pipeline-stage done" role="listitem">Submitted</div>
             <div class="pipeline-stage active" role="listitem">Under Review</div>
@@ -1914,7 +1917,20 @@
             <div class="pipeline-stage" role="listitem">Approved</div>
             <div class="pipeline-stage" role="listitem">Disbursed</div>
           </div>
-          <p class="text-muted" style="margin-top:8px;">Current stage: <strong>Under Review</strong></p>
+          <!-- Terminal branch: Denied -->
+          <div style="display:flex;align-items:center;gap:0;margin-top:6px;margin-bottom:4px;">
+            <div style="flex:2;"></div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+              <div style="width:1px;height:18px;background:#D32F2F;margin:0 auto;"></div>
+            </div>
+            <div style="flex:3;"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0;">
+            <div style="flex:2;"></div>
+            <div class="pipeline-stage denied" role="listitem" style="flex:1;border-radius:8px;font-size:11px;">Denied ✕</div>
+            <div style="flex:3;padding-left:12px;font-size:12px;color:#5A6472;font-style:italic;">Terminal state — no further transitions</div>
+          </div>
+          <p class="text-muted" style="margin-top:12px;">Current stage: <strong>Under Review</strong> &nbsp;·&nbsp; <span style="color:#D32F2F;font-size:12px;">Denied</span> is a terminal state branching from Under Review or Pending Docs</p>
         </div>
 
         <h3 class="subsection-title">Stage Reference</h3>
@@ -1984,7 +2000,44 @@
           <span class="section-num" aria-hidden="true">21</span>
           <h2>Empty States</h2>
         </div>
-        <p class="ds-section-desc">Empty states are moments of opportunity — not failures. Always explain why the space is empty and provide a clear next action. Tailor the message to the user type.</p>
+        <p class="ds-section-desc">Empty states are moments of opportunity — not failures. Always explain why the space is empty and provide a clear next action. Tailor the message to the user type. <strong>Participant empty states</strong> require a notably different emotional tone than admin/caseworker states — more welcoming and less operational.</p>
+        <h3 class="subsection-title">Participant — First Visit (Welcoming)</h3>
+        <div class="two-col">
+          <div class="demo-box" style="border-left:3px solid #3aab5c;">
+            <div class="empty-state">
+              <div class="empty-icon">🏘️</div>
+              <div class="empty-title" style="font-size:18px;">Welcome to your Neighborhood</div>
+              <div class="empty-desc" style="font-size:14px;max-width:280px;margin:0 auto 16px;">You're in the right place. We'll help you find programs your household may qualify for — it only takes a few minutes to get started.</div>
+              <button class="mui-btn btn-contained-primary" style="font-size:14px;padding:10px 24px;">See What You Qualify For</button>
+            </div>
+          </div>
+          <div class="demo-box" style="border-left:3px solid #188af4;">
+            <div class="empty-state">
+              <div class="empty-icon">📬</div>
+              <div class="empty-title" style="font-size:18px;">You're all caught up</div>
+              <div class="empty-desc" style="font-size:14px;max-width:280px;margin:0 auto 16px;">No new messages right now. Your caseworker will reach out here if they need anything from you.</div>
+              <button class="mui-btn btn-outlined-primary">View My Applications</button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-box" style="background:#FFF8E1;border-left:3px solid #ED6C02;margin-bottom:14px;">
+          <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#E65100;margin-bottom:6px;">Tone Guidance — Participant vs. Admin</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px;">
+            <div>
+              <p style="font-weight:600;color:#3aab5c;margin-bottom:4px;">✓ Participant language</p>
+              <p style="color:#3D4752;margin-bottom:2px;">"You're in the right place."</p>
+              <p style="color:#3D4752;margin-bottom:2px;">"We'll help you find programs."</p>
+              <p style="color:#3D4752;">"Your caseworker will reach out here."</p>
+            </div>
+            <div>
+              <p style="font-weight:600;color:#D32F2F;margin-bottom:4px;">✗ Admin language (wrong for Participant)</p>
+              <p style="color:#3D4752;margin-bottom:2px;">"No records found."</p>
+              <p style="color:#3D4752;margin-bottom:2px;">"No applications in queue."</p>
+              <p style="color:#3D4752;">"0 items match your filter."</p>
+            </div>
+          </div>
+        </div>
+        <h3 class="subsection-title">Admin / Caseworker — Operational</h3>
 
         <div class="two-col">
           <div class="demo-box">
@@ -3395,6 +3448,9 @@
           </table>
         </div>
         <h3 class="subsection-title">Dark Mode Preview</h3>
+        <div class="demo-box" style="background:#FFF3E0;border-left:3px solid #ED6C02;padding:12px 16px;margin-bottom:10px;">
+          <p style="font-size:12px;color:#E65100;margin:0;"><strong>Note for developers:</strong> The preview below uses hard-coded hex values (<code>#1E293B</code>, <code>#F1F5F9</code>, etc.) because this is a static HTML demo — not a live React component. In production code, <strong>never hard-code these values</strong>. Always use <code>theme.palette.background.paper</code>, <code>theme.palette.text.primary</code>, and the CSS custom properties defined in the token table above. The preview is for visual reference only.</p>
+        </div>
         <div class="demo-box demo-box-dark" style="border-radius:8px;padding:24px;">
           <div style="background:#1E293B;border-radius:8px;padding:20px;margin-bottom:16px;border:1px solid #334155;">
             <p style="color:#94A3B8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;">Application Status</p>
