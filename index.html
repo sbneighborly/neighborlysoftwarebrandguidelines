@@ -82,8 +82,14 @@
        PAGE HERO
     ============================================================ */
     .page-hero {
-      background: linear-gradient(135deg, #188af4 0%, #00419D 100%);
-      border-radius: 12px; padding: 44px 48px; margin-bottom: 56px; color: #fff;
+      background: linear-gradient(135deg, #0a2a5e 0%, #1278d8 55%, #188af4 100%);
+      border-radius: 12px; padding: 52px 48px 48px; margin-bottom: 56px; color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; top: -80px; right: -40px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); pointer-events: none;
     }
     .page-hero img { height: 36px; margin-bottom: 20px; }
     .page-hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
@@ -102,15 +108,18 @@
       padding-bottom: 14px; border-bottom: 2px solid #E5E9EF; margin-bottom: 8px;
     }
     .section-num {
-      width: 30px; height: 30px; border-radius: 6px; background: #188af4;
-      color: #fff; font-size: 13px; font-weight: 700;
+      min-width: 30px; height: 30px; border-radius: 6px;
+      background: linear-gradient(135deg, #1278d8, #188af4);
+      color: #fff; font-size: 12px; font-weight: 700;
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(24,138,244,0.35); letter-spacing: 0.01em;
     }
-    .ds-section-header h2 { font-size: 22px; font-weight: 700; color: #181B1F; }
+    .ds-section-header h2 { font-size: 23px; font-weight: 700; color: #0a2a5e; letter-spacing: -0.01em; }
     .ds-section-desc { font-size: 14px; color: #5A6472; margin-bottom: 28px; line-height: 1.75; max-width: 65ch; }
     .subsection-title {
-      font-size: 15px; font-weight: 600; color: #181B1F;
-      margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #F0F2F5;
+      font-size: 11px; font-weight: 700; color: #1278d8;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      margin: 28px 0 12px; padding-bottom: 8px; border-bottom: 1px solid #E5E9EF;
     }
 
     /* ============================================================
@@ -534,6 +543,18 @@
        DO / DON'T
     ============================================================ */
     .combo-frame { overflow-x: auto; border-radius: 12px; -webkit-overflow-scrolling: touch; }
+    .pattern-rationale {
+      background: #F0F7FF; border: 1px solid #BFDBFE;
+      border-radius: 8px; padding: 20px 24px; margin-bottom: 24px;
+    }
+    .pattern-rationale-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #1278d8; margin-bottom: 14px;
+    }
+    .pattern-rationale-grid { display: flex; flex-direction: column; gap: 12px; }
+    .pattern-rationale-item { display: grid; grid-template-columns: 200px 1fr; gap: 16px; align-items: baseline; }
+    .pattern-rationale-label { font-size: 13px; font-weight: 600; color: #1A2332; }
+    .pattern-rationale-reason { font-size: 13px; color: #5A6472; line-height: 1.55; }
     .do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     @media (max-width: 640px) { .do-dont-grid { grid-template-columns: 1fr; } }
     @media (max-width: 700px) {
@@ -1073,8 +1094,48 @@
   marginBottom: theme.spacing(3), <span class="cm">// 24px</span>
 }
         </div>
+        <h3 class="subsection-title">Mobile &amp; Tablet Context</h3>
+        <p style="font-size:14px;color:#5A6472;margin-bottom:16px;max-width:65ch;">Caseworkers on tablets are a primary audience. The spacing scale adapts to smaller viewports — the 8px base unit stays constant, only the multipliers change. Use MUI's responsive <code>sx</code> breakpoint syntax to apply different spacing at each breakpoint.</p>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Context</th><th>Desktop (md+)</th><th>Tablet (sm)</th><th>Mobile (xs)</th></tr></thead>
+            <tbody>
+              <tr><td>Card padding</td><td><code>p: 3</code> (24px)</td><td><code>p: 2</code> (16px)</td><td><code>p: 2</code> (16px)</td></tr>
+              <tr><td>Page horizontal padding</td><td><code>px: 4</code> (32px)</td><td><code>px: 3</code> (24px)</td><td><code>px: 2</code> (16px)</td></tr>
+              <tr><td>Between form fields</td><td><code>gap: 3</code> (24px)</td><td><code>gap: 2</code> (16px)</td><td><code>gap: 2</code> (16px)</td></tr>
+              <tr><td>Between page sections</td><td><code>mb: 6</code> (48px)</td><td><code>mb: 4</code> (32px)</td><td><code>mb: 3</code> (24px)</td></tr>
+              <tr><td>DataGrid row height</td><td>52px</td><td>52px</td><td>Collapsed to card layout</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="demo-box" style="margin-top:0;">
+          <p class="demo-label">Tablet caseworker card — <code>p: 2</code> padding, <code>gap: 1</code> between chips</p>
+          <div style="max-width:380px;background:#fff;border:1px solid #E5E9EF;border-radius:8px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+              <div>
+                <div style="font-size:13px;font-weight:700;color:#1A2332;">Maria Gonzalez</div>
+                <div style="font-size:12px;color:#5A6472;margin-top:2px;">CS-2024-1847 · CDBG-DR</div>
+              </div>
+              <span class="mui-chip chip-filled-warning chip-sm">Pending Docs</span>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+              <span class="mui-chip chip-outlined-default chip-sm">SLA: 3 days</span>
+              <span class="mui-chip chip-outlined-default chip-sm">AMI: 62%</span>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button class="mui-btn btn-contained-primary mui-btn-sm" style="flex:1;">Review</button>
+              <button class="mui-btn btn-outlined-primary mui-btn-sm" style="flex:1;">Assign</button>
+            </div>
+          </div>
+        </div>
+        <div class="code-block">
+<span class="cm">// Responsive spacing with MUI sx breakpoints</span>
+<span class="tag">&lt;Card</span> <span class="attr">sx</span>=<span class="str">{{ p: { xs: 2, sm: 2, md: 3 }, mb: { xs: 3, md: 6 } }}</span><span class="tag">&gt;</span>
+<span class="cm">// Or with useMediaQuery</span>
+<span class="kw">const</span> isTablet = useMediaQuery(theme.breakpoints.down(<span class="str">'md'</span>));
+<span class="tag">&lt;Box</span> <span class="attr">sx</span>=<span class="str">{{ p: isTablet ? 2 : 3 }}</span><span class="tag">&gt;</span>
+        </div>
       </section>
-
       <!-- ============================================================
            5. ELEVATION
       ============================================================ -->
@@ -1126,6 +1187,49 @@
               <tr><td class="token-name">theme.transitions.easing.easeInOut</td><td class="token-value">cubic-bezier(0.4, 0, 0.2, 1)</td><td>Standard element transitions</td></tr>
               <tr><td class="token-name">theme.transitions.easing.easeOut</td><td class="token-value">cubic-bezier(0.0, 0, 0.2, 1)</td><td>Elements entering the screen</td></tr>
               <tr><td class="token-name">theme.transitions.easing.easeIn</td><td class="token-value">cubic-bezier(0.4, 0, 1, 1)</td><td">Elements leaving the screen</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="subsection-title">Easing Rationale</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Easing</th><th>Mental model</th><th>When to use in Neighborly</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="token-name">easeOut</td>
+                <td><em>Elements arrive — they decelerate as they settle into place</em></td>
+                <td>Dialogs opening, drawers sliding in, dropdowns appearing, toasts entering. Anything the user is waiting to interact with should feel like it lands, not crashes.</td>
+              </tr>
+              <tr>
+                <td class="token-name">easeIn</td>
+                <td><em>Elements leave — they accelerate as they exit, like they're being pulled away</em></td>
+                <td>Dialogs closing, drawers sliding out, toasts dismissing. Exit animations should be faster than entrances so they don't delay the user's next action.</td>
+              </tr>
+              <tr>
+                <td class="token-name">easeInOut</td>
+                <td><em>Elements transform in place — symmetric acceleration and deceleration</em></td>
+                <td>State changes that don't involve movement: hover color shifts, focus ring appearance, button press feedback, chip selection, progress bar fill. The element stays put but its appearance changes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="subsection-title">Component Transition Reference</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Component</th><th>Duration</th><th>Easing</th><th>Property</th></tr></thead>
+            <tbody>
+              <tr><td>Button hover / press</td><td>shorter (200ms)</td><td>easeInOut</td><td>background-color, box-shadow</td></tr>
+              <tr><td>TextField focus</td><td>shorter (200ms)</td><td>easeInOut</td><td>border-color, box-shadow</td></tr>
+              <tr><td>Chip select / deselect</td><td>shorter (200ms)</td><td>easeInOut</td><td>background-color, color</td></tr>
+              <tr><td>Tab indicator slide</td><td>short (250ms)</td><td>easeInOut</td><td>left, width</td></tr>
+              <tr><td>Accordion expand</td><td>short (250ms)</td><td>easeInOut</td><td>height</td></tr>
+              <tr><td>Dialog open</td><td>standard (300ms)</td><td>easeOut</td><td>opacity, transform (scale)</td></tr>
+              <tr><td>Dialog close</td><td>shorter (200ms)</td><td>easeIn</td><td>opacity, transform (scale)</td></tr>
+              <tr><td>Drawer slide in</td><td>standard (300ms)</td><td>easeOut</td><td>transform (translateX)</td></tr>
+              <tr><td>Drawer slide out</td><td>shorter (200ms)</td><td>easeIn</td><td>transform (translateX)</td></tr>
+              <tr><td>Snackbar enter</td><td>short (250ms)</td><td>easeOut</td><td>transform (translateY), opacity</td></tr>
+              <tr><td>Tooltip appear</td><td>shortest (150ms)</td><td>easeOut</td><td>opacity, transform</td></tr>
+              <tr><td>Progress bar fill</td><td>standard (300ms)</td><td>easeInOut</td><td>width</td></tr>
             </tbody>
           </table>
         </div>
@@ -2567,6 +2671,23 @@
           <h2 id="page-dashboard-heading">Admin Dashboard</h2>
         </div>
         <p class="ds-section-desc">The primary landing page for Admin and Contractor users. Combines stat cards, tabbed content, and a priority queue DataGrid. Components: <code>Card</code>, <code>Tabs</code>, <code>DataGrid</code>, <code>Chip</code>, <code>Button</code>, <code>TextField</code> (search).</p>
+        <div class="pattern-rationale">
+          <div class="pattern-rationale-title">Pattern decisions</div>
+          <div class="pattern-rationale-grid">
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">Stat cards over a summary table</span>
+              <span class="pattern-rationale-reason">Caseworkers need to act on numbers, not read them. Cards with color-coded urgency chips let users triage at a glance without parsing rows.</span>
+            </div>
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">Tabs over a single long list</span>
+              <span class="pattern-rationale-reason">My Work / Team Work / All Cases are distinct mental contexts. Tabs keep each context clean and preserve scroll position per tab.</span>
+            </div>
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">DataGrid over Table</span>
+              <span class="pattern-rationale-reason">Priority queues need sortable columns, row selection for bulk actions, and sticky headers. MUI DataGrid provides all three; the lightweight Table component does not.</span>
+            </div>
+          </div>
+        </div>
 
         <!-- Full mockup -->
         <div class="combo-frame" style="border:1px solid #E2E6EA; border-radius:12px; overflow:hidden; background:#F5F7FA;">
@@ -2758,6 +2879,23 @@
           <h2 id="page-cases-heading">Cases List</h2>
         </div>
         <p class="ds-section-desc">The main case management view for Admin users. Features filter dropdowns, view tabs, a full DataGrid with sortable columns, status chips, financial summary row, and row-level action menus. Components: <code>DataGrid</code>, <code>Tabs</code>, <code>Select</code>, <code>Chip</code>, <code>Menu</code>, <code>Button</code>.</p>
+        <div class="pattern-rationale">
+          <div class="pattern-rationale-title">Pattern decisions</div>
+          <div class="pattern-rationale-grid">
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">DataGrid over Table</span>
+              <span class="pattern-rationale-reason">Cases List is the primary work surface — users sort by SLA, filter by program, and bulk-assign. DataGrid's virtual scrolling handles 500+ rows without performance degradation; Table would require manual pagination logic.</span>
+            </div>
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">View tabs over column visibility toggle</span>
+              <span class="pattern-rationale-reason">Each workflow stage (Eligibility, Scoring, DOB) surfaces different columns. Tabs make the context switch explicit — a caseworker in the DOB view knows they're in DOB mode, not just filtering.</span>
+            </div>
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">Inline filter row over a filter Drawer</span>
+              <span class="pattern-rationale-reason">Filters are used on every session. Keeping them visible reduces the interaction cost vs. opening a drawer each time, and the horizontal space is available on the admin layout.</span>
+            </div>
+          </div>
+        </div>
 
         <div class="combo-frame" style="border:1px solid #E2E6EA; border-radius:12px; overflow:hidden; background:#fff;">
           <!-- Top nav (same as dashboard) -->
@@ -2984,6 +3122,23 @@
           <h2 id="page-case-viewer-heading">Case Viewer</h2>
         </div>
         <p class="ds-section-desc">The detailed case record view. Left sidebar shows workflow steps with completion counts. Header shows program, case ID, status, warnings, and assigned staff. The main panel renders the active step's form. Components: <code>Stepper</code> (vertical), <code>Alert</code>, <code>TextField</code>, <code>Select</code>, <code>Button</code>, <code>Tooltip</code>.</p>
+        <div class="pattern-rationale">
+          <div class="pattern-rationale-title">Pattern decisions</div>
+          <div class="pattern-rationale-grid">
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">Left-rail Stepper over top progress bar</span>
+              <span class="pattern-rationale-reason">Grant workflows have 8–12 named steps with non-linear navigation — caseworkers jump back to re-verify. A vertical stepper shows all steps simultaneously and makes the current position unambiguous. A top progress bar would only show percentage, not step names.</span>
+            </div>
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">Header Alert over inline field errors</span>
+              <span class="pattern-rationale-reason">Missing documents affect the entire case, not a single field. A persistent header Alert ensures the caseworker sees the blocker regardless of which step they're on.</span>
+            </div>
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">Drawer for notes over a Notes tab</span>
+              <span class="pattern-rationale-reason">Notes are contextual reference material, not a workflow step. A Drawer keeps notes accessible without navigating away from the active form, preserving the caseworker's place in the stepper.</span>
+            </div>
+          </div>
+        </div>
 
         <div class="combo-frame" style="border:1px solid #E2E6EA; border-radius:12px; overflow:hidden; background:#F5F7FA;">
           <!-- Top nav -->
@@ -3220,6 +3375,19 @@
           <h2 id="page-messages-heading">Messages</h2>
         </div>
         <p class="ds-section-desc">The in-app messaging interface for Admin-to-Participant communication. Split-pane layout: conversation list on the left, active thread on the right. Each conversation is linked to a case. Components: <code>List</code>, <code>ListItem</code>, <code>Badge</code>, <code>TextField</code>, <code>IconButton</code>, <code>Divider</code>.</p>
+        <div class="pattern-rationale">
+          <div class="pattern-rationale-title">Pattern decisions</div>
+          <div class="pattern-rationale-grid">
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">Split-pane over a Drawer</span>
+              <span class="pattern-rationale-reason">Messaging is a primary workflow for caseworkers, not a contextual overlay. A Drawer implies it's secondary to whatever is behind it. Split-pane gives messages equal visual weight and keeps the conversation list always visible for quick switching.</span>
+            </div>
+            <div class="pattern-rationale-item">
+              <span class="pattern-rationale-label">Chat bubble layout over a comment thread</span>
+              <span class="pattern-rationale-reason">Participants are familiar with messaging apps. The chat metaphor reduces cognitive load for users who may not be comfortable with formal document workflows. Caseworkers benefit from the same clarity of who said what and when.</span>
+            </div>
+          </div>
+        </div>
 
         <div class="combo-frame" style="border:1px solid #E2E6EA; border-radius:12px; overflow:hidden; background:#fff;">
           <!-- Top nav -->
@@ -3918,21 +4086,10 @@
             </tbody>
           </table>
         </div>
-        <h3 class="subsection-title">Dark Mode Preview</h3>
-        <div class="demo-box" style="background:#FFF3E0;border-left:3px solid #ED6C02;padding:12px 16px;margin-bottom:10px;">
-          <p style="font-size:12px;color:#E65100;margin:0;"><strong>Note for developers:</strong> The preview below uses hard-coded hex values (<code>#1E293B</code>, <code>#F1F5F9</code>, etc.) because this is a static HTML demo — not a live React component. In production code, <strong>never hard-code these values</strong>. Always use <code>theme.palette.background.paper</code>, <code>theme.palette.text.primary</code>, and the CSS custom properties defined in the token table above. The preview is for visual reference only.</p>
-        </div>
-        <div class="demo-box demo-box-dark" style="border-radius:8px;padding:24px;">
-          <div style="background:#1E293B;border-radius:8px;padding:20px;margin-bottom:16px;border:1px solid #334155;">
-            <p style="color:#94A3B8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;">Application Status</p>
-            <p style="color:#F1F5F9;font-size:18px;font-weight:700;margin-bottom:4px;">Jane Smith</p>
-            <p style="color:#94A3B8;font-size:13px;margin-bottom:12px;">CDBG-DR · App #2024-0041 · Submitted Mar 15</p>
-            <span class="mui-chip chip-filled-info chip-sm">Under Review</span>
-          </div>
-          <div style="background:#1E293B;border-radius:8px;padding:16px;border:1px solid #334155;">
-            <p style="color:#94A3B8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Search Programs</p>
-            <input style="width:100%;padding:10px 14px;border:1px solid #334155;border-radius:8px;background:#0F172A;color:#F1F5F9;font-size:14px;font-family:inherit;box-sizing:border-box;" type="search" placeholder="Search by program name or ZIP…" aria-label="Search programs" />
-          </div>
+        <h3 class="subsection-title">Implementation Status</h3>
+        <div class="demo-box" style="background:#F0F7FF;border-left:3px solid #1278d8;padding:16px 20px;">
+          <p style="font-size:13px;color:#1A2332;margin:0 0 8px;font-weight:600;">Token infrastructure is complete. Visual preview intentionally omitted.</p>
+          <p style="font-size:13px;color:#5A6472;margin:0;line-height:1.6;">A static HTML preview would require hard-coded hex values, which directly contradicts the token-first rule this section establishes. The <code>palette.mode: 'dark'</code> switch and <code>ColorModeContext</code> are ready to wire up. Use the MUI theme code below — the tokens in the table above will handle all surface and text colors automatically. No manual hex overrides needed.</p>
         </div>
         <h3 class="subsection-title">MUI Theme Dark Mode</h3>
         <div class="code-block">
