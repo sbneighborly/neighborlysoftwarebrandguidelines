@@ -65,6 +65,27 @@
       margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
       color: #00419D; background: #fff; border-radius: 20px; padding: 2px 8px;
     }
+    .nav-search-wrap {
+      padding: 12px 16px 8px;
+    }
+    .nav-search-input {
+      width: 100%; box-sizing: border-box;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px; padding: 7px 10px; font-size: 12px; color: #fff;
+      font-family: inherit; outline: none;
+    }
+    .nav-search-input::placeholder { color: rgba(255,255,255,0.45); }
+    .nav-search-input:focus { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.15); }
+    .nav-filter-row {
+      display: flex; flex-wrap: wrap; gap: 4px; padding: 0 12px 10px;
+    }
+    .nav-filter-btn {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px; color: rgba(255,255,255,0.65); font-size: 10px; font-weight: 600;
+      padding: 3px 7px; cursor: pointer; font-family: inherit; transition: all 0.15s;
+    }
+    .nav-filter-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    .nav-filter-btn.active { background: #188af4; border-color: #188af4; color: #fff; }
     .nav-group-label {
       display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
       text-transform: uppercase; color: rgba(255,255,255,0.5); padding: 14px 18px 4px;
@@ -627,6 +648,7 @@
        ACCESSIBILITY
     ============================================================ */
     :focus-visible { outline: 3px solid #188af4; outline-offset: 2px; }
+    @keyframes spin { from { transform: translateY(-50%) rotate(0deg); } to { transform: translateY(-50%) rotate(360deg); } }
     @media (forced-colors: active) {
       .mui-btn, .btn-contained-primary, .btn-outlined-primary { border: 2px solid ButtonText !important; }
       :focus-visible { outline: 3px solid Highlight !important; }
@@ -647,8 +669,19 @@
         <span style="color:#fff; font-weight:700; font-size:14px; line-height:1.2;">Neighborly<br>Software</span>
         <span class="sidebar-version">v2.3</span>
       </div>
-      <nav>
-        <span class="nav-group-label">Foundation</span>
+      <div class="nav-search-wrap">
+        <input type="search" id="nav-search" class="nav-search-input" placeholder="Search sections…" aria-label="Search design system sections" autocomplete="off" />
+      </div>
+      <div class="nav-filter-row" id="nav-filter-row">
+        <button class="nav-filter-btn active" data-filter="all">All</button>
+        <button class="nav-filter-btn" data-filter="Foundation">Foundation</button>
+        <button class="nav-filter-btn" data-filter="MUI Components">Components</button>
+        <button class="nav-filter-btn" data-filter="Product Patterns">Patterns</button>
+        <button class="nav-filter-btn" data-filter="Combination Pages">Pages</button>
+        <button class="nav-filter-btn" data-filter="Developer Reference">Dev Ref</button>
+      </div>
+      <nav id="sidebar-nav">
+        <span class="nav-group-label" data-group="Foundation">Foundation</span>
         <a href="#brand">Brand Identity</a>
         <a href="#colors">Color System</a>
         <a href="#typography">Typography</a>
@@ -656,9 +689,10 @@
         <a href="#elevation">Elevation</a>
         <a href="#motion">Motion</a>
 
-        <span class="nav-group-label">MUI Components</span>
+        <span class="nav-group-label" data-group="MUI Components">MUI Components</span>
         <a href="#buttons">Button</a>
         <a href="#inputs">TextField &amp; Inputs</a>
+        <a href="#form-validation">Form Validation</a>
         <a href="#chips">Chip</a>
         <a href="#cards">Card</a>
         <a href="#alerts">Alert</a>
@@ -675,26 +709,26 @@
         <a href="#menu">Menu</a>
         <a href="#sx-styled">sx vs styled()</a>
 
-        <span class="nav-group-label">Product Patterns</span>
+        <span class="nav-group-label" data-group="Product Patterns">Product Patterns</span>
         <a href="#user-types">User Types</a>
         <a href="#grant-pipeline">Grant Pipeline</a>
         <a href="#empty-states">Empty States</a>
         <a href="#loading-states">Loading States</a>
         <a href="#brand-voice">Brand Voice</a>
 
-        <span class="nav-group-label">Combination Pages</span>
+        <span class="nav-group-label" data-group="Combination Pages">Combination Pages</span>
         <a href="#page-dashboard">Admin Dashboard</a>
         <a href="#page-cases">Cases List</a>
         <a href="#page-case-viewer">Case Viewer</a>
         <a href="#page-messages">Messages</a>
         <a href="#page-participant-portal">Participant Portal</a>
 
-        <span class="nav-group-label">Developer Reference</span>
+        <span class="nav-group-label" data-group="Developer Reference">Developer Reference</span>
         <a href="#theme">MUI Theme Config</a>
         <a href="#tokens">Design Tokens</a>
         <a href="#a11y">Accessibility</a>
         <a href="#governance">Governance</a>
-        <span class="nav-group-label">Additional Patterns</span>
+        <span class="nav-group-label" data-group="Additional Patterns">Additional Patterns</span>
         <a href="#icons">Icons</a>
         <a href="#notifications">Notifications</a>
         <a href="#responsive-tables">Responsive Tables</a>
@@ -702,6 +736,10 @@
         <a href="#readability">Readability</a>
         <a href="#brand-voice-expanded">Brand Voice (Full)</a>
         <a href="#vpat">WCAG / VPAT</a>
+        <a href="#file-upload">File Upload</a>
+        <a href="#multi-page-form">Multi-Page Form</a>
+        <a href="#role-access">Role-Based Access</a>
+        <a href="#print-export">Print &amp; Export</a>
       </nav>
     </nav><!-- end .sidebar -->
 
@@ -1247,6 +1285,45 @@
   <span class="str">'@media (prefers-reduced-motion: reduce)'</span>: { animation: <span class="str">'none'</span> },
 })
         </div>
+        <h3 class="subsection-title">Enforcement</h3>
+        <p style="font-size:14px;color:#5A6472;margin-bottom:16px;max-width:65ch;">The motion spec has no teeth if developers can hardcode <code>transition: 0.3s ease</code>. Use the ESLint rule below to flag raw duration values in <code>sx</code> props and <code>styled()</code> calls.</p>
+        <div class="do-dont-grid">
+          <div class="dont-box">
+            <div class="dont-header">DON'T &mdash; hardcoded values</div>
+            <div class="do-dont-body" style="font-family:monospace;font-size:12px;line-height:1.7;white-space:pre-wrap;min-height:110px;">// &#x2717; Raw duration &mdash; bypasses the spec
+sx={{ transition: 'all 0.3s ease' }}
+
+// &#x2717; Raw easing &mdash; not from the theme
+sx={{ transition: 'opacity 300ms cubic-bezier(0.4, 0, 0.2, 1)' }}</div>
+          </div>
+          <div class="do-box">
+            <div class="do-header">DO &mdash; theme values</div>
+            <div class="do-dont-body" style="font-family:monospace;font-size:12px;line-height:1.7;white-space:pre-wrap;min-height:110px;">// &#x2713; Theme duration token
+sx={{ transition: theme.transitions.create(
+  ['opacity'],
+  { duration: theme.transitions.duration.standard }
+)}}
+
+// &#x2713; Full shorthand with easing
+sx={{ transition: theme.transitions.create(
+  ['background-color'],
+  { duration: theme.transitions.duration.shorter,
+    easing: theme.transitions.easing.easeInOut }
+)}}</div>
+          </div>
+        </div>
+        <div class="code-block">
+<span class="cm">// .eslintrc.js &mdash; flag raw transition durations in sx props</span>
+<span class="prop">rules</span>: {
+  <span class="str">'no-restricted-syntax'</span>: [<span class="str">'error'</span>, {
+    <span class="prop">selector</span>: <span class="str">'Property[key.name="transition"] &gt; Literal[value=/\d+ms|\d+s/]'</span>,
+    <span class="prop">message</span>: <span class="str">'Use theme.transitions.create() &mdash; no hardcoded durations.'</span>
+  }]
+}
+<span class="cm">// PR checklist additions:</span>
+<span class="cm">// - [ ] No hardcoded transition durations (use theme.transitions)</span>
+<span class="cm">// - [ ] No hardcoded cubic-bezier values (use theme.transitions.easing)</span>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -1432,11 +1509,153 @@
       </section>
 
       <!-- ============================================================
-           9. CHIP
+           FORM VALIDATION PATTERNS
+      ============================================================ -->
+      <section class="ds-section" id="form-validation" aria-labelledby="form-validation-heading">
+        <div class="ds-section-header">
+          <span class="section-num" aria-hidden="true">9</span>
+          <h2 id="form-validation-heading">Form Validation</h2>
+        </div>
+        <p class="ds-section-desc">Validation is the highest-stakes interaction in Neighborly — participants are often anxious, low-literacy, or on mobile. Every validation decision has a direct impact on application completion rates. These patterns are mandatory, not optional.</p>
+
+        <h3 class="subsection-title">Validation Timing</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Trigger</th><th>When to use</th><th>Neighborly rule</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>On blur</strong></td>
+                <td>User leaves a field</td>
+                <td>Default for all fields. Validate immediately on blur — don't wait for submit. Gives users early feedback without interrupting typing.</td>
+              </tr>
+              <tr>
+                <td><strong>On change (debounced)</strong></td>
+                <td>Real-time feedback needed</td>
+                <td>Use only for async checks (SSN uniqueness, email format) with a 400ms debounce. Never show errors while the user is still typing.</td>
+              </tr>
+              <tr>
+                <td><strong>On submit</strong></td>
+                <td>Final gate before submission</td>
+                <td>Always re-validate all fields on submit, even if blur validation already ran. Show an error summary at the top of the form.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Inline Field Validation States</h3>
+        <div class="demo-box">
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+            <!-- Valid -->
+            <div>
+              <p class="demo-label">Valid</p>
+              <div class="mui-input-wrap">
+                <label class="mui-label">Monthly Income</label>
+                <div style="position:relative;">
+                  <input class="mui-input" type="text" value="$3,200" style="border-color:#2e7d32; padding-right:32px;" readonly />
+                  <span class="material-icons" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:18px;color:#2e7d32;">check_circle</span>
+                </div>
+                <p style="font-size:11px;color:#2e7d32;margin:4px 0 0;">Income confirmed</p>
+              </div>
+            </div>
+            <!-- Error -->
+            <div>
+              <p class="demo-label">Error</p>
+              <div class="mui-input-wrap">
+                <label class="mui-label" style="color:#d32f2f;">Date of Birth</label>
+                <div style="position:relative;">
+                  <input class="mui-input" type="text" value="13/45/1990" style="border-color:#d32f2f; background:#fff5f5; padding-right:32px;" readonly />
+                  <span class="material-icons" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:18px;color:#d32f2f;">error</span>
+                </div>
+                <p style="font-size:11px;color:#d32f2f;margin:4px 0 0;">Enter a valid date (MM/DD/YYYY)</p>
+              </div>
+            </div>
+            <!-- Async checking -->
+            <div>
+              <p class="demo-label">Async — checking</p>
+              <div class="mui-input-wrap">
+                <label class="mui-label">Social Security Number</label>
+                <div style="position:relative;">
+                  <input class="mui-input" type="text" value="***-**-4821" style="border-color:#1278d8; padding-right:32px;" readonly />
+                  <span class="material-icons" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:18px;color:#1278d8;animation:spin 1s linear infinite;">refresh</span>
+                </div>
+                <p style="font-size:11px;color:#1278d8;margin:4px 0 0;">Verifying…</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Multi-Field Validation (AMI Eligibility)</h3>
+        <p style="font-size:14px;color:#5A6472;margin-bottom:12px;max-width:65ch;">Some fields are only valid in combination. AMI eligibility requires both household size and gross income. Validate the combination on blur of the second field, not each field individually.</p>
+        <div class="demo-box">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+            <div class="mui-input-wrap">
+              <label class="mui-label">Household Size</label>
+              <input class="mui-input" type="text" value="4" readonly />
+            </div>
+            <div class="mui-input-wrap">
+              <label class="mui-label">Gross Monthly Income</label>
+              <input class="mui-input" type="text" value="$5,800" readonly />
+            </div>
+          </div>
+          <div style="background:#FFF3E0;border:1px solid #FFB74D;border-radius:6px;padding:12px 16px;display:flex;gap:10px;align-items:flex-start;">
+            <span class="material-icons" style="color:#E65100;font-size:18px;margin-top:1px;">warning_amber</span>
+            <div>
+              <p style="font-size:13px;font-weight:600;color:#E65100;margin:0 0 2px;">Income may exceed program limit</p>
+              <p style="font-size:12px;color:#663c00;margin:0;">A household of 4 earning $5,800/month is at 94% AMI. This program requires ≤80% AMI. You may still submit — a caseworker will verify eligibility.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Error Summary (Long Forms)</h3>
+        <p style="font-size:14px;color:#5A6472;margin-bottom:12px;max-width:65ch;">On submit, if any fields are invalid, scroll to the top of the form and show a summary Alert listing all errors with anchor links to each field. Never rely on inline errors alone — they may be scrolled out of view.</p>
+        <div class="demo-box">
+          <div style="background:#FDEDED;border:1px solid #F5C6CB;border-radius:8px;padding:16px 20px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;">
+              <span class="material-icons" style="color:#d32f2f;font-size:20px;">error_outline</span>
+              <div>
+                <p style="font-size:14px;font-weight:700;color:#5f2120;margin:0 0 4px;">Please fix 3 errors before submitting</p>
+                <p style="font-size:12px;color:#5f2120;margin:0;">Your application has not been submitted.</p>
+              </div>
+            </div>
+            <ul style="margin:0;padding-left:20px;list-style:disc;">
+              <li style="font-size:13px;color:#5f2120;margin-bottom:4px;"><a href="#" style="color:#d32f2f;font-weight:600;">Date of Birth</a> — Enter a valid date (MM/DD/YYYY)</li>
+              <li style="font-size:13px;color:#5f2120;margin-bottom:4px;"><a href="#" style="color:#d32f2f;font-weight:600;">Mailing Address</a> — This field is required</li>
+              <li style="font-size:13px;color:#5f2120;"><a href="#" style="color:#d32f2f;font-weight:600;">Upload Proof of Income</a> — At least one document is required</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Async Validation (SSN Uniqueness)</h3>
+        <div class="code-block">
+<span class="kw">const</span> [ssnStatus, setSsnStatus] = useState&lt;<span class="str">'idle'</span>|<span class="str">'checking'</span>|<span class="str">'valid'</span>|<span class="str">'duplicate'</span>&gt;(<span class="str">'idle'</span>);
+
+<span class="kw">const</span> handleSsnBlur = useCallback(
+  debounce(<span class="kw">async</span> (value) =&gt; {
+    setSsnStatus(<span class="str">'checking'</span>);
+    <span class="kw">const</span> exists = <span class="kw">await</span> checkSsnUniqueness(value);
+    setSsnStatus(exists ? <span class="str">'duplicate'</span> : <span class="str">'valid'</span>);
+  }, 400),
+  []
+);
+
+<span class="cm">// In the TextField:</span>
+<span class="tag">&lt;TextField</span>
+  <span class="attr">error</span>={ssnStatus === <span class="str">'duplicate'</span>}
+  <span class="attr">helperText</span>={
+    ssnStatus === <span class="str">'checking'</span> ? <span class="str">'Verifying…'</span> :
+    ssnStatus === <span class="str">'duplicate'</span> ? <span class="str">'This SSN is already on file. Contact support.'</span> :
+    ssnStatus === <span class="str">'valid'</span> ? <span class="str">'SSN verified'</span> : <span class="str">'Last 4 digits only'</span>
+  }
+  <span class="attr">InputProps</span>={{ endAdornment: ssnStatus === <span class="str">'checking'</span> &amp;&amp; <span class="tag">&lt;CircularProgress size={16} /&gt;</span> }}
+<span class="tag">/&gt;</span>
+        </div>
+      </section>
+      <!-- ============================================================
+           10. CHIP
       ============================================================ -->
       <section class="ds-section" id="chips">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">9</span>
+          <span class="section-num" aria-hidden="true">11</span>
           <h2>Chip</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Chip&gt;</code> is used for status labels, filter tags, and categorical identifiers. Use <code>variant="filled"</code> for status and <code>variant="outlined"</code> for filters. Always pair color with a text label — never rely on color alone.</p>
@@ -1483,7 +1702,7 @@
       ============================================================ -->
       <section class="ds-section" id="cards">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">10</span>
+          <span class="section-num" aria-hidden="true">11</span>
           <h2>Card</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Card&gt;</code> groups related content. Use <code>CardHeader</code>, <code>CardContent</code>, and <code>CardActions</code> for consistent internal structure. Avoid nesting interactive cards inside other interactive elements.</p>
@@ -1547,7 +1766,7 @@
       ============================================================ -->
       <section class="ds-section" id="alerts">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">11</span>
+          <span class="section-num" aria-hidden="true">12</span>
           <h2>Alert</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Alert&gt;</code> communicates system-level feedback. Use <code>severity</code> to set the semantic meaning. Always include a descriptive message — never show an alert without actionable context.</p>
@@ -1595,7 +1814,7 @@
       ============================================================ -->
       <section class="ds-section" id="dialogs">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">12</span>
+          <span class="section-num" aria-hidden="true">13</span>
           <h2>Dialog</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Dialog&gt;</code> interrupts the user for critical decisions. Use sparingly — only for destructive actions, confirmations, or complex forms that cannot be done inline. Always provide a clear dismiss path (Cancel button or close icon).</p>
@@ -1641,7 +1860,7 @@
       ============================================================ -->
       <section class="ds-section" id="tables">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">13</span>
+          <span class="section-num" aria-hidden="true">14</span>
           <h2>Table / DataGrid</h2>
         </div>
         <p class="ds-section-desc">For simple read-only data, use MUI <code>&lt;Table&gt;</code>. For sortable, filterable, paginated datasets (like application queues), use MUI <code>&lt;DataGrid&gt;</code> from <code>@mui/x-data-grid</code>. Always define <code>aria-label</code> on the table and <code>data-label</code> on cells for responsive stacking.</p>
@@ -1728,7 +1947,7 @@
       ============================================================ -->
       <section class="ds-section" id="steppers">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">14</span>
+          <span class="section-num" aria-hidden="true">15</span>
           <h2>Stepper</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Stepper&gt;</code> guides participants through multi-step processes like application intake. Use <code>orientation="horizontal"</code> for 3–5 steps on desktop, <code>orientation="vertical"</code> for mobile or complex step content.</p>
@@ -1774,7 +1993,7 @@
       ============================================================ -->
       <section class="ds-section" id="tabs">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">15</span>
+          <span class="section-num" aria-hidden="true">16</span>
           <h2>Tabs</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Tabs&gt;</code> organizes related content within a single view. Use for switching between views of the same data — not for navigation between pages.</p>
@@ -1817,7 +2036,7 @@
       ============================================================ -->
       <section class="ds-section" id="snackbar">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">16</span>
+          <span class="section-num" aria-hidden="true">17</span>
           <h2>Snackbar</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Snackbar&gt;</code> provides brief, non-blocking feedback. Pair with <code>&lt;Alert&gt;</code> for severity. Auto-dismiss after 5 seconds. Always include a dismiss button for accessibility.</p>
@@ -1844,7 +2063,7 @@
       ============================================================ -->
       <section class="ds-section" id="progress">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">17</span>
+          <span class="section-num" aria-hidden="true">18</span>
           <h2>Progress</h2>
         </div>
         <p class="ds-section-desc">Use <code>&lt;LinearProgress&gt;</code> for file uploads, form saves, and page loads. Use <code>&lt;CircularProgress&gt;</code> for inline loading states. Always include <code>aria-label</code> and <code>role="progressbar"</code>.</p>
@@ -1884,7 +2103,7 @@
       ============================================================ -->
       <section class="ds-section" id="tooltips">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">18</span>
+          <span class="section-num" aria-hidden="true">19</span>
           <h2>Tooltip</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Tooltip&gt;</code> provides supplementary context for icons, truncated text, and technical terms. Never put essential information only in a tooltip — it must also be accessible without hover.</p>
@@ -2290,7 +2509,7 @@
       ============================================================ -->
       <section class="ds-section" id="user-types">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">24</span>
+          <span class="section-num" aria-hidden="true">25</span>
           <h2>User Types</h2>
         </div>
         <p class="ds-section-desc">Neighborly has three distinct user types. All three share the same visual design system — the same components, colors, and patterns. What differs is the <strong>experience layer</strong>: what they see, what actions they can take, and how information is presented to them.</p>
@@ -2373,7 +2592,7 @@
       ============================================================ -->
       <section class="ds-section" id="grant-pipeline">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">25</span>
+          <span class="section-num" aria-hidden="true">26</span>
           <h2>Grant Pipeline</h2>
         </div>
         <p class="ds-section-desc">The grant lifecycle moves through defined stages. Each stage has a corresponding Chip color, status label, and set of available actions. Consistency in how stages are communicated across all three user types is critical.</p>
@@ -2469,7 +2688,7 @@
       ============================================================ -->
       <section class="ds-section" id="empty-states">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">26</span>
+          <span class="section-num" aria-hidden="true">27</span>
           <h2>Empty States</h2>
         </div>
         <p class="ds-section-desc">Empty states are moments of opportunity — not failures. Always explain why the space is empty and provide a clear next action. Tailor the message to the user type. <strong>Participant empty states</strong> require a notably different emotional tone than admin/caseworker states — more welcoming and less operational.</p>
@@ -2544,7 +2763,7 @@
       ============================================================ -->
       <section class="ds-section" id="loading-states">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">27</span>
+          <span class="section-num" aria-hidden="true">28</span>
           <h2>Loading States</h2>
         </div>
         <p class="ds-section-desc">Every async operation must have a loading state. Use skeleton screens for initial page loads, <code>CircularProgress</code> for inline actions, and <code>LinearProgress</code> for file operations. Never leave the user staring at a blank screen.</p>
@@ -2594,7 +2813,7 @@
       ============================================================ -->
       <section class="ds-section" id="brand-voice">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">28</span>
+          <span class="section-num" aria-hidden="true">29</span>
           <h2>Brand Voice</h2>
         </div>
         <p class="ds-section-desc">Our voice is <strong>warm, clear, and human</strong>. We speak to participants as neighbors — not applicants, claimants, or case numbers. Every piece of copy should reduce anxiety, not add to it. When in doubt, ask: <em>"Would a helpful neighbor say it this way?"</em></p>
@@ -2690,9 +2909,19 @@
         </div>
 
         <!-- Full mockup -->
-        <div class="combo-frame" style="border:1px solid #E2E6EA; border-radius:12px; overflow:hidden; background:#F5F7FA;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+          <p style="font-size:13px; color:#5A6472; margin:0;">Toggle to preview the dark mode token mapping in a real composition context.</p>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:12px; color:#5A6472;">Light</span>
+            <button id="dark-mode-toggle" onclick="toggleDashboardDark()" style="width:40px;height:22px;border-radius:11px;background:#E5E9EF;border:none;cursor:pointer;position:relative;transition:background 0.2s;" aria-label="Toggle dark mode preview">
+              <span id="dark-mode-knob" style="position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.2);transition:transform 0.2s;display:block;"></span>
+            </button>
+            <span style="font-size:12px; color:#5A6472;">Dark</span>
+          </div>
+        </div>
+        <div class="combo-frame" id="dashboard-combo-frame" style="border:1px solid #E2E6EA; border-radius:12px; overflow:hidden; background:#F5F7FA;">
           <!-- Top nav -->
-          <div style="background:#fff; border-bottom:1px solid #E2E6EA; padding:0 20px; display:flex; align-items:center; gap:0; height:52px;">
+          <div data-dm-topnav style="background:#fff; border-bottom:1px solid #E2E6EA; padding:0 20px; display:flex; align-items:center; gap:0; height:52px;">
             <div style="display:flex; align-items:center; gap:8px; margin-right:24px;">
               <img src="assets/logo-icon-circle.svg" alt="Neighborly Software" style="height:28px;" />
             </div>
@@ -3621,7 +3850,7 @@
       ============================================================ -->
       <section class="ds-section" id="theme">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">34</span>
+          <span class="section-num" aria-hidden="true">35</span>
           <h2>MUI Theme Config</h2>
         </div>
         <p class="ds-section-desc">The Neighborly theme is created with <code>createTheme()</code> and passed to <code>&lt;ThemeProvider&gt;</code> at the app root. All palette values, typography, shape, and component overrides are defined here — never hardcoded in components.</p>
@@ -3711,7 +3940,7 @@
       ============================================================ -->
       <section class="ds-section" id="tokens">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">35</span>
+          <span class="section-num" aria-hidden="true">36</span>
           <h2>Design Tokens</h2>
         </div>
         <p class="ds-section-desc">Design tokens are available as CSS Custom Properties via <code>tokens.css</code> for non-React contexts (emails, PDFs, static pages). In React, always use the MUI theme — not raw CSS variables. The token file is maintained in the <a href="https://github.com/sbneighborly/neighborlysoftwarebrandguidelines" target="_blank" rel="noopener" style="color:#188af4;">neighborlysoftwarebrandguidelines</a> repository and published to GitHub Pages — the same repo that houses the brand guidelines, logo assets, and color specifications. Changes to token values require a PR in that repo; the updated <code>tokens.css</code> is automatically deployed and picked up by any page that imports it.</p>
@@ -3744,6 +3973,31 @@
             </tbody>
           </table>
         </div>
+        <h3 class="subsection-title">Figma &#8596; Token Sync</h3>
+        <p style="font-size:14px;color:#5A6472;margin-bottom:16px;max-width:65ch;">The single biggest organizational risk is a designer updating a color in Figma that never makes it to <code>--nbl-primary</code>. The table below maps every Figma token name to its CSS variable and MUI palette key &mdash; this is the single source of truth for the sync pipeline.</p>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Figma Token Name</th><th>CSS Variable</th><th>MUI Theme Key</th><th>Current Value</th></tr></thead>
+            <tbody>
+              <tr><td><code>color/brand/primary</code></td><td><code>--nbl-primary</code></td><td><code>palette.primary.main</code></td><td>#188af4</td></tr>
+              <tr><td><code>color/brand/primary-dark</code></td><td><code>--nbl-primary-dark</code></td><td><code>palette.primary.dark</code></td><td>#1278d8</td></tr>
+              <tr><td><code>color/brand/secondary</code></td><td><code>--nbl-secondary</code></td><td><code>palette.secondary.main</code></td><td>#00419D</td></tr>
+              <tr><td><code>color/semantic/success</code></td><td><code>--nbl-success</code></td><td><code>palette.success.main</code></td><td>#3aab5c</td></tr>
+              <tr><td><code>color/semantic/error</code></td><td><code>--nbl-error</code></td><td><code>palette.error.main</code></td><td>#D32F2F</td></tr>
+              <tr><td><code>color/semantic/warning</code></td><td><code>--nbl-warning</code></td><td><code>palette.warning.main</code></td><td>#ED6C02</td></tr>
+              <tr><td><code>color/text/primary</code></td><td><code>--nbl-text-primary</code></td><td><code>palette.text.primary</code></td><td>#181B1F</td></tr>
+              <tr><td><code>color/text/secondary</code></td><td><code>--nbl-text-secondary</code></td><td><code>palette.text.secondary</code></td><td>#5A6472</td></tr>
+              <tr><td><code>color/surface/default</code></td><td><code>--nbl-bg-default</code></td><td><code>palette.background.default</code></td><td>#F5F7FA</td></tr>
+              <tr><td><code>color/surface/paper</code></td><td><code>--nbl-bg-paper</code></td><td><code>palette.background.paper</code></td><td>#FFFFFF</td></tr>
+              <tr><td><code>color/border/divider</code></td><td><code>--nbl-divider</code></td><td><code>palette.divider</code></td><td>#E5E9EF</td></tr>
+              <tr><td><code>spacing/base</code></td><td><code>--nbl-spacing</code></td><td><code>theme.spacing(1)</code></td><td>8px</td></tr>
+              <tr><td><code>shape/border-radius</code></td><td><code>--nbl-radius</code></td><td><code>theme.shape.borderRadius</code></td><td>8px</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="background:#FFF8E1;border:1px solid #FFD54F;border-radius:8px;padding:14px 18px;margin-top:16px;font-size:13px;color:#5D4037;">
+          <strong>Pipeline status:</strong> Token export via <a href="https://amzn.github.io/style-dictionary/" target="_blank" rel="noopener" style="color:#188af4;">Style Dictionary</a> is the recommended path. The <code>tokens.css</code> file is currently maintained manually &mdash; the next engineering sprint should wire up a Style Dictionary config that auto-generates <code>tokens.css</code> from the Figma Tokens Studio JSON export. Until then, any Figma color change requires a manual PR to <a href="https://github.com/sbneighborly/neighborlysoftwarebrandguidelines" target="_blank" rel="noopener" style="color:#188af4;">neighborlysoftwarebrandguidelines</a>.
+        </div>
       </section>
 
       <!-- ============================================================
@@ -3751,7 +4005,7 @@
       ============================================================ -->
       <section class="ds-section" id="a11y">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">36</span>
+          <span class="section-num" aria-hidden="true">37</span>
           <h2>Accessibility</h2>
         </div>
         <p class="ds-section-desc">Neighborly serves communities that may include users with disabilities, low digital literacy, and assistive technology users. WCAG 2.1 AA compliance is a baseline requirement — not a nice-to-have. MUI provides strong a11y defaults; our job is to not break them.</p>
@@ -3799,7 +4053,7 @@
       ============================================================ -->
       <section class="ds-section" id="governance">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">37</span>
+          <span class="section-num" aria-hidden="true">38</span>
           <h2>Governance</h2>
         </div>
         <p class="ds-section-desc">The design system is a living product. Changes are versioned, reviewed, and documented. All team members are responsible for maintaining consistency — and for raising issues when the system doesn't serve a real need.</p>
@@ -3875,7 +4129,7 @@
       <!-- ══ §31 ICONS ══ -->
       <section class="ds-section" id="icons" aria-labelledby="icons-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">38</div>
+          <div class="section-num" aria-hidden="true">39</div>
           <h2 id="icons-heading">Icons</h2>
         </div>
         <p class="ds-section-desc">Neighborly uses <strong>Material Icons</strong> — the same icon library bundled with MUI. Import via <code>@mui/icons-material</code>. All icons are available as individual React components. Use <code>SvgIcon</code> for custom SVGs that need to match the MUI icon API.</p>
@@ -3935,7 +4189,7 @@
       <!-- ══ §32 NOTIFICATIONS ══ -->
       <section class="ds-section" id="notifications" aria-labelledby="notif-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">39</div>
+          <div class="section-num" aria-hidden="true">40</div>
           <h2 id="notif-heading">Notifications &amp; Snackbar</h2>
         </div>
         <p class="ds-section-desc">Use MUI <code>Snackbar</code> + <code>Alert</code> for all transient notifications. Snackbars appear at the bottom-right, auto-dismiss after 5 seconds, and are announced to screen readers via <code>role="alert"</code> or <code>role="status"</code>. Never use browser <code>alert()</code>.</p>
@@ -3984,7 +4238,7 @@
       <!-- ══ §33 RESPONSIVE TABLES ══ -->
       <section class="ds-section" id="responsive-tables" aria-labelledby="resp-tables-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">40</div>
+          <div class="section-num" aria-hidden="true">41</div>
           <h2 id="resp-tables-heading">Responsive Tables</h2>
         </div>
         <p class="ds-section-desc">MUI <code>DataGrid</code> handles responsive behavior automatically on large datasets. For standard <code>Table</code> components, apply the card-stacking pattern below at <code>640px</code> breakpoint. This is critical for caseworkers on tablets reviewing application lists.</p>
@@ -4065,7 +4319,7 @@
       <!-- ══ §34 DARK MODE TOKENS ══ -->
       <section class="ds-section" id="dark-mode" aria-labelledby="dark-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">41</div>
+          <div class="section-num" aria-hidden="true">42</div>
           <h2 id="dark-heading">Dark Mode Token Map</h2>
         </div>
         <p class="ds-section-desc">Dark mode is not yet shipped but the token mapping is defined here to prevent a painful retrofit. When dark mode is implemented, all color references in components must use the CSS custom properties below — never hard-coded hex values. The <code>@media (prefers-color-scheme: dark)</code> block in <code>tokens.css</code> overrides the root tokens automatically.</p>
@@ -4115,7 +4369,7 @@
       <!-- ══ §35 READABILITY ══ -->
       <section class="ds-section" id="readability" aria-labelledby="readability-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">42</div>
+          <div class="section-num" aria-hidden="true">43</div>
           <h2 id="readability-heading">Readability &amp; Measure</h2>
         </div>
         <p class="ds-section-desc"><strong>Measure</strong> is the typographic term for line length. Research consistently shows that lines between 45 and 75 characters produce the best reading speed and comprehension. Neighborly targets <strong>60–75 characters</strong> for body text, enforced via <code>max-width: 65ch</code> on all long-form text containers. This is especially important for participants who may have lower literacy levels.</p>
@@ -4147,7 +4401,7 @@
       <!-- ══ §36 BRAND VOICE (FULL) ══ -->
       <section class="ds-section" id="brand-voice-expanded" aria-labelledby="bv-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">43</div>
+          <div class="section-num" aria-hidden="true">44</div>
           <h2 id="bv-heading">Brand Voice — Full Guide</h2>
         </div>
         <p class="ds-section-desc">Neighborly's voice is <strong>warm, direct, empowering, honest, and inclusive</strong>. Every string in the product — button labels, error messages, empty states, confirmation dialogs — is an opportunity to reinforce this voice. The Do/Don't examples below cover the four highest-stakes moments in the grant application experience.</p>
@@ -4218,7 +4472,7 @@
       <!-- ══ §37 WCAG / VPAT ══ -->
       <section class="ds-section" id="vpat" aria-labelledby="vpat-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">44</div>
+          <div class="section-num" aria-hidden="true">45</div>
           <h2 id="vpat-heading">WCAG 2.1 AA &amp; VPAT</h2>
         </div>
         <p class="ds-section-desc">Neighborly Software is committed to WCAG 2.1 Level AA conformance. The table below documents how each criterion is implemented in the design system. This serves as the basis for the Voluntary Product Accessibility Template (VPAT 2.4) submitted to enterprise clients.</p>
@@ -4277,6 +4531,358 @@
       </section>
 
 
+
+      <!-- ============================================================
+           46. FILE UPLOAD
+      ============================================================ -->
+      <section class="ds-section" id="file-upload" aria-labelledby="file-upload-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">46</div>
+          <h2 id="file-upload-heading">File Upload</h2>
+        </div>
+        <p class="ds-section-desc">Document upload is a critical interaction in Neighborly — participants submit proof of income, residency, and identity. The upload pattern must handle progress, errors, accepted formats, and file size limits clearly. Never use a plain <code>&lt;input type="file"&gt;</code> — always wrap it in a styled drop zone.</p>
+
+        <h3 class="subsection-title">Drop Zone States</h3>
+        <div class="demo-box">
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+            <!-- Idle -->
+            <div>
+              <p class="demo-label">Idle</p>
+              <div style="border:2px dashed #CBD5E1;border-radius:10px;padding:28px 16px;text-align:center;background:#F8FAFC;cursor:pointer;">
+                <span class="material-icons" style="font-size:32px;color:#94A3B8;display:block;margin-bottom:8px;">upload_file</span>
+                <p style="font-size:13px;font-weight:600;color:#181B1F;margin:0 0 4px;">Drop files here or click to upload</p>
+                <p style="font-size:11px;color:#5A6472;margin:0;">PDF, JPG, PNG &middot; Max 10 MB</p>
+              </div>
+            </div>
+            <!-- Drag over -->
+            <div>
+              <p class="demo-label">Drag Over</p>
+              <div style="border:2px dashed #188af4;border-radius:10px;padding:28px 16px;text-align:center;background:#EBF4FF;cursor:copy;">
+                <span class="material-icons" style="font-size:32px;color:#188af4;display:block;margin-bottom:8px;">file_download</span>
+                <p style="font-size:13px;font-weight:600;color:#188af4;margin:0 0 4px;">Drop to upload</p>
+                <p style="font-size:11px;color:#1278d8;margin:0;">Release to add files</p>
+              </div>
+            </div>
+            <!-- Error -->
+            <div>
+              <p class="demo-label">Error</p>
+              <div style="border:2px dashed #D32F2F;border-radius:10px;padding:28px 16px;text-align:center;background:#FFF5F5;cursor:pointer;">
+                <span class="material-icons" style="font-size:32px;color:#D32F2F;display:block;margin-bottom:8px;">error_outline</span>
+                <p style="font-size:13px;font-weight:600;color:#D32F2F;margin:0 0 4px;">File too large</p>
+                <p style="font-size:11px;color:#5f2120;margin:0;">Max file size is 10 MB. Please compress and retry.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Upload Progress &amp; File List</h3>
+        <div class="demo-box">
+          <div style="display:flex;flex-direction:column;gap:10px;max-width:480px;">
+            <!-- Uploading -->
+            <div style="background:#fff;border:1px solid #E5E9EF;border-radius:8px;padding:12px 14px;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <span class="material-icons" style="color:#1278d8;font-size:20px;">description</span>
+                <div style="flex:1;min-width:0;">
+                  <p style="font-size:13px;font-weight:600;color:#181B1F;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">proof_of_income_2024.pdf</p>
+                  <p style="font-size:11px;color:#5A6472;margin:0;">2.4 MB &middot; Uploading&hellip;</p>
+                </div>
+                <button style="background:none;border:none;cursor:pointer;color:#8A96A3;padding:2px;">&#x2715;</button>
+              </div>
+              <div style="background:#E5E9EF;border-radius:4px;height:4px;overflow:hidden;">
+                <div style="background:#188af4;width:65%;height:100%;border-radius:4px;"></div>
+              </div>
+            </div>
+            <!-- Complete -->
+            <div style="background:#fff;border:1px solid #C8E6C9;border-radius:8px;padding:12px 14px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="material-icons" style="color:#3aab5c;font-size:20px;">check_circle</span>
+                <div style="flex:1;min-width:0;">
+                  <p style="font-size:13px;font-weight:600;color:#181B1F;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">lease_agreement.pdf</p>
+                  <p style="font-size:11px;color:#3aab5c;margin:0;">1.8 MB &middot; Uploaded</p>
+                </div>
+                <button style="background:none;border:none;cursor:pointer;color:#8A96A3;padding:2px;">&#x2715;</button>
+              </div>
+            </div>
+            <!-- Error -->
+            <div style="background:#fff;border:1px solid #FFCDD2;border-radius:8px;padding:12px 14px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="material-icons" style="color:#D32F2F;font-size:20px;">error</span>
+                <div style="flex:1;min-width:0;">
+                  <p style="font-size:13px;font-weight:600;color:#181B1F;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">photo_id_scan.png</p>
+                  <p style="font-size:11px;color:#D32F2F;margin:0;">Upload failed &mdash; network error. <a href="#" style="color:#D32F2F;font-weight:600;">Retry</a></p>
+                </div>
+                <button style="background:none;border:none;cursor:pointer;color:#8A96A3;padding:2px;">&#x2715;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Accepted Formats &amp; Limits</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Context</th><th>Accepted Formats</th><th>Max Size</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Proof of Income</td><td>PDF, JPG, PNG</td><td>10 MB</td><td>Bank statements, pay stubs, tax returns</td></tr>
+              <tr><td>Proof of Residency</td><td>PDF, JPG, PNG</td><td>10 MB</td><td>Utility bill, lease, mortgage statement</td></tr>
+              <tr><td>Photo ID</td><td>JPG, PNG</td><td>5 MB</td><td>Driver's license, passport, state ID</td></tr>
+              <tr><td>Inspection Photos</td><td>JPG, PNG, HEIC</td><td>20 MB</td><td>Multiple files allowed; HEIC auto-converted</td></tr>
+              <tr><td>Supporting Documents</td><td>PDF, DOC, DOCX</td><td>10 MB</td><td>Any additional documentation</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           47. MULTI-PAGE FORM
+      ============================================================ -->
+      <section class="ds-section" id="multi-page-form" aria-labelledby="multi-page-form-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">47</div>
+          <h2 id="multi-page-form-heading">Multi-Page Form</h2>
+        </div>
+        <p class="ds-section-desc">Grant applications in Neighborly span multiple pages — household info, income verification, property details, document upload, and review. The multi-page form pattern defines navigation, progress indication, validation gating, and save behavior across steps.</p>
+
+        <h3 class="subsection-title">Step Navigation Pattern</h3>
+        <div class="demo-box">
+          <!-- Progress bar -->
+          <div style="margin-bottom:20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+              <span style="font-size:12px;font-weight:600;color:#5A6472;text-transform:uppercase;letter-spacing:.05em;">Step 2 of 5</span>
+              <span style="font-size:12px;color:#5A6472;">40% complete</span>
+            </div>
+            <div style="background:#E5E9EF;border-radius:4px;height:6px;overflow:hidden;">
+              <div style="background:#188af4;width:40%;height:100%;border-radius:4px;"></div>
+            </div>
+          </div>
+          <!-- Step labels -->
+          <div style="display:flex;gap:0;margin-bottom:24px;overflow-x:auto;">
+            <div style="flex:1;text-align:center;padding:8px 4px;border-bottom:3px solid #3aab5c;">
+              <span style="font-size:11px;font-weight:700;color:#3aab5c;">&#x2713; Household</span>
+            </div>
+            <div style="flex:1;text-align:center;padding:8px 4px;border-bottom:3px solid #188af4;">
+              <span style="font-size:11px;font-weight:700;color:#188af4;">&#9679; Income</span>
+            </div>
+            <div style="flex:1;text-align:center;padding:8px 4px;border-bottom:3px solid #E5E9EF;">
+              <span style="font-size:11px;color:#8A96A3;">Property</span>
+            </div>
+            <div style="flex:1;text-align:center;padding:8px 4px;border-bottom:3px solid #E5E9EF;">
+              <span style="font-size:11px;color:#8A96A3;">Documents</span>
+            </div>
+            <div style="flex:1;text-align:center;padding:8px 4px;border-bottom:3px solid #E5E9EF;">
+              <span style="font-size:11px;color:#8A96A3;">Review</span>
+            </div>
+          </div>
+          <!-- Step content -->
+          <div style="background:#F8FAFC;border:1px solid #E5E9EF;border-radius:8px;padding:20px;margin-bottom:20px;">
+            <h4 style="font-size:15px;font-weight:700;color:#181B1F;margin:0 0 16px;">Income Verification</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div class="mui-input-wrap">
+                <label class="mui-label">Employment Status</label>
+                <select class="mui-input" style="appearance:none;cursor:pointer;"><option>Full-time employed</option></select>
+              </div>
+              <div class="mui-input-wrap">
+                <label class="mui-label">Gross Monthly Income</label>
+                <input class="mui-input" type="text" value="$3,200" readonly />
+              </div>
+            </div>
+          </div>
+          <!-- Navigation buttons -->
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <button class="mui-btn" style="background:none;border:1px solid #E5E9EF;color:#5A6472;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:13px;">&larr; Back</button>
+            <div style="display:flex;gap:10px;">
+              <button class="mui-btn" style="background:none;border:none;color:#5A6472;padding:8px 16px;cursor:pointer;font-size:13px;">Save &amp; Exit</button>
+              <button class="mui-btn btn-contained-primary" style="padding:8px 24px;">Continue &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Navigation Rules</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Rule</th><th>Behavior</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Forward gating</strong></td><td>User cannot advance to the next step until all required fields on the current step pass validation. Show inline errors on attempt.</td></tr>
+              <tr><td><strong>Back navigation</strong></td><td>Always allowed without validation. Preserve previously entered data.</td></tr>
+              <tr><td><strong>Save &amp; Exit</strong></td><td>Save current step data to draft. User can return to the same step. Show confirmation toast.</td></tr>
+              <tr><td><strong>Browser back button</strong></td><td>Treat same as the Back button. Use <code>history.pushState</code> to make each step a separate browser history entry.</td></tr>
+              <tr><td><strong>Step jumping</strong></td><td>Allow jumping to any completed step (green checkmark). Disable jumping to future steps.</td></tr>
+              <tr><td><strong>Auto-save</strong></td><td>Debounced auto-save on field change (2s delay). Show a subtle "Saving&hellip;" indicator in the header.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           48. ROLE-BASED ACCESS VISUAL CUES
+      ============================================================ -->
+      <section class="ds-section" id="role-access" aria-labelledby="role-access-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">48</div>
+          <h2 id="role-access-heading">Role-Based Access Visual Cues</h2>
+        </div>
+        <p class="ds-section-desc">Neighborly has three user roles with different permissions: <strong>Admin</strong> (full access), <strong>Caseworker</strong> (edit assigned cases), and <strong>Participant</strong> (view own applications). The UI must communicate read-only vs. editable state clearly without relying on color alone.</p>
+
+        <h3 class="subsection-title">Field States by Role</h3>
+        <div class="demo-box">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+            <!-- Admin: editable -->
+            <div>
+              <p class="demo-label">Admin &mdash; Editable</p>
+              <div class="mui-input-wrap">
+                <label class="mui-label">Award Amount</label>
+                <input class="mui-input" type="text" value="$12,500" />
+                <p style="font-size:11px;color:#5A6472;margin:4px 0 0;">Full edit access</p>
+              </div>
+            </div>
+            <!-- Caseworker: editable (assigned) -->
+            <div>
+              <p class="demo-label">Caseworker &mdash; Assigned</p>
+              <div class="mui-input-wrap">
+                <label class="mui-label">Case Notes</label>
+                <input class="mui-input" type="text" value="Income verified at 62% AMI" />
+                <p style="font-size:11px;color:#5A6472;margin:4px 0 0;">Edit access for assigned cases</p>
+              </div>
+            </div>
+            <!-- Participant: read-only -->
+            <div>
+              <p class="demo-label">Participant &mdash; Read-Only</p>
+              <div class="mui-input-wrap">
+                <label class="mui-label" style="color:#8A96A3;">Award Amount</label>
+                <div style="background:#F5F7FA;border:1px solid #E5E9EF;border-radius:6px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+                  <span style="font-size:14px;color:#5A6472;">$12,500</span>
+                  <span class="material-icons" style="font-size:16px;color:#CBD5E1;">lock</span>
+                </div>
+                <p style="font-size:11px;color:#8A96A3;margin:4px 0 0;">View only</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Read-Only vs. Editable Pattern Rules</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>State</th><th>Visual treatment</th><th>MUI implementation</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Editable</strong></td>
+                <td>White background, full border, cursor text</td>
+                <td><code>&lt;TextField /&gt;</code> default</td>
+              </tr>
+              <tr>
+                <td><strong>Read-only (participant)</strong></td>
+                <td><code>#F5F7FA</code> background, muted border, lock icon, muted label</td>
+                <td><code>&lt;TextField InputProps={{ readOnly: true }} /&gt;</code> + <code>sx</code> overrides</td>
+              </tr>
+              <tr>
+                <td><strong>Disabled (not applicable)</strong></td>
+                <td>Strikethrough label, 40% opacity — use only when the field will never be editable in this session</td>
+                <td><code>&lt;TextField disabled /&gt;</code></td>
+              </tr>
+              <tr>
+                <td><strong>Admin-only field</strong></td>
+                <td>Blue lock badge in the field label: <span style="background:#EBF4FF;color:#1278d8;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;">Admin only</span></td>
+                <td>Custom <code>InputLabel</code> with badge; field is <code>readOnly</code> for non-admin roles</td>
+              </tr>
+              <tr>
+                <td><strong>Caseworker-restricted</strong></td>
+                <td>Amber badge: <span style="background:#FFF3E0;color:#E65100;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;">Assigned only</span></td>
+                <td>Field is <code>readOnly</code> when <code>case.assignedTo !== currentUser.id</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-block">
+<span class="cm">// Role-based read-only pattern</span>
+<span class="kw">const</span> isReadOnly = user.role === <span class="str">'participant'</span> || 
+  (user.role === <span class="str">'caseworker'</span> &amp;&amp; caseData.assignedTo !== user.id);
+
+<span class="tag">&lt;TextField</span>
+  <span class="attr">label</span>=<span class="str">"Award Amount"</span>
+  <span class="attr">value</span>={caseData.awardAmount}
+  <span class="attr">InputProps</span>={{ readOnly: isReadOnly }}
+  <span class="attr">sx</span>={{
+    <span class="str">'&amp; .MuiInputBase-root'</span>: isReadOnly ? {
+      background: <span class="str">'#F5F7FA'</span>,
+      cursor: <span class="str">'default'</span>,
+    } : {}
+  }}
+<span class="tag">/&gt;</span>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           49. PRINT & EXPORT
+      ============================================================ -->
+      <section class="ds-section" id="print-export" aria-labelledby="print-export-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">49</div>
+          <h2 id="print-export-heading">Print &amp; Export</h2>
+        </div>
+        <p class="ds-section-desc">Caseworkers frequently print case summaries, award letters, and inspection reports. Participants may print their application confirmation. The print stylesheet ensures these documents are clean, readable, and free of navigation chrome.</p>
+
+        <h3 class="subsection-title">Print Stylesheet Rules</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Element</th><th>Print behavior</th></tr></thead>
+            <tbody>
+              <tr><td>Sidebar navigation</td><td><code>display: none</code></td></tr>
+              <tr><td>Top nav bar</td><td><code>display: none</code></td></tr>
+              <tr><td>Action buttons (Save, Cancel)</td><td><code>display: none</code></td></tr>
+              <tr><td>Toast / Snackbar</td><td><code>display: none</code></td></tr>
+              <tr><td>Main content</td><td><code>max-width: 100%; padding: 0; margin: 0;</code></td></tr>
+              <tr><td>DataGrid</td><td>All columns visible; no horizontal scroll; font-size reduced to 11px</td></tr>
+              <tr><td>Status chips</td><td>Border + text only (no background fill) — saves ink</td></tr>
+              <tr><td>Links</td><td>Show URL in parentheses after link text</td></tr>
+              <tr><td>Page breaks</td><td><code>page-break-inside: avoid</code> on cards and table rows</td></tr>
+              <tr><td>Header</td><td>Neighborly logo + case ID + print date in top-left</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Print Stylesheet</h3>
+        <div class="code-block">
+<span class="cm">/* tokens.css — print overrides */</span>
+<span class="kw">@media</span> print {
+  <span class="prop">.sidebar</span>, <span class="prop">.top-nav</span>, <span class="prop">.action-buttons</span>, <span class="prop">.MuiSnackbar-root</span> {
+    display: <span class="val">none</span> !important;
+  }
+  <span class="prop">.main-content</span> {
+    max-width: <span class="val">100%</span>; padding: <span class="val">0</span>; margin: <span class="val">0</span>;
+  }
+  <span class="prop">.MuiChip-root</span> {
+    background: <span class="val">transparent</span> !important;
+    border: <span class="val">1px solid currentColor</span> !important;
+  }
+  <span class="prop">a[href]::after</span> {
+    content: <span class="str">" (" attr(href) ")"</span>;
+    font-size: <span class="val">0.8em</span>; color: <span class="val">#5A6472</span>;
+  }
+  <span class="prop">.MuiCard-root</span>, <span class="prop">tr</span> {
+    page-break-inside: <span class="val">avoid</span>;
+  }
+  <span class="prop">.print-header</span> {
+    display: <span class="val">flex</span> !important;
+    align-items: <span class="val">center</span>; gap: <span class="val">12px</span>;
+    border-bottom: <span class="val">2px solid #181B1F</span>; padding-bottom: <span class="val">8px</span>;
+    margin-bottom: <span class="val">16px</span>;
+  }
+}
+        </div>
+
+        <h3 class="subsection-title">Export Formats</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Format</th><th>Use case</th><th>Implementation</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Print (browser)</strong></td><td>Case summaries, award letters, inspection reports</td><td><code>window.print()</code> + print stylesheet above</td></tr>
+              <tr><td><strong>PDF (server)</strong></td><td>Official award letters, VPAT reports, audit exports</td><td>Server-side rendering with Puppeteer or WeasyPrint; use the same print stylesheet</td></tr>
+              <tr><td><strong>CSV</strong></td><td>DataGrid exports, bulk case lists, reporting</td><td>MUI DataGrid <code>GridToolbarExport</code> component; include all visible columns</td></tr>
+              <tr><td><strong>Excel</strong></td><td>Financial reporting, disbursement tracking</td><td><code>xlsx</code> library; preserve column types (currency, date) for downstream use</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
             <footer style="border-top:2px solid #E5E9EF; padding-top:32px; margin-top:56px; text-align:center; color:#9AA4AD; font-size:13px;">
         <img src="assets/logo.svg" alt="Neighborly Software" style="height:24px; opacity:0.5; display:block; margin:0 auto 12px;" />
@@ -4342,6 +4948,53 @@
   <div class="snackbar-container" id="snackbar-container" aria-live="polite" aria-atomic="false"></div>
 
   <script>
+    // ============================================================
+    // DARK MODE DASHBOARD TOGGLE
+    // ============================================================
+    function toggleDashboardDark() {
+      var frame = document.getElementById('dashboard-combo-frame');
+      var toggle = document.getElementById('dark-mode-toggle');
+      var knob = document.getElementById('dark-mode-knob');
+      if (!frame) return;
+      var isDark = frame.getAttribute('data-dark') === 'true';
+      if (!isDark) {
+        frame.setAttribute('data-dark', 'true');
+        frame.style.background = '#0F172A';
+        frame.style.borderColor = '#334155';
+        if (toggle) toggle.style.background = '#188af4';
+        if (knob) knob.style.transform = 'translateX(18px)';
+        // Top nav
+        var topNav = frame.querySelector('[data-dm-topnav]');
+        if (topNav) { topNav.style.background = '#1E293B'; topNav.style.borderBottomColor = '#334155'; }
+        // Stat cards
+        frame.querySelectorAll('[data-dm-card]').forEach(function(el) { el.style.background = '#1E293B'; el.style.borderColor = '#334155'; });
+        // Text elements
+        frame.querySelectorAll('[data-dm-text-primary]').forEach(function(el) { el.style.color = '#F1F5F9'; });
+        frame.querySelectorAll('[data-dm-text-secondary]').forEach(function(el) { el.style.color = '#94A3B8'; });
+        // Table rows
+        frame.querySelectorAll('[data-dm-row]').forEach(function(el) { el.style.borderBottomColor = '#334155'; });
+        frame.querySelectorAll('[data-dm-row-alt]').forEach(function(el) { el.style.background = '#162032'; });
+        // Tab bar
+        var tabBar = frame.querySelector('[data-dm-tabbar]');
+        if (tabBar) { tabBar.style.background = '#1E293B'; tabBar.style.borderBottomColor = '#334155'; }
+      } else {
+        frame.setAttribute('data-dark', 'false');
+        frame.style.background = '#F5F7FA';
+        frame.style.borderColor = '#E2E6EA';
+        if (toggle) toggle.style.background = '#E5E9EF';
+        if (knob) knob.style.transform = 'translateX(0)';
+        var topNav = frame.querySelector('[data-dm-topnav]');
+        if (topNav) { topNav.style.background = '#fff'; topNav.style.borderBottomColor = '#E2E6EA'; }
+        frame.querySelectorAll('[data-dm-card]').forEach(function(el) { el.style.background = '#fff'; el.style.borderColor = '#E2E6EA'; });
+        frame.querySelectorAll('[data-dm-text-primary]').forEach(function(el) { el.style.color = '#181B1F'; });
+        frame.querySelectorAll('[data-dm-text-secondary]').forEach(function(el) { el.style.color = '#5A6472'; });
+        frame.querySelectorAll('[data-dm-row]').forEach(function(el) { el.style.borderBottomColor = '#E5E9EF'; });
+        frame.querySelectorAll('[data-dm-row-alt]').forEach(function(el) { el.style.background = '#FAFBFC'; });
+        var tabBar = frame.querySelector('[data-dm-tabbar]');
+        if (tabBar) { tabBar.style.background = '#fff'; tabBar.style.borderBottomColor = '#E2E6EA'; }
+      }
+    }
+
     // ============================================================
     // SIDEBAR ACTIVE STATE
     // ============================================================
@@ -4482,6 +5135,50 @@
       container.appendChild(toast);
       setTimeout(() => { if (toast.parentNode) toast.remove(); }, 6000);
     }
+
+    // ── Nav search + filter ──
+    const navSearch = document.getElementById('nav-search');
+    const navLinks = document.querySelectorAll('#sidebar-nav a');
+    const navGroups = document.querySelectorAll('#sidebar-nav .nav-group-label');
+    const filterBtns = document.querySelectorAll('.nav-filter-btn');
+    let activeFilter = 'all';
+
+    function applyNavFilter() {
+      const query = navSearch ? navSearch.value.toLowerCase() : '';
+      navGroups.forEach(group => {
+        const groupName = group.dataset.group || group.textContent.trim();
+        let groupHasVisible = false;
+        let sibling = group.nextElementSibling;
+        while (sibling && !sibling.classList.contains('nav-group-label')) {
+          if (sibling.tagName === 'A') {
+            const text = sibling.textContent.toLowerCase();
+            const matchesQuery = !query || text.includes(query);
+            const matchesFilter = activeFilter === 'all' || groupName === activeFilter ||
+              (activeFilter === 'Additional Patterns' && groupName === 'Additional Patterns');
+            const visible = matchesQuery && matchesFilter;
+            sibling.style.display = visible ? '' : 'none';
+            if (visible) groupHasVisible = true;
+          }
+          sibling = sibling.nextElementSibling;
+        }
+        group.style.display = groupHasVisible ? '' : 'none';
+      });
+    }
+
+    if (navSearch) {
+      navSearch.addEventListener('input', applyNavFilter);
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        if (navSearch) navSearch.value = '';
+        applyNavFilter();
+      });
+    });
+
   </script>
 </body>
 </html>
