@@ -819,13 +819,54 @@
     .ai-principle-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:16px 0; }
     .ai-principle-card { background:#fff; border:1px solid #e5e9ef; border-radius:8px;
       padding:14px 16px; }
-    .ai-principle-icon { font-size:20px; margin-bottom:8px; }
+    .ai-principle-icon { font-size:20px; margin-bottom:8px; display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:#f0ebff; }
     .ai-principle-title { font-size:12px; font-weight:700; color:#0a2a5e; margin-bottom:4px; }
     .ai-principle-desc { font-size:11px; color:#5a6270; line-height:1.5; }
     @media (max-width:700px) {
       .ai-do-dont { grid-template-columns:1fr; }
       .ai-principle-grid { grid-template-columns:1fr 1fr; }
     }
+
+    /* ── When Not To Use callout ─────────────────────────── */
+    .when-not-box { background:#fff8f0; border:1px solid #fed7aa; border-left:3px solid #ea580c;
+      border-radius:8px; padding:14px 18px; margin:20px 0 4px; }
+    .when-not-box .wn-label { font-size:10px; font-weight:700; color:#c2410c;
+      text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; display:flex;
+      align-items:center; gap:6px; }
+    .when-not-box ul { margin:0; padding-left:18px; }
+    .when-not-box li { font-size:12.5px; color:#7c2d12; line-height:1.7; }
+    .when-not-box li strong { color:#9a3412; }
+
+    /* ── Combo page teaching annotations ─────────────────── */
+    .combo-teach { background:#fafafa; border:1px solid #e2e6ea; border-radius:10px;
+      padding:20px 24px; margin:16px 0 20px; }
+    .combo-teach-title { font-size:11px; font-weight:700; color:#0a2a5e;
+      text-transform:uppercase; letter-spacing:.07em; margin-bottom:14px;
+      display:flex; align-items:center; gap:7px; }
+    .combo-teach-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    @media(max-width:700px){ .combo-teach-grid { grid-template-columns:1fr; } }
+    .combo-teach-item { background:#fff; border:1px solid #e8ecf0; border-radius:8px;
+      padding:14px 16px; }
+    .combo-teach-item .ct-q { font-size:11.5px; font-weight:700; color:#0a2a5e;
+      margin-bottom:6px; display:flex; align-items:flex-start; gap:6px; }
+    .combo-teach-item .ct-q svg { flex-shrink:0; margin-top:1px; }
+    .combo-teach-item .ct-a { font-size:12.5px; color:#3d4a5c; line-height:1.65; }
+    .combo-teach-item .ct-a code { background:#f0f4f8; padding:1px 5px; border-radius:4px;
+      font-size:11.5px; color:#0a2a5e; }
+    .combo-teach-alt { background:#fff8e1; border:1px solid #ffe082; border-radius:8px;
+      padding:12px 16px; margin-top:12px; font-size:12.5px; color:#5d4037; }
+    .combo-teach-alt strong { color:#4e342e; }
+
+    /* ── New in v2.7 badge ────────────────────────────────── */
+    .v27-badge { display:inline-flex; align-items:center; gap:4px; background:#e8f5e9;
+      border:1px solid #a5d6a7; border-radius:12px; padding:2px 9px; font-size:10px;
+      font-weight:700; color:#1b5e20; letter-spacing:.04em; vertical-align:middle;
+      margin-left:10px; white-space:nowrap; }
+    .v27-badge svg { flex-shrink:0; }
+    /* State matrix new badge */
+    .state-matrix-new { display:inline-flex; align-items:center; gap:4px; background:#e8f5e9;
+      border:1px solid #a5d6a7; border-radius:10px; padding:1px 7px; font-size:10px;
+      font-weight:700; color:#1b5e20; letter-spacing:.04em; margin-left:8px; }
   </style>
 </head>
 <body>
@@ -1719,6 +1760,10 @@ sx={{ transition: theme.transitions.create(
           <h2>Button</h2>
         </div>
         <p class="ds-section-desc">MUI's <code>&lt;Button&gt;</code> component supports three variants (<code>contained</code>, <code>outlined</code>, <code>text</code>) and five semantic colors. Use <code>contained primary</code> for the single primary action per view. Limit to one primary button per screen region.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <h3 class="subsection-title">variant="contained"</h3>
         <div class="demo-box">
@@ -1804,7 +1849,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -1860,6 +1905,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Destructive actions without confirmation</strong> — never use a contained Button directly for delete/archive; pair with a Dialog.</li>
+              <li><strong>Navigation</strong> — use a Link or nav element, not a Button, when the action changes the URL.</li>
+              <li><strong>More than 3 primary actions on one screen</strong> — only one <code>variant="contained"</code> per view; use outlined or text variants for secondary actions.</li>
+              <li><strong>Icon-only without a tooltip</strong> — always add a <code>title</code> or <code>aria-label</code> when the label is hidden.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -1871,6 +1929,10 @@ sx={{ transition: theme.transitions.create(
           <h2>TextField &amp; Inputs</h2>
         </div>
         <p class="ds-section-desc">MUI's <code>&lt;TextField&gt;</code> is the primary form input. Use <code>variant="outlined"</code> (the default in our theme) for all form fields. Always include a <code>label</code> and <code>helperText</code> for context. Never rely on placeholder text alone.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="two-col">
           <div>
@@ -1949,7 +2011,7 @@ sx={{ transition: theme.transitions.create(
 <span class="tag">&lt;/FormControl&gt;</span>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -2014,7 +2076,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -2075,6 +2137,19 @@ sx={{ transition: theme.transitions.create(
               </tr>
             </tbody>
           </table>
+        </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Read-only display of data</strong> — use Typography or a definition list, not a disabled TextField.</li>
+              <li><strong>Rich text entry</strong> — TextField is for plain text; use a dedicated rich text editor (e.g., Quill) for formatted content.</li>
+              <li><strong>Numeric-only inputs requiring a stepper</strong> — use <code>type="number"</code> with explicit min/max, or a dedicated NumberInput pattern.</li>
+              <li><strong>Inline editing in a DataGrid cell</strong> — use DataGrid's built-in cell editing, not a TextField overlay.</li>
+          </ul>
         </div>
       </section>
 
@@ -2230,6 +2305,10 @@ sx={{ transition: theme.transitions.create(
           <h2>Chip</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Chip&gt;</code> is used for status labels, filter tags, and categorical identifiers. Use <code>variant="filled"</code> for status and <code>variant="outlined"</code> for filters. Always pair color with a text label — never rely on color alone.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <h3 class="subsection-title">Application Status Chips</h3>
         <div class="demo-box">
@@ -2268,7 +2347,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -2324,6 +2403,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Primary navigation</strong> — use Tabs or a nav list; Chips are for filtering and tagging, not page navigation.</li>
+              <li><strong>More than 8–10 chips in a row</strong> — use a multi-select Autocomplete instead to avoid overflow.</li>
+              <li><strong>Displaying a single non-removable status</strong> — use a Badge or Alert; Chips imply interactivity.</li>
+              <li><strong>Replacing a Button</strong> — Chips are not buttons; if the action is the primary CTA, use a Button.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -2335,6 +2427,10 @@ sx={{ transition: theme.transitions.create(
           <h2>Card</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Card&gt;</code> groups related content. Use <code>CardHeader</code>, <code>CardContent</code>, and <code>CardActions</code> for consistent internal structure. Avoid nesting interactive cards inside other interactive elements.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="two-col">
           <div>
@@ -2390,7 +2486,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -2446,6 +2542,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Long-form content</strong> — use a full page or a Drawer; Cards truncate and lose context for dense content.</li>
+              <li><strong>Tabular data comparison</strong> — use a DataGrid when users need to compare values across rows.</li>
+              <li><strong>Deeply nested Cards</strong> — maximum one level of nesting; nested Cards create visual confusion.</li>
+              <li><strong>The only interactive element on a screen</strong> — a Card alone is not a form; pair with explicit action buttons.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -2457,6 +2566,10 @@ sx={{ transition: theme.transitions.create(
           <h2>Alert</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Alert&gt;</code> communicates system-level feedback. Use <code>severity</code> to set the semantic meaning. Always include a descriptive message — never show an alert without actionable context.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="demo-box">
           <div class="mui-alert alert-info">
@@ -2496,7 +2609,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -2552,6 +2665,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Transient feedback</strong> — use Snackbar for auto-dismissing messages; Alert is for persistent, in-context information.</li>
+              <li><strong>Blocking user flow</strong> — use a Dialog for decisions that require explicit acknowledgment before proceeding.</li>
+              <li><strong>Decorative section headers</strong> — do not use Alert styling purely for visual grouping; use a Card or Typography.</li>
+              <li><strong>More than 2 Alerts stacked on one screen</strong> — consolidate into a single error summary Alert with anchor links.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -2563,6 +2689,10 @@ sx={{ transition: theme.transitions.create(
           <h2>Dialog</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Dialog&gt;</code> interrupts the user for critical decisions. Use sparingly — only for destructive actions, confirmations, or complex forms that cannot be done inline. Always provide a clear dismiss path (Cancel button or close icon).</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <h3 class="subsection-title">Confirmation Dialog</h3>
         <div class="demo-box">
@@ -2600,7 +2730,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -2656,6 +2786,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Simple confirmations with no data entry</strong> — a Snackbar with an undo action is less disruptive.</li>
+              <li><strong>Complex multi-step workflows</strong> — use a full page or a Stepper; Dialogs are not suitable for more than 2–3 fields.</li>
+              <li><strong>Displaying large amounts of content</strong> — use a Drawer or a dedicated page; Dialog content should be scannable in under 30 seconds.</li>
+              <li><strong>Nested Dialogs</strong> — never open a Dialog from inside another Dialog; redesign the flow.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -2667,6 +2810,10 @@ sx={{ transition: theme.transitions.create(
           <h2>Table / DataGrid</h2>
         </div>
         <p class="ds-section-desc">For simple read-only data, use MUI <code>&lt;Table&gt;</code>. For sortable, filterable, paginated datasets (like application queues), use MUI <code>&lt;DataGrid&gt;</code> from <code>@mui/x-data-grid</code>. Always define <code>aria-label</code> on the table and <code>data-label</code> on cells for responsive stacking.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="mui-table-container">
           <div class="table-toolbar">
@@ -2842,7 +2989,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -2904,6 +3051,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Fewer than 5 rows of static data</strong> — use a simple HTML table or a list; DataGrid overhead is not justified.</li>
+              <li><strong>Read-only summary data</strong> — use a summary Card or definition list; DataGrid implies interactivity.</li>
+              <li><strong>Mobile-first participant-facing views</strong> — DataGrid does not adapt well below 600px; use a stacked card list instead.</li>
+              <li><strong>Infinite scroll</strong> — use pagination; infinite scroll breaks keyboard navigation and accessibility in data tables.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -2915,6 +3075,10 @@ sx={{ transition: theme.transitions.create(
           <h2>Stepper</h2>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Stepper&gt;</code> guides participants through multi-step processes like application intake. Use <code>orientation="horizontal"</code> for 3–5 steps on desktop, <code>orientation="vertical"</code> for mobile or complex step content.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="demo-box">
           <div class="mui-stepper" role="list" aria-label="Application progress">
@@ -2952,7 +3116,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -3002,6 +3166,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Non-linear workflows</strong> — if users can complete steps in any order, use Tabs instead.</li>
+              <li><strong>Single-step processes</strong> — a Stepper with one step is meaningless; use a simple form.</li>
+              <li><strong>More than 8 steps</strong> — break into phases with a higher-level Stepper; 8+ steps overwhelms users.</li>
+              <li><strong>Status tracking without user action</strong> — use a Timeline component or a status chip list; Stepper implies the user is doing the steps.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -3014,6 +3191,10 @@ sx={{ transition: theme.transitions.create(
           <span class="status-badge status-stable">● Stable</span>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Tabs&gt;</code> organizes related content within a single view. Use for switching between views of the same data — not for navigation between pages.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="demo-box">
           <div class="mui-tabs" role="tablist" aria-label="Application details">
@@ -3048,7 +3229,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -3104,6 +3285,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>More than 6–7 tabs</strong> — use a sidebar nav or a Select dropdown; overflow tabs are inaccessible.</li>
+              <li><strong>Sequential workflows</strong> — use a Stepper; Tabs imply parallel, non-ordered content.</li>
+              <li><strong>Tabs that navigate to different URLs</strong> — use a Router-aware nav; standard Tabs are for in-page content switching.</li>
+              <li><strong>Hiding critical information</strong> — do not put required fields or error states behind a tab that isn't the default.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -3116,6 +3310,10 @@ sx={{ transition: theme.transitions.create(
           <span class="status-badge status-stable">● Stable</span>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Snackbar&gt;</code> provides brief, non-blocking feedback. Pair with <code>&lt;Alert&gt;</code> for severity. Auto-dismiss after 5 seconds. Always include a dismiss button for accessibility.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="demo-box">
           <div class="demo-row">
@@ -3134,7 +3332,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -3190,6 +3388,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Critical errors requiring action</strong> — use an Alert or Dialog; Snackbars auto-dismiss and must not carry information the user cannot afford to miss.</li>
+              <li><strong>More than one Snackbar at a time</strong> — queue them; stacking Snackbars is disorienting.</li>
+              <li><strong>Long messages</strong> — Snackbar copy should be under 60 characters; use an Alert for longer explanations.</li>
+              <li><strong>Confirmation of destructive actions</strong> — use a Dialog with explicit Cancel/Confirm buttons.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -3202,6 +3413,10 @@ sx={{ transition: theme.transitions.create(
           <span class="status-badge status-stable">● Stable</span>
         </div>
         <p class="ds-section-desc">Use <code>&lt;LinearProgress&gt;</code> for file uploads, form saves, and page loads. Use <code>&lt;CircularProgress&gt;</code> for inline loading states. Always include <code>aria-label</code> and <code>role="progressbar"</code>.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="demo-box">
           <span class="demo-label">LinearProgress — Determinate</span>
@@ -3231,6 +3446,19 @@ sx={{ transition: theme.transitions.create(
 <span class="tag">&lt;LinearProgress</span> <span class="attr">variant</span>=<span class="str">"determinate"</span> <span class="attr">value</span>=<span class="str">{65}</span> <span class="attr">aria-label</span>=<span class="str">"Upload progress"</span> <span class="tag">/&gt;</span>
 <span class="tag">&lt;CircularProgress</span> <span class="attr">size</span>=<span class="str">{24}</span> <span class="attr">aria-label</span>=<span class="str">"Saving"</span> <span class="tag">/&gt;</span>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Determinate progress when duration is unknown</strong> — use indeterminate (spinning) variant; a stuck determinate bar is worse than no bar.</li>
+              <li><strong>Replacing a Skeleton loader</strong> — use Skeleton for content placeholders; Progress is for active operations.</li>
+              <li><strong>Inline with text</strong> — use a CircularProgress sized to the text line height; LinearProgress is for full-width operation feedback.</li>
+              <li><strong>Inside a Button without disabling the Button</strong> — always set <code>disabled</code> on the Button when showing a loading state.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -3243,6 +3471,10 @@ sx={{ transition: theme.transitions.create(
           <span class="status-badge status-stable">● Stable</span>
         </div>
         <p class="ds-section-desc">MUI <code>&lt;Tooltip&gt;</code> provides supplementary context for icons, truncated text, and technical terms. Never put essential information only in a tooltip — it must also be accessible without hover.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="demo-box">
           <div class="demo-row" style="padding: 24px 0;">
@@ -3273,7 +3505,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -3329,6 +3561,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Essential information</strong> — if the user needs the information to complete a task, put it inline; Tooltips are not accessible on touch devices.</li>
+              <li><strong>Long text</strong> — Tooltip content should be under 80 characters; use a Popover or helper text for longer explanations.</li>
+              <li><strong>Interactive content</strong> — Tooltips cannot contain links or buttons; use a Popover.</li>
+              <li><strong>Form field labels</strong> — always use a visible label; never rely on a Tooltip as the only label for an input.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -3341,6 +3586,10 @@ sx={{ transition: theme.transitions.create(
           <span class="status-badge status-stable">● Stable</span>
         </div>
         <p class="ds-section-desc">MUI <code>Autocomplete</code> wraps a <code>TextField</code> with a dropdown suggestion list. Use it for program search, case assignment, and any field where users select from a large or dynamic dataset.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="demo-box" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
           <!-- Program search -->
@@ -3475,7 +3724,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -3543,6 +3792,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Fewer than 6 options</strong> — use a Select or Radio group; Autocomplete adds unnecessary complexity for short lists.</li>
+              <li><strong>Free-text entry where any value is valid</strong> — use a plain TextField; Autocomplete implies a constrained option set.</li>
+              <li><strong>Address entry</strong> — use a dedicated address autocomplete API (Google Places, USPS); do not build address lookup on top of MUI Autocomplete.</li>
+              <li><strong>Required fields without a fallback</strong> — always provide a manual entry path in case the API is unavailable.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -3555,6 +3817,10 @@ sx={{ transition: theme.transitions.create(
           <span class="status-badge status-stable">● Stable</span>
         </div>
         <p class="ds-section-desc">MUI <code>DatePicker</code> from <code>@mui/x-date-pickers</code>. Use for application deadlines, program year selection, inspection scheduling, and any date input. Always pair with <code>LocalizationProvider</code> using <code>AdapterDayjs</code>.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="demo-box" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
           <!-- Single date picker -->
@@ -3632,7 +3898,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -3700,6 +3966,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Date of birth entry</strong> — use three separate Select dropdowns (month/day/year) for DOB; calendar pickers are slow for dates far in the past.</li>
+              <li><strong>Relative date selection</strong> — use a Select with options like "Next 30 days", "This quarter"; a calendar is not intuitive for relative ranges.</li>
+              <li><strong>Time-only input</strong> — use a TimePicker; do not use DatePicker and strip the date.</li>
+              <li><strong>Displaying a read-only date</strong> — use Typography; do not render a disabled DatePicker for display-only dates.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -3712,6 +3991,10 @@ sx={{ transition: theme.transitions.create(
           <span class="status-badge status-stable">● Stable</span>
         </div>
         <p class="ds-section-desc">MUI <code>Drawer</code> slides in from the right (or left) for contextual detail panels — case notes, document previews, filter panels, and mobile navigation. Prefer right-anchored drawers for detail views; left-anchored for navigation.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="demo-box" style="padding:0; overflow:hidden; position:relative; height:360px; background:#F5F7FA;">
           <!-- Main content area (dimmed) -->
@@ -3811,7 +4094,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -3873,6 +4156,19 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>Primary navigation on desktop</strong> — use a persistent sidebar nav; a Drawer implies temporary/contextual content.</li>
+              <li><strong>Short confirmations</strong> — use a Dialog; a Drawer is too heavy for a 2-line confirmation.</li>
+              <li><strong>Content that requires full focus</strong> — use a full page; the Drawer's scrim does not fully block the background on all devices.</li>
+              <li><strong>More than one Drawer open at a time</strong> — never stack Drawers; redesign the flow.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -3885,6 +4181,10 @@ sx={{ transition: theme.transitions.create(
           <span class="status-badge status-stable">● Stable</span>
         </div>
         <p class="ds-section-desc">MUI <code>Menu</code> and <code>MenuItem</code> for contextual action menus — the "⋯" row actions in DataGrids, navigation dropdowns, and bulk action menus. Always anchor to the trigger element using <code>anchorEl</code>.</p>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:5px 12px;margin-bottom:12px;font-size:11.5px;color:#1b5e20;font-weight:600;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>
+          <strong>New in v2.7:</strong>&nbsp;State matrix added — full interaction state documentation for all variants.
+        </div>
 
         <div class="demo-box" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
           <!-- Row action menu -->
@@ -3961,7 +4261,7 @@ sx={{ transition: theme.transitions.create(
         </div>
 
         <div class="state-matrix-wrap">
-          <h3 class="subsection-title">State Matrix</h3>
+          <h3 class="subsection-title">State Matrix <span class="state-matrix-new">New in v2.7</span></h3>
           <table class="state-matrix">
             <thead>
               <tr>
@@ -4028,6 +4328,19 @@ sx={{ transition: theme.transitions.create(
               </tr>
             </tbody>
           </table>
+        </div>
+      
+        <div class="when-not-box">
+          <div class="wn-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            When NOT to use
+          </div>
+          <ul>
+              <li><strong>More than 8–10 items</strong> — use a Drawer or a dedicated page; long menus are hard to scan.</li>
+              <li><strong>Primary actions</strong> — use a Button; Menu items are for secondary or overflow actions.</li>
+              <li><strong>Nested menus more than one level deep</strong> — flatten the information architecture; nested menus are inaccessible on mobile.</li>
+              <li><strong>Destructive items without a separator</strong> — always visually separate destructive actions (delete, archive) from safe actions with a Divider.</li>
+          </ul>
         </div>
       </section>
 
@@ -4559,6 +4872,32 @@ sx={{ transition: theme.transitions.create(
             <li>Do not use this layout for the Participant Portal — participants see their own applications only, not a queue.</li>
           </ul>
         </div>
+<div class="combo-frame" id="dashboard-combo-frame"
+        <div class="combo-teach">
+          <div class="combo-teach-title">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/></svg>
+            Teaching notes — why this page is designed this way
+          </div>
+          <div class="combo-teach-grid">
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why do stat cards appear before the DataGrid?</div>
+              <div class="ct-a">Stat cards answer the question <em>"how is the queue doing right now?"</em> before the user dives into rows. Research on decision-support dashboards shows that summary metrics reduce time-to-first-action by ~30% vs. leading with a table. The cards use <code>Card</code> + <code>Typography variant=h4</code> to create a clear visual hierarchy.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why Tabs for My Work / Team Work / All Cases?</div>
+              <div class="ct-a">Each tab is a distinct mental context with different urgency signals. Tabs preserve per-tab scroll position (via <code>keepMounted</code>) so a caseworker can check Team Work and return to their own queue without losing their place. A single filtered DataGrid would require the user to re-apply filters every switch.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why is the DataGrid density=compact here but not in Cases List?</div>
+              <div class="ct-a">The dashboard queue is intentionally limited to 10–15 high-priority rows — compact density fits more rows above the fold without scrolling. The full Cases List uses standard density because users spend more time reading individual rows and need more breathing room.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why are action buttons in the DataGrid row, not in the stat cards?</div>
+              <div class="ct-a">Stat cards communicate state; they should not trigger actions. Placing Approve/Deny/Assign in the row keeps the action co-located with the data it affects, reducing the risk of acting on the wrong case. This follows the <em>proximity principle</em> from Gestalt design theory.</div>
+            </div>
+          </div>
+          <div class="combo-teach-alt"><strong>Alternative path:</strong> If the admin only manages one program, collapse the Tabs and show a single DataGrid. The Tabs pattern is justified only when there are 2+ meaningful context switches.</div>
+        </div>
 <div class="combo-frame" id="dashboard-combo-frame" style="border:1px solid #E2E6EA; border-radius:12px; overflow:hidden; background:#F5F7FA;">
           <!-- Top nav -->
           <div data-dm-topnav style="background:#fff; border-bottom:1px solid #E2E6EA; padding:0 20px; display:flex; align-items:center; gap:0; height:52px;">
@@ -4790,6 +5129,31 @@ sx={{ transition: theme.transitions.create(
             <div><span style="font-weight:600;">Bulk actions</span> — <code>Button</code> group, shown on selection</div>
             <div><span style="font-weight:600;">Pagination</span> — <code>DataGrid</code> built-in pagination</div>
           </div>
+        </div>
+        <div class="combo-teach">
+          <div class="combo-teach-title">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/></svg>
+            Teaching notes — why this page is designed this way
+          </div>
+          <div class="combo-teach-grid">
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why is the filter row always visible instead of a Drawer?</div>
+              <div class="ct-a">Caseworkers filter on every session — by program, status, and assigned staff. Hiding filters behind a Drawer adds 2 clicks per session. The horizontal space is available on the admin layout (1280px+), so inline filters are justified. On mobile, the filter row collapses into a Drawer automatically.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why do View Tabs change columns instead of a column visibility toggle?</div>
+              <div class="ct-a">Each workflow stage (Eligibility, Scoring, DOB) has a different primary column set. Tabs make the context switch <em>explicit and named</em> — a caseworker in the DOB view knows they're in DOB mode. A column toggle would require the user to remember which columns matter for each stage.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why does bulk selection only show action buttons after rows are checked?</div>
+              <div class="ct-a">Showing bulk action buttons before any rows are selected creates visual noise and confusion about scope. Progressive disclosure — revealing actions only when they're applicable — reduces cognitive load and prevents accidental bulk operations.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why is pagination preferred over infinite scroll?</div>
+              <div class="ct-a">Caseworkers need to navigate to specific rows by page number (e.g., "I was on page 3"). Infinite scroll breaks this mental model and is inaccessible to keyboard users. <code>DataGrid</code> built-in pagination also enables server-side paging for 500+ row datasets without loading all rows into the browser.</div>
+            </div>
+          </div>
+          <div class="combo-teach-alt"><strong>Alternative path:</strong> If the dataset is always under 50 rows (e.g., a single caseworker's queue), replace DataGrid with a lightweight Table and remove pagination.</div>
         </div>
 <div class="combo-frame" style="border:1px solid #E2E6EA; border-radius:12px; overflow:hidden; background:#fff;">
           <!-- Top nav (same as dashboard) -->
@@ -5059,6 +5423,31 @@ sx={{ transition: theme.transitions.create(
             <div><span style="font-weight:600;">Action buttons</span> — <code>Button</code> contained + outlined pair</div>
           </div>
         </div>
+        <div class="combo-teach">
+          <div class="combo-teach-title">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/></svg>
+            Teaching notes — why this page is designed this way
+          </div>
+          <div class="combo-teach-grid">
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why a vertical left-rail Stepper instead of a horizontal progress bar?</div>
+              <div class="ct-a">Grant workflows have 8–12 named steps with non-linear navigation — caseworkers frequently jump back to re-verify earlier steps. The vertical Stepper shows all step names simultaneously, making the current position unambiguous. A horizontal progress bar shows only percentage, not step names, and breaks at more than 5 steps.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why does the warning Alert appear in the case header, not inline in a field?</div>
+              <div class="ct-a">Missing documents affect the entire case, not a single field. A persistent <code>Alert severity=warning</code> in the header ensures the caseworker sees the blocker regardless of which step they're currently viewing. Inline field errors are reserved for field-level validation.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why is the Notes panel a Drawer, not a Tab?</div>
+              <div class="ct-a">Notes are contextual reference material, not a workflow step. A right-anchor Drawer keeps notes accessible without navigating away from the active form, preserving the caseworker's stepper position. A Notes Tab would require the caseworker to leave the form context entirely.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why are Save Draft and Submit separated into outlined vs. contained buttons?</div>
+              <div class="ct-a">The visual weight of <code>variant=contained</code> signals the primary action (Submit). <code>variant=outlined</code> for Save Draft communicates it's safe but secondary. This hierarchy prevents accidental submission and follows MUI's recommended button pairing pattern for forms with a clear primary action.</div>
+            </div>
+          </div>
+          <div class="combo-teach-alt"><strong>Alternative path:</strong> For simple 3-step workflows (e.g., a quick document upload), replace the vertical Stepper with a horizontal Stepper in the page header and remove the left rail.</div>
+        </div>
 <div class="combo-frame" style="border:1px solid #E2E6EA; border-radius:12px; overflow:hidden; background:#F5F7FA;">
           <!-- Top nav -->
           <div style="background:#fff; border-bottom:1px solid #E2E6EA; padding:0 20px; display:flex; align-items:center; gap:0; height:52px;">
@@ -5319,6 +5708,31 @@ sx={{ transition: theme.transitions.create(
             <div><span style="font-weight:600;">Timestamps</span> — <code>Typography</code> variant=caption color=text.secondary</div>
           </div>
         </div>
+        <div class="combo-teach">
+          <div class="combo-teach-title">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/></svg>
+            Teaching notes — why this page is designed this way
+          </div>
+          <div class="combo-teach-grid">
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why a split-pane layout instead of a Drawer or modal?</div>
+              <div class="ct-a">Messaging is a primary workflow for caseworkers, not a contextual overlay. A Drawer implies it's secondary to whatever is behind it. The split-pane gives messages equal visual weight and keeps the conversation list always visible for quick switching between cases — critical when managing 20+ active cases.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why chat bubbles instead of a comment thread?</div>
+              <div class="ct-a">Participants are familiar with messaging apps (SMS, WhatsApp). The chat metaphor reduces cognitive load for users who may not be comfortable with formal document workflows. Caseworkers benefit from the same clarity of who said what and when. A comment thread would look like a ticket system, which creates a power imbalance.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why is the conversation list on the left, not a top tab bar?</div>
+              <div class="ct-a">The conversation list shows unread counts, last message previews, and case context simultaneously. A tab bar can only show conversation names. The left-pane pattern also scales to 50+ conversations without overflow, whereas a tab bar would require a scroll mechanism.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why is the message input a TextField with a send IconButton, not a full toolbar?</div>
+              <div class="ct-a">Neighborly messages are plain text — no formatting, no attachments (documents are uploaded in the Case Viewer). A minimal input reduces distraction and keeps the participant's focus on the content of the message. The <code>IconButton</code> send button is keyboard-accessible via Enter key.</div>
+            </div>
+          </div>
+          <div class="combo-teach-alt"><strong>Alternative path:</strong> If messaging volume is very low (under 5 conversations), replace the split-pane with a simple list page that opens each conversation in a full-page view.</div>
+        </div>
 <div class="combo-frame" style="border:1px solid #E2E6EA; border-radius:12px; overflow:hidden; background:#fff;">
           <!-- Top nav -->
           <div style="background:#fff; border-bottom:1px solid #E2E6EA; padding:0 20px; display:flex; align-items:center; gap:0; height:52px;">
@@ -5455,6 +5869,31 @@ sx={{ transition: theme.transitions.create(
           <h2 id="page-participant-portal-heading">Participant Portal</h2>
         </div>
         <p class="ds-section-desc">The Participant experience — what a neighbor sees when they log in. Warm, low-density, action-oriented. Components: <code>Card</code>, <code>Stepper</code> (horizontal), <code>Chip</code>, <code>Alert</code>, <code>Button</code>, <code>LinearProgress</code>. Navigation is minimal — no sidebar. Top nav only.</p>
+        <div class="combo-teach">
+          <div class="combo-teach-title">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/></svg>
+            Teaching notes — why this page is designed this way
+          </div>
+          <div class="combo-teach-grid">
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why no sidebar navigation for participants?</div>
+              <div class="ct-a">Participants manage 1–3 applications, not a queue of 50+ cases. A sidebar nav would add visual complexity without benefit. Top nav only keeps the interface clean and mobile-friendly — participants are more likely to use the portal on a phone than a desktop.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why a horizontal Stepper for application progress instead of a status chip?</div>
+              <div class="ct-a">A Stepper communicates <em>where the participant is in the process</em> and <em>what comes next</em>. A status chip (e.g., "Under Review") only communicates current state. The Stepper reduces anxiety by making the process transparent and predictable — critical for participants who may be in a stressful housing situation.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why does the portal use warmer, lower-density design than the admin views?</div>
+              <div class="ct-a">Participants are not power users. Higher line height, larger font sizes, and more whitespace reduce cognitive load for users who may have lower digital literacy or be accessing the portal under stress. The warm color palette (<code>#F5F7FA</code> background, <code>#3aab5c</code> accents) is intentionally less clinical than the admin interface.</div>
+            </div>
+            <div class="combo-teach-item">
+              <div class="ct-q"><svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg> Why is the primary CTA 'Continue Application' rather than 'Edit'?</div>
+              <div class="ct-a">Action-oriented language reduces hesitation. 'Continue' implies progress and momentum; 'Edit' implies correction and error. For participants who may feel intimidated by the process, forward-looking language is more encouraging. This follows plain-language principles required by HUD for federally funded programs.</div>
+            </div>
+          </div>
+          <div class="combo-teach-alt"><strong>Alternative path:</strong> If a participant has completed all applications and is only waiting for decisions, replace the Stepper with a status timeline showing submitted → under review → decision dates.</div>
+        </div>
         <div class="combo-frame" style="border:1px solid #E5E9EF; border-radius:10px; overflow:hidden; background:#F5F7FA;">
           <!-- Top nav -->
           <div style="background:#fff; border-bottom:1px solid #E5E9EF; padding:0 24px; height:56px; display:flex; align-items:center; justify-content:space-between;">
@@ -7184,7 +7623,7 @@ it(<span class="str">'has no accessibility violations'</span>, <span class="kw">
         <div class="ds-section-header">
           <div class="section-num" aria-hidden="true">52</div>
           <div>
-            <h2 id="ai-patterns-heading" class="ds-section-title">AI UI Patterns</h2>
+            <h2 id="ai-patterns-heading" class="ds-section-title">AI UI Patterns <span class="v27-badge"><svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/></svg>New in v2.7</span></h2>
             <p class="ds-section-desc">How to surface AI-generated content, suggestions, confidence scores, and AI-assisted actions in the Neighborly product. AI features must be transparent, correctable, and never presented as authoritative without human review.</p>
           </div>
         </div>
@@ -7193,32 +7632,32 @@ it(<span class="str">'has no accessibility violations'</span>, <span class="kw">
         <h3 class="subsection-title">Core Principles</h3>
         <div class="ai-principle-grid">
           <div class="ai-principle-card">
-            <div class="ai-principle-icon">🏷️</div>
+            <div class="ai-principle-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#7c3aed" width="20" height="20" aria-hidden="true"><path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/></svg></div>
             <div class="ai-principle-title">Always label AI content</div>
             <div class="ai-principle-desc">Any content generated or suggested by AI must be visually distinguished from human-authored content. Never present AI output as a system fact.</div>
           </div>
           <div class="ai-principle-card">
-            <div class="ai-principle-icon">✏️</div>
+            <div class="ai-principle-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#7c3aed" width="20" height="20" aria-hidden="true"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div>
             <div class="ai-principle-title">Always allow correction</div>
             <div class="ai-principle-desc">Every AI suggestion must have an Accept, Edit, or Dismiss action. Caseworkers and admins must be able to override any AI output before it affects a case.</div>
           </div>
           <div class="ai-principle-card">
-            <div class="ai-principle-icon">📊</div>
+            <div class="ai-principle-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#7c3aed" width="20" height="20" aria-hidden="true"><path d="M4 9h4v11H4zm6-5h4v16h-4zm6 8h4v8h-4z"/></svg></div>
             <div class="ai-principle-title">Show confidence honestly</div>
             <div class="ai-principle-desc">Low-confidence outputs must be visually differentiated from high-confidence ones. Never hide uncertainty — especially for eligibility determinations.</div>
           </div>
           <div class="ai-principle-card">
-            <div class="ai-principle-icon">🔍</div>
+            <div class="ai-principle-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#7c3aed" width="20" height="20" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
             <div class="ai-principle-title">Explain the basis</div>
             <div class="ai-principle-desc">For consequential AI outputs (eligibility scores, fraud signals, risk flags), always provide a "Why?" disclosure — what data points drove the result.</div>
           </div>
           <div class="ai-principle-card">
-            <div class="ai-principle-icon">⚖️</div>
+            <div class="ai-principle-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#7c3aed" width="20" height="20" aria-hidden="true"><path d="m1 21 7.5-7.5 2.1 2.1L3.1 23 1 21zm14.5-11L13 7.5l2-2 2.5 2.5-2 2zm-3 3-2-2 7-7 2 2-7 7zm5 5v-3l-6-6-3 3 6 6h3z"/></svg></div>
             <div class="ai-principle-title">Human in the loop</div>
             <div class="ai-principle-desc">AI must not take irreversible actions autonomously. Approvals, denials, and disbursements always require a human action — AI can recommend, not decide.</div>
           </div>
           <div class="ai-principle-card">
-            <div class="ai-principle-icon">♿</div>
+            <div class="ai-principle-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#7c3aed" width="20" height="20" aria-hidden="true"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg></div>
             <div class="ai-principle-title">Accessible by default</div>
             <div class="ai-principle-desc">AI badges, confidence indicators, and suggestion chips must have accessible labels. Screen readers must announce AI-generated content as such.</div>
           </div>
