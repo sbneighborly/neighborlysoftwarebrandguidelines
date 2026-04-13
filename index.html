@@ -767,6 +767,65 @@
     .status-planned { background: #F5F5F5; color: #757575; }
     .ds-section-header { position: relative; }
     .ds-section-header .status-badge { margin-left: auto; flex-shrink: 0; }
+
+    /* ── AI UI Patterns ───────────────────────────────────── */
+    .ai-badge { display:inline-flex; align-items:center; gap:5px; padding:3px 10px 3px 8px;
+      border-radius:20px; font-size:11px; font-weight:700; letter-spacing:.04em;
+      background:linear-gradient(135deg,#ede9fe,#dbeafe); color:#4c1d95; border:1px solid #c4b5fd; }
+    .ai-badge svg { width:12px; height:12px; flex-shrink:0; }
+    .ai-badge.ai-badge-sm { font-size:10px; padding:2px 8px 2px 6px; }
+    .ai-content-block { border:1px solid #c4b5fd; border-left:3px solid #7c3aed;
+      border-radius:8px; background:#faf5ff; padding:14px 16px; margin:8px 0; position:relative; }
+    .ai-content-block .ai-content-label { display:flex; align-items:center; gap:6px;
+      font-size:10px; font-weight:700; color:#7c3aed; text-transform:uppercase;
+      letter-spacing:.06em; margin-bottom:8px; }
+    .ai-content-block .ai-content-text { font-size:13px; color:#181B1F; line-height:1.6; }
+    .ai-content-block .ai-content-actions { display:flex; gap:8px; margin-top:10px; }
+    .ai-content-block .ai-action-btn { font-size:11px; font-weight:600; padding:4px 10px;
+      border-radius:6px; border:1px solid #c4b5fd; background:#fff; color:#7c3aed;
+      cursor:pointer; transition:background .15s; }
+    .ai-action-btn:hover { background:#ede9fe; }
+    .ai-action-btn.accept { background:#7c3aed; color:#fff; border-color:#7c3aed; }
+    .ai-action-btn.accept:hover { background:#6d28d9; }
+    .confidence-bar-wrap { display:flex; align-items:center; gap:10px; margin:6px 0; }
+    .confidence-bar { height:6px; border-radius:3px; background:#e5e7eb; flex:1; overflow:hidden; }
+    .confidence-bar-fill { height:100%; border-radius:3px; transition:width .4s ease; }
+    .confidence-bar-fill.high { background:#3aab5c; }
+    .confidence-bar-fill.medium { background:#ed6c02; }
+    .confidence-bar-fill.low { background:#D32F2F; }
+    .confidence-label { font-size:11px; font-weight:700; min-width:52px; text-align:right; }
+    .confidence-label.high { color:#1b5e20; }
+    .confidence-label.medium { color:#663c00; }
+    .confidence-label.low { color:#5f2120; }
+    .ai-suggestion-chip { display:inline-flex; align-items:center; gap:5px; padding:4px 10px;
+      border-radius:16px; font-size:12px; font-weight:500; background:#ede9fe; color:#4c1d95;
+      border:1px dashed #a78bfa; cursor:pointer; transition:background .15s; }
+    .ai-suggestion-chip:hover { background:#ddd6fe; }
+    .ai-suggestion-chip svg { width:11px; height:11px; }
+    .ai-uncertainty-block { background:#fff7ed; border:1px solid #fed7aa; border-left:3px solid #ea580c;
+      border-radius:8px; padding:12px 16px; font-size:13px; color:#7c2d12; }
+    .ai-uncertainty-block .ai-uncertainty-label { font-size:10px; font-weight:700;
+      text-transform:uppercase; letter-spacing:.06em; color:#ea580c; margin-bottom:6px; }
+    .ai-do-dont { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+    .ai-do { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:14px 16px; }
+    .ai-dont { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:14px 16px; }
+    .ai-do-label { font-size:10px; font-weight:700; color:#166534; text-transform:uppercase;
+      letter-spacing:.06em; margin-bottom:8px; }
+    .ai-dont-label { font-size:10px; font-weight:700; color:#991b1b; text-transform:uppercase;
+      letter-spacing:.06em; margin-bottom:8px; }
+    .ai-do p, .ai-dont p { font-size:12px; line-height:1.6; margin:0; }
+    .ai-do p { color:#166534; }
+    .ai-dont p { color:#991b1b; }
+    .ai-principle-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:16px 0; }
+    .ai-principle-card { background:#fff; border:1px solid #e5e9ef; border-radius:8px;
+      padding:14px 16px; }
+    .ai-principle-icon { font-size:20px; margin-bottom:8px; }
+    .ai-principle-title { font-size:12px; font-weight:700; color:#0a2a5e; margin-bottom:4px; }
+    .ai-principle-desc { font-size:11px; color:#5a6270; line-height:1.5; }
+    @media (max-width:700px) {
+      .ai-do-dont { grid-template-columns:1fr; }
+      .ai-principle-grid { grid-template-columns:1fr 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -788,7 +847,7 @@
       <div class="sidebar-logo">
         <img src="assets/logo-icon-circle.svg" alt="Neighborly Software" style="height:30px; width:auto; flex-shrink:0;" />
         <span style="color:#fff; font-weight:700; font-size:14px; line-height:1.2;">Neighborly<br>Software</span>
-        <span class="sidebar-version">v2.6</span>
+        <span class="sidebar-version">v2.7</span>
       </div>
       <div class="nav-search-wrap">
         <input type="search" id="nav-search" class="nav-search-input" placeholder="Search sections…" aria-label="Search design system sections" autocomplete="off" />
@@ -875,6 +934,7 @@
         <a href="#print-export">Print &amp; Export</a>
         <a href="#content-copy">Content &amp; Copy</a>
         <a href="#qa-testing">QA &amp; Testing</a>
+        <a href="#ai-patterns">AI UI Patterns</a>
         </div>
       </nav>
     </nav><!-- end .sidebar -->
@@ -892,7 +952,7 @@
         </div>
         <h1>Neighborly Software Design System</h1>
         <p>The MUI-based component library and pattern guide for building grant management applications. Shared across Participant, Contractor, and Admin experiences.</p>
-        <span class="hero-version">Version 2.6 — MUI v5</span>
+        <span class="hero-version">Version 2.7 — MUI v5</span>
       </div>
 
       <!-- ============================================================
@@ -7117,9 +7177,375 @@ it(<span class="str">'has no accessibility violations'</span>, <span class="kw">
         </div>
       </section>
 
+      <!-- ============================================================
+           52. AI UI PATTERNS
+      ============================================================ -->
+      <section class="ds-section" id="ai-patterns" aria-labelledby="ai-patterns-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">52</div>
+          <div>
+            <h2 id="ai-patterns-heading" class="ds-section-title">AI UI Patterns</h2>
+            <p class="ds-section-desc">How to surface AI-generated content, suggestions, confidence scores, and AI-assisted actions in the Neighborly product. AI features must be transparent, correctable, and never presented as authoritative without human review.</p>
+          </div>
+        </div>
+
+        <!-- ── Principles ─────────────────────────────────────── -->
+        <h3 class="subsection-title">Core Principles</h3>
+        <div class="ai-principle-grid">
+          <div class="ai-principle-card">
+            <div class="ai-principle-icon">🏷️</div>
+            <div class="ai-principle-title">Always label AI content</div>
+            <div class="ai-principle-desc">Any content generated or suggested by AI must be visually distinguished from human-authored content. Never present AI output as a system fact.</div>
+          </div>
+          <div class="ai-principle-card">
+            <div class="ai-principle-icon">✏️</div>
+            <div class="ai-principle-title">Always allow correction</div>
+            <div class="ai-principle-desc">Every AI suggestion must have an Accept, Edit, or Dismiss action. Caseworkers and admins must be able to override any AI output before it affects a case.</div>
+          </div>
+          <div class="ai-principle-card">
+            <div class="ai-principle-icon">📊</div>
+            <div class="ai-principle-title">Show confidence honestly</div>
+            <div class="ai-principle-desc">Low-confidence outputs must be visually differentiated from high-confidence ones. Never hide uncertainty — especially for eligibility determinations.</div>
+          </div>
+          <div class="ai-principle-card">
+            <div class="ai-principle-icon">🔍</div>
+            <div class="ai-principle-title">Explain the basis</div>
+            <div class="ai-principle-desc">For consequential AI outputs (eligibility scores, fraud signals, risk flags), always provide a "Why?" disclosure — what data points drove the result.</div>
+          </div>
+          <div class="ai-principle-card">
+            <div class="ai-principle-icon">⚖️</div>
+            <div class="ai-principle-title">Human in the loop</div>
+            <div class="ai-principle-desc">AI must not take irreversible actions autonomously. Approvals, denials, and disbursements always require a human action — AI can recommend, not decide.</div>
+          </div>
+          <div class="ai-principle-card">
+            <div class="ai-principle-icon">♿</div>
+            <div class="ai-principle-title">Accessible by default</div>
+            <div class="ai-principle-desc">AI badges, confidence indicators, and suggestion chips must have accessible labels. Screen readers must announce AI-generated content as such.</div>
+          </div>
+        </div>
+
+        <!-- ── AI Badge ─────────────────────────────────────────── -->
+        <h3 class="subsection-title">AI Badge</h3>
+        <p class="ds-section-desc" style="margin-bottom:16px;">Use the AI badge to mark any field, section, or block that was generated or pre-filled by AI. The badge uses a purple-to-blue gradient to distinguish it from all semantic status colors (green = success, red = error, orange = warning, blue = info).</p>
+        <div class="demo-box" style="display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
+          <span class="ai-badge" aria-label="AI generated">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+            AI Generated
+          </span>
+          <span class="ai-badge" aria-label="AI suggested">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+            AI Suggested
+          </span>
+          <span class="ai-badge ai-badge-sm" aria-label="AI pre-filled">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+            AI Pre-filled
+          </span>
+          <span class="ai-badge ai-badge-sm" aria-label="AI risk flag">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+            AI Risk Flag
+          </span>
+        </div>
+        <div class="demo-box" style="margin-top:12px;">
+          <div class="demo-label">Usage rules</div>
+          <table class="state-matrix" style="margin-top:8px;">
+            <thead><tr><th>Context</th><th>Badge text</th><th>Placement</th></tr></thead>
+            <tbody>
+              <tr><td>Field pre-filled from applicant data</td><td>"AI Pre-filled"</td><td>Inline end adornment on TextField</td></tr>
+              <tr><td>Eligibility score from ML model</td><td>"AI Generated"</td><td>Above score value, with "Why?" link</td></tr>
+              <tr><td>Fraud signal from risk model</td><td>"AI Risk Flag"</td><td>Chip in DataGrid row, orange border</td></tr>
+              <tr><td>Summary text drafted by AI</td><td>"AI Suggested"</td><td>Top-left corner of content block</td></tr>
+              <tr><td>Document classification</td><td>"AI Generated"</td><td>Below document type label</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ── AI Content Block ───────────────────────────────── -->
+        <h3 class="subsection-title" style="margin-top:28px;">AI Content Block</h3>
+        <p class="ds-section-desc" style="margin-bottom:16px;">Use the AI content block when AI has drafted a substantial piece of text — a case summary, a denial letter draft, or a program recommendation. The purple left border and background distinguish it from standard content. Always include Accept, Edit, and Dismiss actions.</p>
+        <div class="demo-box" style="display:flex; flex-direction:column; gap:16px;">
+
+          <div class="ai-content-block">
+            <div class="ai-content-label">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+              AI Suggested — Case Summary
+            </div>
+            <div class="ai-content-text">Based on submitted documentation, the applicant household of 3 earns $42,800 annually (61% AMI for this county). Income documentation is complete. Residency documentation is pending — one utility bill uploaded, lease agreement not yet received. Recommended next step: send document request for lease agreement.</div>
+            <div class="ai-content-actions">
+              <button class="ai-action-btn accept" onclick="void(0)">Accept</button>
+              <button class="ai-action-btn" onclick="void(0)">Edit</button>
+              <button class="ai-action-btn" onclick="void(0)">Dismiss</button>
+            </div>
+          </div>
+
+          <div class="ai-content-block">
+            <div class="ai-content-label">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+              AI Suggested — Denial Letter Draft
+            </div>
+            <div class="ai-content-text">Dear Maria Santos, We have reviewed your application for the Emergency Rental Assistance Program (Application #ERA-2024-0041). Based on our review, your application does not meet the income eligibility requirements for this program cycle. Your reported household income exceeds the 80% AMI threshold for a household of 2 in this county…</div>
+            <div class="ai-content-actions">
+              <button class="ai-action-btn accept" onclick="void(0)">Accept</button>
+              <button class="ai-action-btn" onclick="void(0)">Edit</button>
+              <button class="ai-action-btn" onclick="void(0)">Dismiss</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── Confidence Indicators ──────────────────────────── -->
+        <h3 class="subsection-title" style="margin-top:28px;">Confidence Indicators</h3>
+        <p class="ds-section-desc" style="margin-bottom:16px;">Use confidence bars for ML model outputs — eligibility scores, fraud risk, document classification accuracy. Three tiers: High (≥80%), Medium (50–79%), Low (&lt;50%). Low-confidence outputs must always include a caseworker review prompt.</p>
+        <div class="demo-box" style="display:flex; flex-direction:column; gap:12px;">
+
+          <div>
+            <div style="font-size:11px; font-weight:700; color:#5a6270; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;">Eligibility Score — Model Confidence</div>
+            <div class="confidence-bar-wrap">
+              <span style="font-size:12px; color:#181B1F; min-width:140px;">Income eligibility</span>
+              <div class="confidence-bar"><div class="confidence-bar-fill high" style="width:91%"></div></div>
+              <span class="confidence-label high">91% High</span>
+            </div>
+            <div class="confidence-bar-wrap">
+              <span style="font-size:12px; color:#181B1F; min-width:140px;">Residency verification</span>
+              <div class="confidence-bar"><div class="confidence-bar-fill medium" style="width:63%"></div></div>
+              <span class="confidence-label medium">63% Medium</span>
+            </div>
+            <div class="confidence-bar-wrap">
+              <span style="font-size:12px; color:#181B1F; min-width:140px;">Document authenticity</span>
+              <div class="confidence-bar"><div class="confidence-bar-fill low" style="width:34%"></div></div>
+              <span class="confidence-label low">34% Low</span>
+            </div>
+          </div>
+
+          <div class="ai-uncertainty-block" style="margin-top:4px;">
+            <div class="ai-uncertainty-label">⚠ Low confidence — caseworker review required</div>
+            The document authenticity score is below 50%. This application cannot be auto-approved. A caseworker must manually review the uploaded documents before proceeding.
+          </div>
+
+        </div>
+
+        <div class="demo-box" style="margin-top:12px;">
+          <div class="demo-label">Confidence tier rules</div>
+          <table class="state-matrix" style="margin-top:8px;">
+            <thead><tr><th>Tier</th><th>Range</th><th>Color</th><th>UI behavior</th></tr></thead>
+            <tbody>
+              <tr><td><strong>High</strong></td><td>80–100%</td><td>Green (#3aab5c)</td><td>Can surface as a recommendation; caseworker can accept with one click</td></tr>
+              <tr><td><strong>Medium</strong></td><td>50–79%</td><td>Orange (#ed6c02)</td><td>Surface as suggestion only; require explicit caseworker confirmation</td></tr>
+              <tr><td><strong>Low</strong></td><td>0–49%</td><td>Red (#D32F2F)</td><td>Block auto-action; show uncertainty callout; require manual review</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ── AI Suggestion Chips ────────────────────────────── -->
+        <h3 class="subsection-title" style="margin-top:28px;">AI Suggestion Chips</h3>
+        <p class="ds-section-desc" style="margin-bottom:16px;">Use suggestion chips when AI has a short, discrete recommendation — a program match, a document category, a next step. Chips use a dashed border to signal "proposed, not confirmed." Clicking a chip accepts the suggestion and converts it to a standard filled chip.</p>
+        <div class="demo-box" style="display:flex; flex-direction:column; gap:16px;">
+
+          <div>
+            <div style="font-size:11px; font-weight:700; color:#5a6270; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;">AI-suggested program matches</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span class="ai-suggestion-chip" title="Click to accept this program match" role="button" tabindex="0">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+                Emergency Rental Assistance
+              </span>
+              <span class="ai-suggestion-chip" title="Click to accept this program match" role="button" tabindex="0">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+                Utility Assistance Program
+              </span>
+              <span class="ai-suggestion-chip" title="Click to accept this program match" role="button" tabindex="0">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+                Housing Stability Fund
+              </span>
+            </div>
+            <div style="font-size:11px; color:#7c3aed; margin-top:8px;">↑ Dashed border = AI suggested, not yet accepted. Click to confirm.</div>
+          </div>
+
+          <div>
+            <div style="font-size:11px; font-weight:700; color:#5a6270; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;">AI-suggested document categories</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span class="ai-suggestion-chip" role="button" tabindex="0">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+                Proof of Income
+              </span>
+              <span class="ai-suggestion-chip" role="button" tabindex="0">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+                Lease Agreement
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── AI in Form Fields ───────────────────────────────── -->
+        <h3 class="subsection-title" style="margin-top:28px;">AI Pre-filled Form Fields</h3>
+        <p class="ds-section-desc" style="margin-bottom:16px;">When AI pre-fills a form field, the field must be visually distinguished and editable. Use a purple end adornment badge and a light purple background tint. The caseworker must be able to edit or clear the value — AI pre-fill is never locked.</p>
+        <div class="demo-box" style="display:flex; flex-direction:column; gap:16px;">
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div>
+              <div style="font-size:11px; font-weight:700; color:#5a6270; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;">AI pre-filled field</div>
+              <div style="position:relative;">
+                <div style="border:1px solid #a78bfa; border-radius:6px; background:#faf5ff; padding:10px 80px 10px 12px; font-size:13px; color:#181B1F;">$42,800</div>
+                <span class="ai-badge ai-badge-sm" style="position:absolute; right:8px; top:50%; transform:translateY(-50%);" aria-label="AI pre-filled">
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+                  AI
+                </span>
+              </div>
+              <div style="font-size:11px; color:#7c3aed; margin-top:4px;">Annual household income — pre-filled from tax documents</div>
+            </div>
+            <div>
+              <div style="font-size:11px; font-weight:700; color:#5a6270; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;">Standard field (no AI)</div>
+              <div style="border:1px solid #c4c4c4; border-radius:6px; background:#fff; padding:10px 12px; font-size:13px; color:#181B1F;">3</div>
+              <div style="font-size:11px; color:#5a6270; margin-top:4px;">Household size — entered by applicant</div>
+            </div>
+          </div>
+
+          <div class="ai-do-dont">
+            <div class="ai-do">
+              <div class="ai-do-label">✓ Do</div>
+              <p>Show the AI badge inline with the field value. Let the caseworker edit the field normally. Log the original AI value and the edited value separately for audit trail.</p>
+            </div>
+            <div class="ai-dont">
+              <div class="ai-dont-label">✕ Don't</div>
+              <p>Don't lock AI pre-filled fields as read-only. Don't remove the AI badge after editing — keep it to show the field was originally AI-generated. Don't use AI pre-fill for fields that require legal attestation.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── AI Actions ─────────────────────────────────────── -->
+        <h3 class="subsection-title" style="margin-top:28px;">AI-Assisted Actions</h3>
+        <p class="ds-section-desc" style="margin-bottom:16px;">AI can recommend actions (approve, flag, request documents) but must never execute irreversible actions autonomously. Use a distinct AI action button style — outlined purple — to distinguish AI-recommended actions from standard primary actions.</p>
+        <div class="demo-box" style="display:flex; flex-direction:column; gap:16px;">
+
+          <div>
+            <div style="font-size:11px; font-weight:700; color:#5a6270; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;">AI-recommended action vs. standard action</div>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+              <button style="padding:8px 18px; border-radius:6px; border:2px solid #7c3aed; background:#fff; color:#7c3aed; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px;">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+                AI Recommends: Approve
+              </button>
+              <button style="padding:8px 18px; border-radius:6px; border:none; background:#188af4; color:#fff; font-size:13px; font-weight:600; cursor:pointer;">Approve</button>
+              <button style="padding:8px 18px; border-radius:6px; border:1px solid #c4c4c4; background:#fff; color:#181B1F; font-size:13px; font-weight:600; cursor:pointer;">Deny</button>
+            </div>
+            <div style="font-size:11px; color:#7c3aed; margin-top:8px;">Purple outlined = AI recommendation. Blue filled = caseworker's confirmed action. The caseworker must click the blue button — AI cannot click it for them.</div>
+          </div>
+
+          <table class="state-matrix">
+            <thead><tr><th>Action type</th><th>Button style</th><th>AI role</th><th>Human required?</th></tr></thead>
+            <tbody>
+              <tr><td>Eligibility approval</td><td>AI outlined purple → Caseworker blue filled</td><td>Recommend only</td><td>Yes — always</td></tr>
+              <tr><td>Document request</td><td>AI outlined purple → Caseworker confirm</td><td>Draft the request text</td><td>Yes — review draft</td></tr>
+              <tr><td>Case flag / risk alert</td><td>AI badge chip in DataGrid</td><td>Surface the signal</td><td>Yes — investigate</td></tr>
+              <tr><td>Program match</td><td>AI suggestion chip → accept</td><td>Suggest programs</td><td>Yes — confirm match</td></tr>
+              <tr><td>Case summary</td><td>AI content block → accept/edit</td><td>Draft the summary</td><td>Yes — review &amp; accept</td></tr>
+              <tr><td>Disbursement</td><td>Standard primary button only</td><td>None — no AI involvement</td><td>Yes — always</td></tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- ── AI Transparency / "Why?" ───────────────────────── -->
+        <h3 class="subsection-title" style="margin-top:28px;">Transparency — "Why?" Disclosure</h3>
+        <p class="ds-section-desc" style="margin-bottom:16px;">For consequential AI outputs (eligibility scores, fraud flags, risk ratings), always provide a "Why?" link that opens a Drawer or Dialog explaining the factors. This is required for HUD-funded programs under fair housing and adverse action notice rules.</p>
+        <div class="demo-box" style="display:flex; flex-direction:column; gap:12px;">
+
+          <div style="background:#fff; border:1px solid #E5E9EF; border-radius:8px; padding:16px 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+              <div>
+                <div style="font-size:11px; font-weight:700; color:#5a6270; text-transform:uppercase; letter-spacing:.05em; margin-bottom:4px;">Eligibility Score</div>
+                <div style="font-size:28px; font-weight:800; color:#0a2a5e;">74 <span style="font-size:14px; font-weight:400; color:#5a6270;">/ 100</span></div>
+              </div>
+              <span class="ai-badge" aria-label="AI generated score">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5z" fill="#7c3aed"/></svg>
+                AI Generated
+              </span>
+            </div>
+            <div style="font-size:12px; color:#5a6270; margin-bottom:10px;">Score based on income verification, household size, residency documentation, and program history.</div>
+            <button style="font-size:12px; font-weight:600; color:#7c3aed; background:none; border:none; padding:0; cursor:pointer; text-decoration:underline;" onclick="void(0)">Why this score? →</button>
+          </div>
+
+          <div class="ai-do-dont">
+            <div class="ai-do">
+              <div class="ai-do-label">✓ Do</div>
+              <p>Always include a "Why?" or "View factors" link on AI scores. The disclosure must list the specific data points used and their weight. Store the explanation with the case record for audit.</p>
+            </div>
+            <div class="ai-dont">
+              <div class="ai-dont-label">✕ Don't</div>
+              <p>Don't show a score without explanation. Don't use vague language like "based on multiple factors." Don't hide the model version — include it in the disclosure drawer for compliance.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── AI Error / Unavailable ─────────────────────────── -->
+        <h3 class="subsection-title" style="margin-top:28px;">AI Unavailable &amp; Error States</h3>
+        <p class="ds-section-desc" style="margin-bottom:16px;">AI features must degrade gracefully. When the AI service is unavailable, the product must still be fully functional — AI is an enhancement, not a dependency.</p>
+        <div class="demo-box" style="display:flex; flex-direction:column; gap:12px;">
+
+          <div style="background:#fff7ed; border:1px solid #fed7aa; border-left:3px solid #ea580c; border-radius:8px; padding:12px 16px;">
+            <div style="font-size:10px; font-weight:700; color:#ea580c; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px;">AI service temporarily unavailable</div>
+            <div style="font-size:13px; color:#7c2d12;">Eligibility scoring is unavailable right now. You can continue reviewing this application manually. Scores will be generated automatically when the service is restored.</div>
+          </div>
+
+          <div style="background:#fef2f2; border:1px solid #fecaca; border-left:3px solid #D32F2F; border-radius:8px; padding:12px 16px;">
+            <div style="font-size:10px; font-weight:700; color:#991b1b; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px;">AI could not process this document</div>
+            <div style="font-size:13px; color:#7f1d1d;">The document classification model could not read this file (unsupported format or low image quality). Please manually assign a document category.</div>
+          </div>
+
+          <table class="state-matrix">
+            <thead><tr><th>AI error type</th><th>Component</th><th>Message tone</th><th>Fallback behavior</th></tr></thead>
+            <tbody>
+              <tr><td>Service unavailable</td><td>Orange Alert (warning)</td><td>Informational, non-blocking</td><td>Hide AI features; manual workflow continues</td></tr>
+              <tr><td>Model error on specific input</td><td>Red Alert (error) inline</td><td>Specific, actionable</td><td>Show manual input option</td></tr>
+              <tr><td>Low confidence (not an error)</td><td>Orange uncertainty callout</td><td>Cautionary, not alarming</td><td>Require manual review before proceeding</td></tr>
+              <tr><td>AI output rejected by caseworker</td><td>No UI — silent dismiss</td><td>N/A</td><td>Log rejection for model feedback loop</td></tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- ── Code Pattern ───────────────────────────────────── -->
+        <h3 class="subsection-title" style="margin-top:28px;">Code Pattern — AI Content Block</h3>
+        <div class="code-block">
+<span class="comment">// AI content block with accept/edit/dismiss actions</span>
+<span class="kw">import</span> { useState } <span class="kw">from</span> <span class="str">'react'</span>;
+<span class="kw">import</span> { Box, Typography, Button, Chip } <span class="kw">from</span> <span class="str">'@mui/material'</span>;
+<span class="kw">import</span> AutoAwesomeIcon <span class="kw">from</span> <span class="str">'@mui/icons-material/AutoAwesome'</span>;
+
+<span class="kw">function</span> <span class="fn">AiContentBlock</span>({ label, content, onAccept, onEdit, onDismiss }) {
+  <span class="kw">return</span> (
+    &lt;Box sx={{ border: <span class="str">'1px solid'</span>, borderColor: <span class="str">'#c4b5fd'</span>, borderLeft: <span class="str">'3px solid #7c3aed'</span>,
+      borderRadius: <span class="val">2</span>, bgcolor: <span class="str">'#faf5ff'</span>, p: <span class="val">2</span> }}&gt;
+      &lt;Chip icon={&lt;AutoAwesomeIcon sx={{ fontSize: <span class="val">14</span>, color: <span class="str">'#7c3aed !important'</span> }} /&gt;}
+        label={label} size=<span class="str">"small"</span>
+        sx={{ bgcolor: <span class="str">'#ede9fe'</span>, color: <span class="str">'#4c1d95'</span>, fontWeight: <span class="val">700</span>,
+          fontSize: <span class="val">10</span>, mb: <span class="val">1.5</span>, border: <span class="str">'1px solid #c4b5fd'</span> }} /&gt;
+      &lt;Typography variant=<span class="str">"body2"</span> sx={{ mb: <span class="val">1.5</span> }}&gt;{content}&lt;/Typography&gt;
+      &lt;Box sx={{ display: <span class="str">'flex'</span>, gap: <span class="val">1</span> }}&gt;
+        &lt;Button size=<span class="str">"small"</span> variant=<span class="str">"contained"</span>
+          sx={{ bgcolor: <span class="str">'#7c3aed'</span>, <span class="str">'&:hover'</span>: { bgcolor: <span class="str">'#6d28d9'</span> } }}
+          onClick={onAccept}&gt;Accept&lt;/Button&gt;
+        &lt;Button size=<span class="str">"small"</span> variant=<span class="str">"outlined"</span>
+          sx={{ borderColor: <span class="str">'#c4b5fd'</span>, color: <span class="str">'#7c3aed'</span> }}
+          onClick={onEdit}&gt;Edit&lt;/Button&gt;
+        &lt;Button size=<span class="str">"small"</span> variant=<span class="str">"outlined"</span>
+          sx={{ borderColor: <span class="str">'#c4b5fd'</span>, color: <span class="str">'#7c3aed'</span> }}
+          onClick={onDismiss}&gt;Dismiss&lt;/Button&gt;
+      &lt;/Box&gt;
+    &lt;/Box&gt;
+  );
+}
+
+<span class="comment">// aria-label for screen readers — always announce AI-generated content</span>
+<span class="comment">// &lt;Box aria-label="AI suggested case summary" role="region"&gt;</span>
+        </div>
+
+      </section>
+
+
             <footer style="border-top:2px solid #E5E9EF; padding-top:32px; margin-top:56px; text-align:center; color:#9AA4AD; font-size:13px;">
         <img src="assets/logo.svg" alt="Neighborly Software" style="height:24px; opacity:0.5; display:block; margin:0 auto 12px;" />
-        <strong style="color:#5A6472;">Neighborly Software Design System</strong> — Version 2.6<br>
+        <strong style="color:#5A6472;">Neighborly Software Design System</strong> — Version 2.7<br>
         Built with MUI v5 · Helping Communities Help People
       </footer>
 
