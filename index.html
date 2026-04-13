@@ -652,6 +652,7 @@
         <a href="#datepicker">Date Picker</a>
         <a href="#drawer">Drawer</a>
         <a href="#menu">Menu</a>
+        <a href="#sx-styled">sx vs styled()</a>
 
         <span class="nav-group-label">Product Patterns</span>
         <a href="#user-types">User Types</a>
@@ -672,7 +673,6 @@
         <a href="#tokens">Design Tokens</a>
         <a href="#a11y">Accessibility</a>
         <a href="#governance">Governance</a>
-        <a href="#sx-styled">sx vs styled()</a>
         <span class="nav-group-label">Additional Patterns</span>
         <a href="#icons">Icons</a>
         <a href="#notifications">Notifications</a>
@@ -1815,11 +1815,378 @@
       </section>
 
       <!-- ============================================================
+           MUI COMPONENTS: AUTOCOMPLETE, DATEPICKER, DRAWER, MENU, SX/STYLED
+      ============================================================ -->
+      <section class="ds-section" id="autocomplete" aria-labelledby="autocomplete-heading">
+        <div class="ds-section-header">
+          <span class="section-num">19</span>
+          <h2 id="autocomplete-heading">Autocomplete</h2>
+        </div>
+        <p class="ds-section-desc">MUI <code>Autocomplete</code> wraps a <code>TextField</code> with a dropdown suggestion list. Use it for program search, case assignment, and any field where users select from a large or dynamic dataset.</p>
+
+        <div class="demo-box" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+          <!-- Program search -->
+          <div>
+            <span class="demo-label">Program Search</span>
+            <div style="position:relative; margin-bottom:4px;">
+              <label style="display:block; font-size:12px; font-weight:600; color:#5A6472; margin-bottom:4px;">Program</label>
+              <input class="mui-input" type="text" value="Housing Rehab" style="padding-right:36px; width:100%;" />
+              <span class="material-icons" style="position:absolute;right:10px;top:calc(50% + 10px);transform:translateY(-50%);color:#8A96A3;font-size:20px;">expand_more</span>
+            </div>
+            <div style="border:1px solid #E2E6EA; border-radius:8px; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.1); overflow:hidden;">
+              <div style="padding:10px 14px; font-size:13px; color:#3D4752; cursor:pointer; background:#F0F6FF;">Housing Rehabilitation &amp; Repair</div>
+              <div style="padding:10px 14px; font-size:13px; color:#3D4752; cursor:pointer;">Homeownership Assistance</div>
+              <div style="padding:10px 14px; font-size:13px; color:#3D4752; cursor:pointer;">Housing Choice Voucher</div>
+            </div>
+          </div>
+          <!-- Case manager assignment -->
+          <div>
+            <span class="demo-label">Case Manager Assignment (multiple)</span>
+            <label style="display:block; font-size:12px; font-weight:600; color:#5A6472; margin-bottom:4px;">Assign Reviewers</label>
+            <div style="min-height:48px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; padding:8px 12px; border:1.5px solid #188af4; border-radius:8px; background:#fff;">
+              <span class="mui-chip chip-filled-primary chip-sm">Sarah Chen <span class="material-icons" style="font-size:14px;vertical-align:middle;margin-left:2px;cursor:pointer;">close</span></span>
+              <span class="mui-chip chip-filled-primary chip-sm">Marcus Webb <span class="material-icons" style="font-size:14px;vertical-align:middle;margin-left:2px;cursor:pointer;">close</span></span>
+              <input type="text" placeholder="Add reviewer..." style="border:none;outline:none;font-size:13px;min-width:120px;flex:1;" />
+            </div>
+            <p style="font-size:12px; color:#5A6472; margin-top:6px;">Select one or more case managers to assign to this case.</p>
+          </div>
+        </div>
+
+        <div class="code-block" style="margin-top:20px;">
+<span class="comment">// Single selection — program search</span>
+<span class="tag">import</span> { Autocomplete, TextField } <span class="tag">from</span> <span class="str">'@mui/material'</span>;
+
+<span class="tag">&lt;Autocomplete</span>
+  <span class="attr">options</span>={programs}
+  <span class="attr">getOptionLabel</span>={(option) =&gt; option.name}
+  <span class="attr">renderInput</span>={(params) =&gt; (
+    <span class="tag">&lt;TextField</span> {<span class="attr">...params</span>} <span class="attr">label</span>=<span class="str">"Program"</span> <span class="attr">size</span>=<span class="str">"small"</span> <span class="tag">/&gt;</span>
+  )}
+<span class="tag">/&gt;</span>
+
+<span class="comment">// Multiple selection — case manager assignment</span>
+<span class="tag">&lt;Autocomplete</span>
+  <span class="attr">multiple</span>
+  <span class="attr">options</span>={staff}
+  <span class="attr">getOptionLabel</span>={(option) =&gt; option.name}
+  <span class="attr">renderTags</span>={(value, getTagProps) =&gt;
+    value.map((option, index) =&gt; (
+      <span class="tag">&lt;Chip</span> <span class="attr">label</span>={option.name} {<span class="attr">...getTagProps</span>({ index })} <span class="attr">size</span>=<span class="str">"small"</span> <span class="tag">/&gt;</span>
+    ))
+  }
+  <span class="attr">renderInput</span>={(params) =&gt; (
+    <span class="tag">&lt;TextField</span> {<span class="attr">...params</span>} <span class="attr">label</span>=<span class="str">"Assign Reviewers"</span> <span class="tag">/&gt;</span>
+  )}
+<span class="tag">/&gt;</span>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           NEW: DATE PICKER
+      ============================================================ -->
+      <section class="ds-section" id="datepicker" aria-labelledby="datepicker-heading">
+        <div class="ds-section-header">
+          <span class="section-num">20</span>
+          <h2 id="datepicker-heading">Date Picker</h2>
+        </div>
+        <p class="ds-section-desc">MUI <code>DatePicker</code> from <code>@mui/x-date-pickers</code>. Use for application deadlines, program year selection, inspection scheduling, and any date input. Always pair with <code>LocalizationProvider</code> using <code>AdapterDayjs</code>.</p>
+
+        <div class="demo-box" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+          <!-- Single date picker -->
+          <div>
+            <span class="demo-label">Application Deadline</span>
+            <div style="position:relative;">
+              <label style="display:block; font-size:12px; font-weight:600; color:#5A6472; margin-bottom:4px;">Application Deadline</label>
+              <input class="mui-input" type="text" value="04/30/2025" style="padding-right:40px; width:100%;" />
+              <span class="material-icons" style="position:absolute;right:10px;top:calc(50% + 10px);transform:translateY(-50%);color:#8A96A3;font-size:20px;">calendar_today</span>
+            </div>
+          </div>
+          <!-- Date range picker -->
+          <div>
+            <span class="demo-label">Date Range (Start – End)</span>
+            <div style="display:flex; gap:12px; align-items:flex-end;">
+              <div style="flex:1; position:relative;">
+                <label style="display:block; font-size:12px; font-weight:600; color:#5A6472; margin-bottom:4px;">Start Date</label>
+                <input class="mui-input" type="text" value="01/01/2025" style="padding-right:40px; width:100%;" />
+                <span class="material-icons" style="position:absolute;right:10px;top:calc(50% + 10px);transform:translateY(-50%);color:#8A96A3;font-size:20px;">calendar_today</span>
+              </div>
+              <span style="color:#8A96A3; font-size:18px; padding-bottom:10px;">–</span>
+              <div style="flex:1; position:relative;">
+                <label style="display:block; font-size:12px; font-weight:600; color:#5A6472; margin-bottom:4px;">End Date</label>
+                <input class="mui-input" type="text" value="12/31/2025" style="padding-right:40px; width:100%;" />
+                <span class="material-icons" style="position:absolute;right:10px;top:calc(50% + 10px);transform:translateY(-50%);color:#8A96A3;font-size:20px;">calendar_today</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block" style="margin-top:20px;">
+<span class="tag">import</span> { LocalizationProvider, DatePicker } <span class="tag">from</span> <span class="str">'@mui/x-date-pickers'</span>;
+<span class="tag">import</span> { AdapterDayjs } <span class="tag">from</span> <span class="str">'@mui/x-date-pickers/AdapterDayjs'</span>;
+<span class="tag">import</span> dayjs <span class="tag">from</span> <span class="str">'dayjs'</span>;
+
+<span class="tag">&lt;LocalizationProvider</span> <span class="attr">dateAdapter</span>={AdapterDayjs}<span class="tag">&gt;</span>
+  <span class="tag">&lt;DatePicker</span>
+    <span class="attr">label</span>=<span class="str">"Application Deadline"</span>
+    <span class="attr">value</span>={deadline}
+    <span class="attr">onChange</span>={(newValue) =&gt; setDeadline(newValue)}
+    <span class="attr">slotProps</span>={{ textField: { size: <span class="str">'small'</span>, fullWidth: <span class="attr">true</span> } }}
+    <span class="attr">minDate</span>={dayjs()}
+  <span class="tag">/&gt;</span>
+<span class="tag">&lt;/LocalizationProvider&gt;</span>
+
+<span class="comment">// Install: npm install @mui/x-date-pickers dayjs</span>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           NEW: DRAWER
+      ============================================================ -->
+      <section class="ds-section" id="drawer" aria-labelledby="drawer-heading">
+        <div class="ds-section-header">
+          <span class="section-num">21</span>
+          <h2 id="drawer-heading">Drawer</h2>
+        </div>
+        <p class="ds-section-desc">MUI <code>Drawer</code> slides in from the right (or left) for contextual detail panels — case notes, document previews, filter panels, and mobile navigation. Prefer right-anchored drawers for detail views; left-anchored for navigation.</p>
+
+        <div class="demo-box" style="padding:0; overflow:hidden; position:relative; height:360px; background:#F5F7FA;">
+          <!-- Main content area (dimmed) -->
+          <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:flex-start; padding:32px; color:#B0BAC5; font-size:14px;">
+            Main content area
+          </div>
+          <!-- Drawer panel (right-anchored) -->
+          <div style="position:absolute; right:0; top:0; bottom:0; width:340px; background:#fff; box-shadow:-4px 0 20px rgba(0,0,0,0.12); display:flex; flex-direction:column;">
+            <!-- Drawer header -->
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid #E5E9EF;">
+              <span style="font-weight:700; font-size:15px; color:#181B1F;">Case Notes — CS-2024-1847</span>
+              <span class="material-icons" style="color:#8A96A3; cursor:pointer; font-size:20px;">close</span>
+            </div>
+            <!-- Drawer content -->
+            <div style="padding:20px; flex:1; overflow:auto; display:flex; flex-direction:column; gap:16px;">
+              <div>
+                <div style="font-size:11px; font-weight:600; color:#9AA4AD; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">Apr 8, 2026 · Sarah Chen</div>
+                <p style="font-size:13px; color:#3D4752; margin:0; line-height:1.6;">Reviewed income documentation. AMI calculation confirmed at 62%. Proceeding to eligibility review.</p>
+              </div>
+              <div style="height:1px; background:#F0F2F5;"></div>
+              <div>
+                <div style="font-size:11px; font-weight:600; color:#9AA4AD; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">Apr 5, 2026 · Marcus Webb</div>
+                <p style="font-size:13px; color:#3D4752; margin:0; line-height:1.6;">Initial intake complete. Awaiting proof of residency from applicant.</p>
+              </div>
+              <div style="height:1px; background:#F0F2F5;"></div>
+              <div>
+                <div style="font-size:11px; font-weight:600; color:#9AA4AD; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">Apr 2, 2026 · Sarah Chen</div>
+                <p style="font-size:13px; color:#3D4752; margin:0; line-height:1.6;">Application received. Assigned to intake queue.</p>
+              </div>
+            </div>
+            <!-- Drawer footer -->
+            <div style="padding:14px 20px; border-top:1px solid #E5E9EF; display:flex; gap:10px;">
+              <input class="mui-input" type="text" placeholder="Add a note..." style="flex:1; font-size:13px;" />
+              <button class="mui-btn btn-contained-primary" style="padding:8px 16px; font-size:13px;">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block" style="margin-top:20px;">
+<span class="tag">import</span> { Drawer, Box, Typography, IconButton } <span class="tag">from</span> <span class="str">'@mui/material'</span>;
+<span class="tag">import</span> CloseIcon <span class="tag">from</span> <span class="str">'@mui/icons-material/Close'</span>;
+
+<span class="tag">&lt;Drawer</span>
+  <span class="attr">anchor</span>=<span class="str">"right"</span>
+  <span class="attr">open</span>={drawerOpen}
+  <span class="attr">onClose</span>={() =&gt; setDrawerOpen(<span class="attr">false</span>)}
+  <span class="attr">PaperProps</span>={{ sx: { width: 360 } }}
+<span class="tag">&gt;</span>
+  <span class="tag">&lt;Box</span> <span class="attr">sx</span>={{ display: <span class="str">'flex'</span>, alignItems: <span class="str">'center'</span>, justifyContent: <span class="str">'space-between'</span>, p: 2, borderBottom: <span class="str">'1px solid'</span>, borderColor: <span class="str">'divider'</span> }}<span class="tag">&gt;</span>
+    <span class="tag">&lt;Typography</span> <span class="attr">variant</span>=<span class="str">"h6"</span><span class="tag">&gt;</span>Case Notes<span class="tag">&lt;/Typography&gt;</span>
+    <span class="tag">&lt;IconButton</span> <span class="attr">onClick</span>={() =&gt; setDrawerOpen(<span class="attr">false</span>)}<span class="tag">&gt;</span><span class="tag">&lt;CloseIcon /&gt;</span><span class="tag">&lt;/IconButton&gt;</span>
+  <span class="tag">&lt;/Box&gt;</span>
+  <span class="comment">{/* Drawer content */}</span>
+<span class="tag">&lt;/Drawer&gt;</span>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           NEW: MENU
+      ============================================================ -->
+      <section class="ds-section" id="menu" aria-labelledby="menu-heading">
+        <div class="ds-section-header">
+          <span class="section-num">22</span>
+          <h2 id="menu-heading">Menu &amp; MenuItem</h2>
+        </div>
+        <p class="ds-section-desc">MUI <code>Menu</code> and <code>MenuItem</code> for contextual action menus — the "⋯" row actions in DataGrids, navigation dropdowns, and bulk action menus. Always anchor to the trigger element using <code>anchorEl</code>.</p>
+
+        <div class="demo-box" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+          <!-- Row action menu -->
+          <div>
+            <span class="demo-label">Row Action Menu (⋯)</span>
+            <div style="border:1px solid #E2E6EA; border-radius:8px; background:#fff; overflow:hidden; max-width:280px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+              <div style="padding:12px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #F5F7FA; background:#F8FAFC;">
+                <span style="font-size:13px; color:#3D4752; font-weight:500;">CS-2024-1847 · Martinez, Sofia</span>
+                <span class="material-icons" style="color:#8A96A3; font-size:20px; cursor:pointer;">more_vert</span>
+              </div>
+              <!-- Simulated open menu -->
+              <div style="padding:4px 0;">
+                <div style="padding:10px 16px; font-size:13px; color:#3D4752; display:flex; align-items:center; gap:10px; cursor:pointer; background:#F0F6FF;">
+                  <span class="material-icons" style="font-size:16px; color:#188af4;">visibility</span> View Case
+                </div>
+                <div style="padding:10px 16px; font-size:13px; color:#3D4752; display:flex; align-items:center; gap:10px; cursor:pointer;">
+                  <span class="material-icons" style="font-size:16px; color:#8A96A3;">person_add</span> Assign Case Manager
+                </div>
+                <div style="padding:10px 16px; font-size:13px; color:#3D4752; display:flex; align-items:center; gap:10px; cursor:pointer;">
+                  <span class="material-icons" style="font-size:16px; color:#8A96A3;">flag</span> Flag for Review
+                </div>
+                <div style="height:1px; background:#E2E6EA; margin:4px 0;"></div>
+                <div style="padding:10px 16px; font-size:13px; color:#D32F2F; display:flex; align-items:center; gap:10px; cursor:pointer;">
+                  <span class="material-icons" style="font-size:16px; color:#D32F2F;">archive</span> Archive Case
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nav dropdown menu -->
+          <div>
+            <span class="demo-label">Navigation Dropdown</span>
+            <div style="max-width:220px;">
+              <div style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; background:#188af4; color:#fff; border-radius:20px; cursor:pointer; font-size:14px; font-weight:600; margin-bottom:6px;">
+                Cases <span class="material-icons" style="font-size:16px;">expand_more</span>
+              </div>
+              <div style="border:1px solid #E2E6EA; border-radius:8px; background:#fff; box-shadow:0 4px 16px rgba(0,0,0,0.12); overflow:hidden;">
+                <div style="padding:10px 16px; font-size:13px; color:#3D4752; cursor:pointer; background:#F0F6FF; font-weight:500;">All Cases</div>
+                <div style="padding:10px 16px; font-size:13px; color:#3D4752; cursor:pointer;">My Cases</div>
+                <div style="padding:10px 16px; font-size:13px; color:#3D4752; cursor:pointer;">Eligibility Review</div>
+                <div style="padding:10px 16px; font-size:13px; color:#3D4752; cursor:pointer;">Appeals</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block" style="margin-top:20px;">
+<span class="tag">import</span> { Menu, MenuItem, IconButton, ListItemIcon, ListItemText, Divider } <span class="tag">from</span> <span class="str">'@mui/material'</span>;
+<span class="tag">import</span> MoreVertIcon <span class="tag">from</span> <span class="str">'@mui/icons-material/MoreVert'</span>;
+
+<span class="comment">// In your component:</span>
+<span class="tag">const</span> [anchorEl, setAnchorEl] = useState(<span class="attr">null</span>);
+<span class="tag">const</span> open = Boolean(anchorEl);
+
+<span class="tag">&lt;IconButton</span> <span class="attr">onClick</span>={(e) =&gt; setAnchorEl(e.currentTarget)} <span class="attr">aria-label</span>=<span class="str">"Case actions"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;MoreVertIcon /&gt;</span>
+<span class="tag">&lt;/IconButton&gt;</span>
+
+<span class="tag">&lt;Menu</span>
+  <span class="attr">anchorEl</span>={anchorEl}
+  <span class="attr">open</span>={open}
+  <span class="attr">onClose</span>={() =&gt; setAnchorEl(<span class="attr">null</span>)}
+<span class="tag">&gt;</span>
+  <span class="tag">&lt;MenuItem</span> <span class="attr">onClick</span>={handleView}<span class="tag">&gt;</span>
+    <span class="tag">&lt;ListItemIcon&gt;&lt;VisibilityIcon /&gt;&lt;/ListItemIcon&gt;</span>
+    <span class="tag">&lt;ListItemText&gt;</span>View Case<span class="tag">&lt;/ListItemText&gt;</span>
+  <span class="tag">&lt;/MenuItem&gt;</span>
+  <span class="tag">&lt;Divider /&gt;</span>
+  <span class="tag">&lt;MenuItem</span> <span class="attr">onClick</span>={handleArchive} <span class="attr">sx</span>={{ color: <span class="str">'error.main'</span> }}<span class="tag">&gt;</span>
+    <span class="tag">&lt;ListItemIcon&gt;&lt;ArchiveIcon</span> <span class="attr">color</span>=<span class="str">"error"</span> <span class="tag">/&gt;&lt;/ListItemIcon&gt;</span>
+    <span class="tag">&lt;ListItemText&gt;</span>Archive Case<span class="tag">&lt;/ListItemText&gt;</span>
+  <span class="tag">&lt;/MenuItem&gt;</span>
+<span class="tag">&lt;/Menu&gt;</span>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           NEW: SX vs STYLED GUIDE
+      ============================================================ -->
+      <section class="ds-section" id="sx-styled" aria-labelledby="sx-styled-heading">
+        <div class="ds-section-header">
+          <span class="section-num">23</span>
+          <h2 id="sx-styled-heading">Styling: <code>sx</code> vs <code>styled()</code> vs Theme</h2>
+        </div>
+        <p class="ds-section-desc">MUI provides three styling approaches. Choosing the right one keeps the codebase consistent and avoids specificity conflicts. Use this decision guide for every new component.</p>
+
+        <table class="mui-table" style="margin-bottom:24px;">
+          <thead>
+            <tr>
+              <th>Approach</th>
+              <th>When to use</th>
+              <th>When NOT to use</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>sx</code> prop</td>
+              <td>One-off layout tweaks, spacing overrides, responsive breakpoints on a single instance</td>
+              <td>Styles that repeat across multiple components; complex pseudo-selectors</td>
+              <td><code>&lt;Box sx={{ mt: 2, display: 'flex' }}&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>styled()</code></td>
+              <td>Reusable styled variants of MUI components; complex selectors; animations</td>
+              <td>Simple one-off spacing; anything that belongs in the theme</td>
+              <td><code>const PipelineChip = styled(Chip)(({ theme }) =&gt; ({...}))</code></td>
+            </tr>
+            <tr>
+              <td><code>theme.components</code></td>
+              <td>Global default overrides for a component (e.g. all Buttons pill-shaped); shared across the entire app</td>
+              <td>Instance-specific overrides; anything that varies by context</td>
+              <td><code>MuiButton: { styleOverrides: { root: { borderRadius: 20 } } }</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="do-dont-grid">
+          <div class="do-box">
+            <div class="do-header">DO — Use <code>sx</code> for layout, spacing, and responsive</div>
+            <div class="do-dont-body" style="padding:0;">
+              <div class="code-block" style="margin:0; border-radius:0; border:none; min-height:140px;">
+<span class="comment">// One-off layout on a single instance</span>
+<span class="tag">&lt;Card</span> <span class="attr">sx</span>={{ mt: 3, mb: 1, p: 2 }}<span class="tag">&gt;</span>
+  <span class="tag">&lt;CardContent</span> <span class="attr">sx</span>={{ display: <span class="str">'flex'</span>, gap: 2 }}<span class="tag">&gt;</span>
+    ...
+  <span class="tag">&lt;/CardContent&gt;</span>
+<span class="tag">&lt;/Card&gt;</span>
+              </div>
+            </div>
+          </div>
+          <div class="dont-box">
+            <div class="dont-header">DON'T — Repeat <code>sx</code> for shared styles</div>
+            <div class="do-dont-body" style="padding:0;">
+              <div class="code-block" style="margin:0; border-radius:0; border:none; min-height:140px;">
+<span class="comment">// Don't repeat this on every pipeline chip</span>
+<span class="tag">&lt;Chip</span> <span class="attr">sx</span>={{ borderRadius: <span class="str">'4px'</span>, fontWeight: 700, fontSize: <span class="str">'11px'</span> }} <span class="tag">/&gt;</span>
+<span class="tag">&lt;Chip</span> <span class="attr">sx</span>={{ borderRadius: <span class="str">'4px'</span>, fontWeight: 700, fontSize: <span class="str">'11px'</span> }} <span class="tag">/&gt;</span>
+<span class="comment">// Use styled() instead ↑</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block" style="margin-top:20px;">
+<span class="comment">// CORRECT: Reusable pipeline status chip via styled()</span>
+<span class="tag">import</span> { styled } <span class="tag">from</span> <span class="str">'@mui/material/styles'</span>;
+<span class="tag">import</span> { Chip } <span class="tag">from</span> <span class="str">'@mui/material'</span>;
+
+<span class="tag">const</span> StatusChip = styled(Chip)(({ theme, status }) =&gt; ({
+  borderRadius: <span class="str">'4px'</span>,
+  fontWeight: 700,
+  fontSize: <span class="str">'11px'</span>,
+  ...(status === <span class="str">'approved'</span> &amp;&amp; {
+    backgroundColor: theme.palette.success.light,
+    color: theme.palette.success.dark,
+  }),
+  ...(status === <span class="str">'pending'</span> &amp;&amp; {
+    backgroundColor: theme.palette.warning.light,
+    color: theme.palette.warning.dark,
+  }),
+}));
+
+<span class="comment">// Usage:</span>
+<span class="tag">&lt;StatusChip</span> <span class="attr">label</span>=<span class="str">"Approved"</span> <span class="attr">status</span>=<span class="str">"approved"</span> <span class="attr">size</span>=<span class="str">"small"</span> <span class="tag">/&gt;</span>
+        </div>
+      </section>
+      <!-- ============================================================
            19. USER TYPES
       ============================================================ -->
       <section class="ds-section" id="user-types">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">19</span>
+          <span class="section-num" aria-hidden="true">24</span>
           <h2>User Types</h2>
         </div>
         <p class="ds-section-desc">Neighborly has three distinct user types. All three share the same visual design system — the same components, colors, and patterns. What differs is the <strong>experience layer</strong>: what they see, what actions they can take, and how information is presented to them.</p>
@@ -1902,7 +2269,7 @@
       ============================================================ -->
       <section class="ds-section" id="grant-pipeline">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">20</span>
+          <span class="section-num" aria-hidden="true">25</span>
           <h2>Grant Pipeline</h2>
         </div>
         <p class="ds-section-desc">The grant lifecycle moves through defined stages. Each stage has a corresponding Chip color, status label, and set of available actions. Consistency in how stages are communicated across all three user types is critical.</p>
@@ -1998,7 +2365,7 @@
       ============================================================ -->
       <section class="ds-section" id="empty-states">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">21</span>
+          <span class="section-num" aria-hidden="true">26</span>
           <h2>Empty States</h2>
         </div>
         <p class="ds-section-desc">Empty states are moments of opportunity — not failures. Always explain why the space is empty and provide a clear next action. Tailor the message to the user type. <strong>Participant empty states</strong> require a notably different emotional tone than admin/caseworker states — more welcoming and less operational.</p>
@@ -2073,7 +2440,7 @@
       ============================================================ -->
       <section class="ds-section" id="loading-states">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">22</span>
+          <span class="section-num" aria-hidden="true">27</span>
           <h2>Loading States</h2>
         </div>
         <p class="ds-section-desc">Every async operation must have a loading state. Use skeleton screens for initial page loads, <code>CircularProgress</code> for inline actions, and <code>LinearProgress</code> for file operations. Never leave the user staring at a blank screen.</p>
@@ -2123,7 +2490,7 @@
       ============================================================ -->
       <section class="ds-section" id="brand-voice">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">23</span>
+          <span class="section-num" aria-hidden="true">28</span>
           <h2>Brand Voice</h2>
         </div>
         <p class="ds-section-desc">Our voice is <strong>warm, clear, and human</strong>. We speak to participants as neighbors — not applicants, claimants, or case numbers. Every piece of copy should reduce anxiety, not add to it. When in doubt, ask: <em>"Would a helpful neighbor say it this way?"</em></p>
@@ -2196,7 +2563,7 @@
       ============================================================ -->
       <section class="ds-section" id="page-dashboard" aria-labelledby="page-dashboard-heading">
         <div class="ds-section-header">
-          <span class="section-num">24</span>
+          <span class="section-num">29</span>
           <h2 id="page-dashboard-heading">Admin Dashboard</h2>
         </div>
         <p class="ds-section-desc">The primary landing page for Admin and Contractor users. Combines stat cards, tabbed content, and a priority queue DataGrid. Components: <code>Card</code>, <code>Tabs</code>, <code>DataGrid</code>, <code>Chip</code>, <code>Button</code>, <code>TextField</code> (search).</p>
@@ -2387,7 +2754,7 @@
       ============================================================ -->
       <section class="ds-section" id="page-cases" aria-labelledby="page-cases-heading">
         <div class="ds-section-header">
-          <span class="section-num">25</span>
+          <span class="section-num">30</span>
           <h2 id="page-cases-heading">Cases List</h2>
         </div>
         <p class="ds-section-desc">The main case management view for Admin users. Features filter dropdowns, view tabs, a full DataGrid with sortable columns, status chips, financial summary row, and row-level action menus. Components: <code>DataGrid</code>, <code>Tabs</code>, <code>Select</code>, <code>Chip</code>, <code>Menu</code>, <code>Button</code>.</p>
@@ -2613,7 +2980,7 @@
       ============================================================ -->
       <section class="ds-section" id="page-case-viewer" aria-labelledby="page-case-viewer-heading">
         <div class="ds-section-header">
-          <span class="section-num">26</span>
+          <span class="section-num">31</span>
           <h2 id="page-case-viewer-heading">Case Viewer</h2>
         </div>
         <p class="ds-section-desc">The detailed case record view. Left sidebar shows workflow steps with completion counts. Header shows program, case ID, status, warnings, and assigned staff. The main panel renders the active step's form. Components: <code>Stepper</code> (vertical), <code>Alert</code>, <code>TextField</code>, <code>Select</code>, <code>Button</code>, <code>Tooltip</code>.</p>
@@ -2849,7 +3216,7 @@
       ============================================================ -->
       <section class="ds-section" id="page-messages" aria-labelledby="page-messages-heading">
         <div class="ds-section-header">
-          <span class="section-num">27</span>
+          <span class="section-num">32</span>
           <h2 id="page-messages-heading">Messages</h2>
         </div>
         <p class="ds-section-desc">The in-app messaging interface for Admin-to-Participant communication. Split-pane layout: conversation list on the left, active thread on the right. Each conversation is linked to a case. Components: <code>List</code>, <code>ListItem</code>, <code>Badge</code>, <code>TextField</code>, <code>IconButton</code>, <code>Divider</code>.</p>
@@ -2986,7 +3353,7 @@
       ============================================================ -->
       <section class="ds-section" id="page-participant-portal" aria-labelledby="page-participant-portal-heading">
         <div class="ds-section-header">
-          <span class="section-num">27</span>
+          <span class="section-num">33</span>
           <h2 id="page-participant-portal-heading">Participant Portal</h2>
         </div>
         <p class="ds-section-desc">The Participant experience — what a neighbor sees when they log in. Warm, low-density, action-oriented. Components: <code>Card</code>, <code>Stepper</code> (horizontal), <code>Chip</code>, <code>Alert</code>, <code>Button</code>, <code>LinearProgress</code>. Navigation is minimal — no sidebar. Top nav only.</p>
@@ -3086,7 +3453,7 @@
       ============================================================ -->
       <section class="ds-section" id="theme">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">28</span>
+          <span class="section-num" aria-hidden="true">34</span>
           <h2>MUI Theme Config</h2>
         </div>
         <p class="ds-section-desc">The Neighborly theme is created with <code>createTheme()</code> and passed to <code>&lt;ThemeProvider&gt;</code> at the app root. All palette values, typography, shape, and component overrides are defined here — never hardcoded in components.</p>
@@ -3176,7 +3543,7 @@
       ============================================================ -->
       <section class="ds-section" id="tokens">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">29</span>
+          <span class="section-num" aria-hidden="true">35</span>
           <h2>Design Tokens</h2>
         </div>
         <p class="ds-section-desc">Design tokens are available as CSS Custom Properties via <code>tokens.css</code> for non-React contexts (emails, PDFs, static pages). In React, always use the MUI theme — not raw CSS variables. The token file is maintained in the <a href="https://github.com/sbneighborly/neighborlysoftwarebrandguidelines" target="_blank" rel="noopener" style="color:#188af4;">neighborlysoftwarebrandguidelines</a> repository and published to GitHub Pages — the same repo that houses the brand guidelines, logo assets, and color specifications. Changes to token values require a PR in that repo; the updated <code>tokens.css</code> is automatically deployed and picked up by any page that imports it.</p>
@@ -3216,7 +3583,7 @@
       ============================================================ -->
       <section class="ds-section" id="a11y">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">30</span>
+          <span class="section-num" aria-hidden="true">36</span>
           <h2>Accessibility</h2>
         </div>
         <p class="ds-section-desc">Neighborly serves communities that may include users with disabilities, low digital literacy, and assistive technology users. WCAG 2.1 AA compliance is a baseline requirement — not a nice-to-have. MUI provides strong a11y defaults; our job is to not break them.</p>
@@ -3264,7 +3631,7 @@
       ============================================================ -->
       <section class="ds-section" id="governance">
         <div class="ds-section-header">
-          <span class="section-num" aria-hidden="true">31</span>
+          <span class="section-num" aria-hidden="true">37</span>
           <h2>Governance</h2>
         </div>
         <p class="ds-section-desc">The design system is a living product. Changes are versioned, reviewed, and documented. All team members are responsible for maintaining consistency — and for raising issues when the system doesn't serve a real need.</p>
@@ -3340,7 +3707,7 @@
       <!-- ══ §31 ICONS ══ -->
       <section class="ds-section" id="icons" aria-labelledby="icons-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">32</div>
+          <div class="section-num" aria-hidden="true">38</div>
           <h2 id="icons-heading">Icons</h2>
         </div>
         <p class="ds-section-desc">Neighborly uses <strong>Material Icons</strong> — the same icon library bundled with MUI. Import via <code>@mui/icons-material</code>. All icons are available as individual React components. Use <code>SvgIcon</code> for custom SVGs that need to match the MUI icon API.</p>
@@ -3400,7 +3767,7 @@
       <!-- ══ §32 NOTIFICATIONS ══ -->
       <section class="ds-section" id="notifications" aria-labelledby="notif-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">33</div>
+          <div class="section-num" aria-hidden="true">39</div>
           <h2 id="notif-heading">Notifications &amp; Snackbar</h2>
         </div>
         <p class="ds-section-desc">Use MUI <code>Snackbar</code> + <code>Alert</code> for all transient notifications. Snackbars appear at the bottom-right, auto-dismiss after 5 seconds, and are announced to screen readers via <code>role="alert"</code> or <code>role="status"</code>. Never use browser <code>alert()</code>.</p>
@@ -3449,7 +3816,7 @@
       <!-- ══ §33 RESPONSIVE TABLES ══ -->
       <section class="ds-section" id="responsive-tables" aria-labelledby="resp-tables-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">34</div>
+          <div class="section-num" aria-hidden="true">40</div>
           <h2 id="resp-tables-heading">Responsive Tables</h2>
         </div>
         <p class="ds-section-desc">MUI <code>DataGrid</code> handles responsive behavior automatically on large datasets. For standard <code>Table</code> components, apply the card-stacking pattern below at <code>640px</code> breakpoint. This is critical for caseworkers on tablets reviewing application lists.</p>
@@ -3530,7 +3897,7 @@
       <!-- ══ §34 DARK MODE TOKENS ══ -->
       <section class="ds-section" id="dark-mode" aria-labelledby="dark-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">35</div>
+          <div class="section-num" aria-hidden="true">41</div>
           <h2 id="dark-heading">Dark Mode Token Map</h2>
         </div>
         <p class="ds-section-desc">Dark mode is not yet shipped but the token mapping is defined here to prevent a painful retrofit. When dark mode is implemented, all color references in components must use the CSS custom properties below — never hard-coded hex values. The <code>@media (prefers-color-scheme: dark)</code> block in <code>tokens.css</code> overrides the root tokens automatically.</p>
@@ -3591,7 +3958,7 @@
       <!-- ══ §35 READABILITY ══ -->
       <section class="ds-section" id="readability" aria-labelledby="readability-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">36</div>
+          <div class="section-num" aria-hidden="true">42</div>
           <h2 id="readability-heading">Readability &amp; Measure</h2>
         </div>
         <p class="ds-section-desc"><strong>Measure</strong> is the typographic term for line length. Research consistently shows that lines between 45 and 75 characters produce the best reading speed and comprehension. Neighborly targets <strong>60–75 characters</strong> for body text, enforced via <code>max-width: 65ch</code> on all long-form text containers. This is especially important for participants who may have lower literacy levels.</p>
@@ -3623,7 +3990,7 @@
       <!-- ══ §36 BRAND VOICE (FULL) ══ -->
       <section class="ds-section" id="brand-voice-expanded" aria-labelledby="bv-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">37</div>
+          <div class="section-num" aria-hidden="true">43</div>
           <h2 id="bv-heading">Brand Voice — Full Guide</h2>
         </div>
         <p class="ds-section-desc">Neighborly's voice is <strong>warm, direct, empowering, honest, and inclusive</strong>. Every string in the product — button labels, error messages, empty states, confirmation dialogs — is an opportunity to reinforce this voice. The Do/Don't examples below cover the four highest-stakes moments in the grant application experience.</p>
@@ -3694,7 +4061,7 @@
       <!-- ══ §37 WCAG / VPAT ══ -->
       <section class="ds-section" id="vpat" aria-labelledby="vpat-heading">
         <div class="ds-section-header">
-          <div class="section-num" aria-hidden="true">38</div>
+          <div class="section-num" aria-hidden="true">44</div>
           <h2 id="vpat-heading">WCAG 2.1 AA &amp; VPAT</h2>
         </div>
         <p class="ds-section-desc">Neighborly Software is committed to WCAG 2.1 Level AA conformance. The table below documents how each criterion is implemented in the design system. This serves as the basis for the Voluntary Product Accessibility Template (VPAT 2.4) submitted to enterprise clients.</p>
@@ -3752,373 +4119,7 @@
         </div>
       </section>
 
-<!-- ============================================================
-           NEW: AUTOCOMPLETE
-      ============================================================ -->
-      <section class="ds-section" id="autocomplete" aria-labelledby="autocomplete-heading">
-        <div class="ds-section-header">
-          <span class="section-num">39</span>
-          <h2 id="autocomplete-heading">Autocomplete</h2>
-        </div>
-        <p class="ds-section-desc">MUI <code>Autocomplete</code> wraps a <code>TextField</code> with a dropdown suggestion list. Use it for program search, case assignment, and any field where users select from a large or dynamic dataset.</p>
 
-        <div class="demo-box" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
-          <!-- Program search -->
-          <div>
-            <span class="demo-label">Program Search</span>
-            <div style="position:relative; margin-bottom:4px;">
-              <label style="display:block; font-size:12px; font-weight:600; color:#5A6472; margin-bottom:4px;">Program</label>
-              <input class="mui-input" type="text" value="Housing Rehab" style="padding-right:36px; width:100%;" />
-              <span class="material-icons" style="position:absolute;right:10px;top:calc(50% + 10px);transform:translateY(-50%);color:#8A96A3;font-size:20px;">expand_more</span>
-            </div>
-            <div style="border:1px solid #E2E6EA; border-radius:8px; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.1); overflow:hidden;">
-              <div style="padding:10px 14px; font-size:13px; color:#3D4752; cursor:pointer; background:#F0F6FF;">Housing Rehabilitation &amp; Repair</div>
-              <div style="padding:10px 14px; font-size:13px; color:#3D4752; cursor:pointer;">Homeownership Assistance</div>
-              <div style="padding:10px 14px; font-size:13px; color:#3D4752; cursor:pointer;">Housing Choice Voucher</div>
-            </div>
-          </div>
-          <!-- Case manager assignment -->
-          <div>
-            <span class="demo-label">Case Manager Assignment (multiple)</span>
-            <label style="display:block; font-size:12px; font-weight:600; color:#5A6472; margin-bottom:4px;">Assign Reviewers</label>
-            <div style="min-height:48px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; padding:8px 12px; border:1.5px solid #188af4; border-radius:8px; background:#fff;">
-              <span class="mui-chip chip-filled-primary chip-sm">Sarah Chen <span class="material-icons" style="font-size:14px;vertical-align:middle;margin-left:2px;cursor:pointer;">close</span></span>
-              <span class="mui-chip chip-filled-primary chip-sm">Marcus Webb <span class="material-icons" style="font-size:14px;vertical-align:middle;margin-left:2px;cursor:pointer;">close</span></span>
-              <input type="text" placeholder="Add reviewer..." style="border:none;outline:none;font-size:13px;min-width:120px;flex:1;" />
-            </div>
-            <p style="font-size:12px; color:#5A6472; margin-top:6px;">Select one or more case managers to assign to this case.</p>
-          </div>
-        </div>
-
-        <div class="code-block" style="margin-top:20px;">
-<span class="comment">// Single selection — program search</span>
-<span class="tag">import</span> { Autocomplete, TextField } <span class="tag">from</span> <span class="str">'@mui/material'</span>;
-
-<span class="tag">&lt;Autocomplete</span>
-  <span class="attr">options</span>={programs}
-  <span class="attr">getOptionLabel</span>={(option) =&gt; option.name}
-  <span class="attr">renderInput</span>={(params) =&gt; (
-    <span class="tag">&lt;TextField</span> {<span class="attr">...params</span>} <span class="attr">label</span>=<span class="str">"Program"</span> <span class="attr">size</span>=<span class="str">"small"</span> <span class="tag">/&gt;</span>
-  )}
-<span class="tag">/&gt;</span>
-
-<span class="comment">// Multiple selection — case manager assignment</span>
-<span class="tag">&lt;Autocomplete</span>
-  <span class="attr">multiple</span>
-  <span class="attr">options</span>={staff}
-  <span class="attr">getOptionLabel</span>={(option) =&gt; option.name}
-  <span class="attr">renderTags</span>={(value, getTagProps) =&gt;
-    value.map((option, index) =&gt; (
-      <span class="tag">&lt;Chip</span> <span class="attr">label</span>={option.name} {<span class="attr">...getTagProps</span>({ index })} <span class="attr">size</span>=<span class="str">"small"</span> <span class="tag">/&gt;</span>
-    ))
-  }
-  <span class="attr">renderInput</span>={(params) =&gt; (
-    <span class="tag">&lt;TextField</span> {<span class="attr">...params</span>} <span class="attr">label</span>=<span class="str">"Assign Reviewers"</span> <span class="tag">/&gt;</span>
-  )}
-<span class="tag">/&gt;</span>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           NEW: DATE PICKER
-      ============================================================ -->
-      <section class="ds-section" id="datepicker" aria-labelledby="datepicker-heading">
-        <div class="ds-section-header">
-          <span class="section-num">40</span>
-          <h2 id="datepicker-heading">Date Picker</h2>
-        </div>
-        <p class="ds-section-desc">MUI <code>DatePicker</code> from <code>@mui/x-date-pickers</code>. Use for application deadlines, program year selection, inspection scheduling, and any date input. Always pair with <code>LocalizationProvider</code> using <code>AdapterDayjs</code>.</p>
-
-        <div class="demo-box" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
-          <!-- Single date picker -->
-          <div>
-            <span class="demo-label">Application Deadline</span>
-            <div style="position:relative;">
-              <label style="display:block; font-size:12px; font-weight:600; color:#5A6472; margin-bottom:4px;">Application Deadline</label>
-              <input class="mui-input" type="text" value="04/30/2025" style="padding-right:40px; width:100%;" />
-              <span class="material-icons" style="position:absolute;right:10px;top:calc(50% + 10px);transform:translateY(-50%);color:#8A96A3;font-size:20px;">calendar_today</span>
-            </div>
-          </div>
-          <!-- Date range picker -->
-          <div>
-            <span class="demo-label">Date Range (Start – End)</span>
-            <div style="display:flex; gap:12px; align-items:flex-end;">
-              <div style="flex:1; position:relative;">
-                <label style="display:block; font-size:12px; font-weight:600; color:#5A6472; margin-bottom:4px;">Start Date</label>
-                <input class="mui-input" type="text" value="01/01/2025" style="padding-right:40px; width:100%;" />
-                <span class="material-icons" style="position:absolute;right:10px;top:calc(50% + 10px);transform:translateY(-50%);color:#8A96A3;font-size:20px;">calendar_today</span>
-              </div>
-              <span style="color:#8A96A3; font-size:18px; padding-bottom:10px;">–</span>
-              <div style="flex:1; position:relative;">
-                <label style="display:block; font-size:12px; font-weight:600; color:#5A6472; margin-bottom:4px;">End Date</label>
-                <input class="mui-input" type="text" value="12/31/2025" style="padding-right:40px; width:100%;" />
-                <span class="material-icons" style="position:absolute;right:10px;top:calc(50% + 10px);transform:translateY(-50%);color:#8A96A3;font-size:20px;">calendar_today</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="code-block" style="margin-top:20px;">
-<span class="tag">import</span> { LocalizationProvider, DatePicker } <span class="tag">from</span> <span class="str">'@mui/x-date-pickers'</span>;
-<span class="tag">import</span> { AdapterDayjs } <span class="tag">from</span> <span class="str">'@mui/x-date-pickers/AdapterDayjs'</span>;
-<span class="tag">import</span> dayjs <span class="tag">from</span> <span class="str">'dayjs'</span>;
-
-<span class="tag">&lt;LocalizationProvider</span> <span class="attr">dateAdapter</span>={AdapterDayjs}<span class="tag">&gt;</span>
-  <span class="tag">&lt;DatePicker</span>
-    <span class="attr">label</span>=<span class="str">"Application Deadline"</span>
-    <span class="attr">value</span>={deadline}
-    <span class="attr">onChange</span>={(newValue) =&gt; setDeadline(newValue)}
-    <span class="attr">slotProps</span>={{ textField: { size: <span class="str">'small'</span>, fullWidth: <span class="attr">true</span> } }}
-    <span class="attr">minDate</span>={dayjs()}
-  <span class="tag">/&gt;</span>
-<span class="tag">&lt;/LocalizationProvider&gt;</span>
-
-<span class="comment">// Install: npm install @mui/x-date-pickers dayjs</span>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           NEW: DRAWER
-      ============================================================ -->
-      <section class="ds-section" id="drawer" aria-labelledby="drawer-heading">
-        <div class="ds-section-header">
-          <span class="section-num">41</span>
-          <h2 id="drawer-heading">Drawer</h2>
-        </div>
-        <p class="ds-section-desc">MUI <code>Drawer</code> slides in from the right (or left) for contextual detail panels — case notes, document previews, filter panels, and mobile navigation. Prefer right-anchored drawers for detail views; left-anchored for navigation.</p>
-
-        <div class="demo-box" style="padding:0; overflow:hidden; position:relative; height:360px; background:#F5F7FA;">
-          <!-- Main content area (dimmed) -->
-          <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:flex-start; padding:32px; color:#B0BAC5; font-size:14px;">
-            Main content area
-          </div>
-          <!-- Drawer panel (right-anchored) -->
-          <div style="position:absolute; right:0; top:0; bottom:0; width:340px; background:#fff; box-shadow:-4px 0 20px rgba(0,0,0,0.12); display:flex; flex-direction:column;">
-            <!-- Drawer header -->
-            <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid #E5E9EF;">
-              <span style="font-weight:700; font-size:15px; color:#181B1F;">Case Notes — CS-2024-1847</span>
-              <span class="material-icons" style="color:#8A96A3; cursor:pointer; font-size:20px;">close</span>
-            </div>
-            <!-- Drawer content -->
-            <div style="padding:20px; flex:1; overflow:auto; display:flex; flex-direction:column; gap:16px;">
-              <div>
-                <div style="font-size:11px; font-weight:600; color:#9AA4AD; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">Apr 8, 2026 · Sarah Chen</div>
-                <p style="font-size:13px; color:#3D4752; margin:0; line-height:1.6;">Reviewed income documentation. AMI calculation confirmed at 62%. Proceeding to eligibility review.</p>
-              </div>
-              <div style="height:1px; background:#F0F2F5;"></div>
-              <div>
-                <div style="font-size:11px; font-weight:600; color:#9AA4AD; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">Apr 5, 2026 · Marcus Webb</div>
-                <p style="font-size:13px; color:#3D4752; margin:0; line-height:1.6;">Initial intake complete. Awaiting proof of residency from applicant.</p>
-              </div>
-              <div style="height:1px; background:#F0F2F5;"></div>
-              <div>
-                <div style="font-size:11px; font-weight:600; color:#9AA4AD; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">Apr 2, 2026 · Sarah Chen</div>
-                <p style="font-size:13px; color:#3D4752; margin:0; line-height:1.6;">Application received. Assigned to intake queue.</p>
-              </div>
-            </div>
-            <!-- Drawer footer -->
-            <div style="padding:14px 20px; border-top:1px solid #E5E9EF; display:flex; gap:10px;">
-              <input class="mui-input" type="text" placeholder="Add a note..." style="flex:1; font-size:13px;" />
-              <button class="mui-btn btn-contained-primary" style="padding:8px 16px; font-size:13px;">Add</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="code-block" style="margin-top:20px;">
-<span class="tag">import</span> { Drawer, Box, Typography, IconButton } <span class="tag">from</span> <span class="str">'@mui/material'</span>;
-<span class="tag">import</span> CloseIcon <span class="tag">from</span> <span class="str">'@mui/icons-material/Close'</span>;
-
-<span class="tag">&lt;Drawer</span>
-  <span class="attr">anchor</span>=<span class="str">"right"</span>
-  <span class="attr">open</span>={drawerOpen}
-  <span class="attr">onClose</span>={() =&gt; setDrawerOpen(<span class="attr">false</span>)}
-  <span class="attr">PaperProps</span>={{ sx: { width: 360 } }}
-<span class="tag">&gt;</span>
-  <span class="tag">&lt;Box</span> <span class="attr">sx</span>={{ display: <span class="str">'flex'</span>, alignItems: <span class="str">'center'</span>, justifyContent: <span class="str">'space-between'</span>, p: 2, borderBottom: <span class="str">'1px solid'</span>, borderColor: <span class="str">'divider'</span> }}<span class="tag">&gt;</span>
-    <span class="tag">&lt;Typography</span> <span class="attr">variant</span>=<span class="str">"h6"</span><span class="tag">&gt;</span>Case Notes<span class="tag">&lt;/Typography&gt;</span>
-    <span class="tag">&lt;IconButton</span> <span class="attr">onClick</span>={() =&gt; setDrawerOpen(<span class="attr">false</span>)}<span class="tag">&gt;</span><span class="tag">&lt;CloseIcon /&gt;</span><span class="tag">&lt;/IconButton&gt;</span>
-  <span class="tag">&lt;/Box&gt;</span>
-  <span class="comment">{/* Drawer content */}</span>
-<span class="tag">&lt;/Drawer&gt;</span>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           NEW: MENU
-      ============================================================ -->
-      <section class="ds-section" id="menu" aria-labelledby="menu-heading">
-        <div class="ds-section-header">
-          <span class="section-num">42</span>
-          <h2 id="menu-heading">Menu &amp; MenuItem</h2>
-        </div>
-        <p class="ds-section-desc">MUI <code>Menu</code> and <code>MenuItem</code> for contextual action menus — the "⋯" row actions in DataGrids, navigation dropdowns, and bulk action menus. Always anchor to the trigger element using <code>anchorEl</code>.</p>
-
-        <div class="demo-box" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
-          <!-- Row action menu -->
-          <div>
-            <span class="demo-label">Row Action Menu (⋯)</span>
-            <div style="border:1px solid #E2E6EA; border-radius:8px; background:#fff; overflow:hidden; max-width:280px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
-              <div style="padding:12px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #F5F7FA; background:#F8FAFC;">
-                <span style="font-size:13px; color:#3D4752; font-weight:500;">CS-2024-1847 · Martinez, Sofia</span>
-                <span class="material-icons" style="color:#8A96A3; font-size:20px; cursor:pointer;">more_vert</span>
-              </div>
-              <!-- Simulated open menu -->
-              <div style="padding:4px 0;">
-                <div style="padding:10px 16px; font-size:13px; color:#3D4752; display:flex; align-items:center; gap:10px; cursor:pointer; background:#F0F6FF;">
-                  <span class="material-icons" style="font-size:16px; color:#188af4;">visibility</span> View Case
-                </div>
-                <div style="padding:10px 16px; font-size:13px; color:#3D4752; display:flex; align-items:center; gap:10px; cursor:pointer;">
-                  <span class="material-icons" style="font-size:16px; color:#8A96A3;">person_add</span> Assign Case Manager
-                </div>
-                <div style="padding:10px 16px; font-size:13px; color:#3D4752; display:flex; align-items:center; gap:10px; cursor:pointer;">
-                  <span class="material-icons" style="font-size:16px; color:#8A96A3;">flag</span> Flag for Review
-                </div>
-                <div style="height:1px; background:#E2E6EA; margin:4px 0;"></div>
-                <div style="padding:10px 16px; font-size:13px; color:#D32F2F; display:flex; align-items:center; gap:10px; cursor:pointer;">
-                  <span class="material-icons" style="font-size:16px; color:#D32F2F;">archive</span> Archive Case
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Nav dropdown menu -->
-          <div>
-            <span class="demo-label">Navigation Dropdown</span>
-            <div style="max-width:220px;">
-              <div style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; background:#188af4; color:#fff; border-radius:20px; cursor:pointer; font-size:14px; font-weight:600; margin-bottom:6px;">
-                Cases <span class="material-icons" style="font-size:16px;">expand_more</span>
-              </div>
-              <div style="border:1px solid #E2E6EA; border-radius:8px; background:#fff; box-shadow:0 4px 16px rgba(0,0,0,0.12); overflow:hidden;">
-                <div style="padding:10px 16px; font-size:13px; color:#3D4752; cursor:pointer; background:#F0F6FF; font-weight:500;">All Cases</div>
-                <div style="padding:10px 16px; font-size:13px; color:#3D4752; cursor:pointer;">My Cases</div>
-                <div style="padding:10px 16px; font-size:13px; color:#3D4752; cursor:pointer;">Eligibility Review</div>
-                <div style="padding:10px 16px; font-size:13px; color:#3D4752; cursor:pointer;">Appeals</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="code-block" style="margin-top:20px;">
-<span class="tag">import</span> { Menu, MenuItem, IconButton, ListItemIcon, ListItemText, Divider } <span class="tag">from</span> <span class="str">'@mui/material'</span>;
-<span class="tag">import</span> MoreVertIcon <span class="tag">from</span> <span class="str">'@mui/icons-material/MoreVert'</span>;
-
-<span class="comment">// In your component:</span>
-<span class="tag">const</span> [anchorEl, setAnchorEl] = useState(<span class="attr">null</span>);
-<span class="tag">const</span> open = Boolean(anchorEl);
-
-<span class="tag">&lt;IconButton</span> <span class="attr">onClick</span>={(e) =&gt; setAnchorEl(e.currentTarget)} <span class="attr">aria-label</span>=<span class="str">"Case actions"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;MoreVertIcon /&gt;</span>
-<span class="tag">&lt;/IconButton&gt;</span>
-
-<span class="tag">&lt;Menu</span>
-  <span class="attr">anchorEl</span>={anchorEl}
-  <span class="attr">open</span>={open}
-  <span class="attr">onClose</span>={() =&gt; setAnchorEl(<span class="attr">null</span>)}
-<span class="tag">&gt;</span>
-  <span class="tag">&lt;MenuItem</span> <span class="attr">onClick</span>={handleView}<span class="tag">&gt;</span>
-    <span class="tag">&lt;ListItemIcon&gt;&lt;VisibilityIcon /&gt;&lt;/ListItemIcon&gt;</span>
-    <span class="tag">&lt;ListItemText&gt;</span>View Case<span class="tag">&lt;/ListItemText&gt;</span>
-  <span class="tag">&lt;/MenuItem&gt;</span>
-  <span class="tag">&lt;Divider /&gt;</span>
-  <span class="tag">&lt;MenuItem</span> <span class="attr">onClick</span>={handleArchive} <span class="attr">sx</span>={{ color: <span class="str">'error.main'</span> }}<span class="tag">&gt;</span>
-    <span class="tag">&lt;ListItemIcon&gt;&lt;ArchiveIcon</span> <span class="attr">color</span>=<span class="str">"error"</span> <span class="tag">/&gt;&lt;/ListItemIcon&gt;</span>
-    <span class="tag">&lt;ListItemText&gt;</span>Archive Case<span class="tag">&lt;/ListItemText&gt;</span>
-  <span class="tag">&lt;/MenuItem&gt;</span>
-<span class="tag">&lt;/Menu&gt;</span>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           NEW: SX vs STYLED GUIDE
-      ============================================================ -->
-      <section class="ds-section" id="sx-styled" aria-labelledby="sx-styled-heading">
-        <div class="ds-section-header">
-          <span class="section-num">43</span>
-          <h2 id="sx-styled-heading">Styling: <code>sx</code> vs <code>styled()</code> vs Theme</h2>
-        </div>
-        <p class="ds-section-desc">MUI provides three styling approaches. Choosing the right one keeps the codebase consistent and avoids specificity conflicts. Use this decision guide for every new component.</p>
-
-        <table class="mui-table" style="margin-bottom:24px;">
-          <thead>
-            <tr>
-              <th>Approach</th>
-              <th>When to use</th>
-              <th>When NOT to use</th>
-              <th>Example</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>sx</code> prop</td>
-              <td>One-off layout tweaks, spacing overrides, responsive breakpoints on a single instance</td>
-              <td>Styles that repeat across multiple components; complex pseudo-selectors</td>
-              <td><code>&lt;Box sx={{ mt: 2, display: 'flex' }}&gt;</code></td>
-            </tr>
-            <tr>
-              <td><code>styled()</code></td>
-              <td>Reusable styled variants of MUI components; complex selectors; animations</td>
-              <td>Simple one-off spacing; anything that belongs in the theme</td>
-              <td><code>const PipelineChip = styled(Chip)(({ theme }) =&gt; ({...}))</code></td>
-            </tr>
-            <tr>
-              <td><code>theme.components</code></td>
-              <td>Global default overrides for a component (e.g. all Buttons pill-shaped); shared across the entire app</td>
-              <td>Instance-specific overrides; anything that varies by context</td>
-              <td><code>MuiButton: { styleOverrides: { root: { borderRadius: 20 } } }</code></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="do-dont-grid">
-          <div class="do-box">
-            <div class="do-header">DO — Use <code>sx</code> for layout, spacing, and responsive</div>
-            <div class="do-dont-body" style="padding:0;">
-              <div class="code-block" style="margin:0; border-radius:0; border:none; min-height:140px;">
-<span class="comment">// One-off layout on a single instance</span>
-<span class="tag">&lt;Card</span> <span class="attr">sx</span>={{ mt: 3, mb: 1, p: 2 }}<span class="tag">&gt;</span>
-  <span class="tag">&lt;CardContent</span> <span class="attr">sx</span>={{ display: <span class="str">'flex'</span>, gap: 2 }}<span class="tag">&gt;</span>
-    ...
-  <span class="tag">&lt;/CardContent&gt;</span>
-<span class="tag">&lt;/Card&gt;</span>
-              </div>
-            </div>
-          </div>
-          <div class="dont-box">
-            <div class="dont-header">DON'T — Repeat <code>sx</code> for shared styles</div>
-            <div class="do-dont-body" style="padding:0;">
-              <div class="code-block" style="margin:0; border-radius:0; border:none; min-height:140px;">
-<span class="comment">// Don't repeat this on every pipeline chip</span>
-<span class="tag">&lt;Chip</span> <span class="attr">sx</span>={{ borderRadius: <span class="str">'4px'</span>, fontWeight: 700, fontSize: <span class="str">'11px'</span> }} <span class="tag">/&gt;</span>
-<span class="tag">&lt;Chip</span> <span class="attr">sx</span>={{ borderRadius: <span class="str">'4px'</span>, fontWeight: 700, fontSize: <span class="str">'11px'</span> }} <span class="tag">/&gt;</span>
-<span class="comment">// Use styled() instead ↑</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="code-block" style="margin-top:20px;">
-<span class="comment">// CORRECT: Reusable pipeline status chip via styled()</span>
-<span class="tag">import</span> { styled } <span class="tag">from</span> <span class="str">'@mui/material/styles'</span>;
-<span class="tag">import</span> { Chip } <span class="tag">from</span> <span class="str">'@mui/material'</span>;
-
-<span class="tag">const</span> StatusChip = styled(Chip)(({ theme, status }) =&gt; ({
-  borderRadius: <span class="str">'4px'</span>,
-  fontWeight: 700,
-  fontSize: <span class="str">'11px'</span>,
-  ...(status === <span class="str">'approved'</span> &amp;&amp; {
-    backgroundColor: theme.palette.success.light,
-    color: theme.palette.success.dark,
-  }),
-  ...(status === <span class="str">'pending'</span> &amp;&amp; {
-    backgroundColor: theme.palette.warning.light,
-    color: theme.palette.warning.dark,
-  }),
-}));
-
-<span class="comment">// Usage:</span>
-<span class="tag">&lt;StatusChip</span> <span class="attr">label</span>=<span class="str">"Approved"</span> <span class="attr">status</span>=<span class="str">"approved"</span> <span class="attr">size</span>=<span class="str">"small"</span> <span class="tag">/&gt;</span>
-        </div>
-      </section>
 
             <footer style="border-top:2px solid #E5E9EF; padding-top:32px; margin-top:56px; text-align:center; color:#9AA4AD; font-size:13px;">
         <img src="assets/logo.svg" alt="Neighborly Software" style="height:24px; opacity:0.5; display:block; margin:0 auto 12px;" />
