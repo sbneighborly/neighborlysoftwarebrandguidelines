@@ -667,7 +667,7 @@
       <div class="sidebar-logo">
         <img src="assets/logo-icon-circle.svg" alt="Neighborly Software" style="height:30px; width:auto; flex-shrink:0;" />
         <span style="color:#fff; font-weight:700; font-size:14px; line-height:1.2;">Neighborly<br>Software</span>
-        <span class="sidebar-version">v2.3</span>
+        <span class="sidebar-version">v2.4</span>
       </div>
       <div class="nav-search-wrap">
         <input type="search" id="nav-search" class="nav-search-input" placeholder="Search sections…" aria-label="Search design system sections" autocomplete="off" />
@@ -740,6 +740,8 @@
         <a href="#multi-page-form">Multi-Page Form</a>
         <a href="#role-access">Role-Based Access</a>
         <a href="#print-export">Print &amp; Export</a>
+        <a href="#content-copy">Content &amp; Copy</a>
+        <a href="#qa-testing">QA &amp; Testing</a>
       </nav>
     </nav><!-- end .sidebar -->
 
@@ -756,7 +758,7 @@
         </div>
         <h1>Neighborly Software Design System</h1>
         <p>The MUI-based component library and pattern guide for building grant management applications. Shared across Participant, Contractor, and Admin experiences.</p>
-        <span class="hero-version">Version 2.3 — MUI v5</span>
+        <span class="hero-version">Version 2.4 — MUI v5</span>
       </div>
 
       <!-- ============================================================
@@ -959,7 +961,7 @@
           <span class="section-num" aria-hidden="true">3</span>
           <h2>Typography</h2>
         </div>
-        <p class="ds-section-desc">The primary typeface is <strong>Avenir Next LT Pro</strong> (headers: Demi weight; body: regular). For web delivery, the system font stack provides a close visual match. MUI's typography system maps these to semantic variant names used in code.</p>
+        <p class="ds-section-desc">The primary typeface is <strong>Nunito Sans</strong> (web, loaded via Google Fonts) with <strong>Avenir Next LT Pro</strong> as the licensed desktop fallback. Use Nunito Sans for all web-rendered UI. Use Avenir Next LT Pro in Figma, print materials, and native desktop contexts. MUI's typography system maps these to semantic variant names used in code.</p>
 
         <div class="demo-box">
           <div class="type-row">
@@ -1940,6 +1942,103 @@ sx={{ transition: theme.transitions.create(
   <span class="attr">aria-label</span>=<span class="str">"Applications queue"</span>
 <span class="tag">/&gt;</span>
         </div>
+
+        <h3 class="subsection-title">Interaction Specifications</h3>
+
+        <h4 style="font-size:13px;font-weight:700;color:#0a2a5e;margin:16px 0 8px;">Sort Behavior</h4>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Click</th><th>State</th><th>Visual</th></tr></thead>
+            <tbody>
+              <tr><td>1st click on column header</td><td>Ascending ↑</td><td>Up arrow icon in header; sorted column highlighted</td></tr>
+              <tr><td>2nd click</td><td>Descending ↓</td><td>Down arrow icon</td></tr>
+              <tr><td>3rd click</td><td>Sort removed</td><td>No icon; original order restored</td></tr>
+              <tr><td>Multi-sort</td><td>Hold Ctrl/Cmd + click</td><td>Numbered sort indicators (1↑, 2↓)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="font-size:13px;font-weight:700;color:#0a2a5e;margin:16px 0 8px;">Filter Persistence</h4>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Scenario</th><th>Behavior</th></tr></thead>
+            <tbody>
+              <tr><td>Navigate away and return (same session)</td><td>Filters persist. Store filter state in URL params (<code>?status=pending&program=ERAP</code>) so the back button restores the view.</td></tr>
+              <tr><td>Page refresh</td><td>Restore from URL params. If no URL params, default to "All" with no filters applied.</td></tr>
+              <tr><td>New session</td><td>No filter persistence. Start fresh.</td></tr>
+              <tr><td>Switching view tabs (All / Eligibility / etc.)</td><td>Clear all active filters when switching tabs. Each tab has its own default column set.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="font-size:13px;font-weight:700;color:#0a2a5e;margin:16px 0 8px;">Pagination vs. Infinite Scroll</h4>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Pattern</th><th>When to use</th><th>Page size</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Pagination</strong> (default)</td><td>All DataGrid views in Neighborly. Allows bookmarking, direct navigation, and predictable performance.</td><td>25 rows (default); user can change to 10 or 50</td></tr>
+              <tr><td><strong>Infinite scroll</strong></td><td>Do not use in DataGrids. Only acceptable in the Messages conversation list (left pane), where the user is scanning, not navigating.</td><td>N/A</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="font-size:13px;font-weight:700;color:#0a2a5e;margin:16px 0 8px;">Row Selection &amp; Bulk Actions</h4>
+        <div class="demo-box">
+          <div style="background:#fff;border:1px solid #E5E9EF;border-radius:8px;overflow:hidden;">
+            <!-- Bulk action bar (appears when rows are selected) -->
+            <div style="background:#EBF4FF;border-bottom:1px solid #BFDBFE;padding:8px 16px;display:flex;align-items:center;gap:12px;">
+              <span style="font-size:13px;font-weight:600;color:#1278d8;">3 cases selected</span>
+              <div style="flex:1;"></div>
+              <button class="mui-btn" style="background:#fff;border:1px solid #1278d8;color:#1278d8;padding:5px 14px;border-radius:5px;font-size:12px;cursor:pointer;">Assign</button>
+              <button class="mui-btn" style="background:#fff;border:1px solid #1278d8;color:#1278d8;padding:5px 14px;border-radius:5px;font-size:12px;cursor:pointer;">Export</button>
+              <button class="mui-btn" style="background:#D32F2F;border:1px solid #D32F2F;color:#fff;padding:5px 14px;border-radius:5px;font-size:12px;cursor:pointer;">Archive</button>
+              <button class="mui-btn" style="background:none;border:none;color:#5A6472;padding:5px 10px;cursor:pointer;font-size:12px;">Clear</button>
+            </div>
+            <!-- Table rows -->
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+              <thead><tr style="background:#F5F7FA;">
+                <th style="padding:8px 12px;text-align:left;width:36px;"><input type="checkbox" checked /></th>
+                <th style="padding:8px 12px;text-align:left;color:#5A6472;font-weight:600;">Case ID</th>
+                <th style="padding:8px 12px;text-align:left;color:#5A6472;font-weight:600;">Applicant</th>
+                <th style="padding:8px 12px;text-align:left;color:#5A6472;font-weight:600;">Status</th>
+              </tr></thead>
+              <tbody>
+                <tr style="background:#F0F7FF;border-bottom:1px solid #E5E9EF;">
+                  <td style="padding:8px 12px;"><input type="checkbox" checked /></td>
+                  <td style="padding:8px 12px;color:#188af4;font-weight:600;">CS-2024-0041</td>
+                  <td style="padding:8px 12px;color:#181B1F;">Maria Rodriguez</td>
+                  <td style="padding:8px 12px;"><span style="background:#FFF3E0;color:#E65100;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">Pending Review</span></td>
+                </tr>
+                <tr style="background:#F0F7FF;border-bottom:1px solid #E5E9EF;">
+                  <td style="padding:8px 12px;"><input type="checkbox" checked /></td>
+                  <td style="padding:8px 12px;color:#188af4;font-weight:600;">CS-2024-0042</td>
+                  <td style="padding:8px 12px;color:#181B1F;">James Wilson</td>
+                  <td style="padding:8px 12px;"><span style="background:#FFF3E0;color:#E65100;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">Pending Review</span></td>
+                </tr>
+                <tr style="background:#fff;border-bottom:1px solid #E5E9EF;">
+                  <td style="padding:8px 12px;"><input type="checkbox" /></td>
+                  <td style="padding:8px 12px;color:#188af4;font-weight:600;">CS-2024-0043</td>
+                  <td style="padding:8px 12px;color:#181B1F;">Aisha Patel</td>
+                  <td style="padding:8px 12px;"><span style="background:#E8F5E9;color:#1B5E20;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">Approved</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:12px;color:#5A6472;margin:8px 0 0;">Bulk action bar appears when ≥1 row is selected. Actions are contextual — Archive is destructive (red). Selecting all rows on the page shows "Select all N cases" option.</p>
+        </div>
+
+        <h4 style="font-size:13px;font-weight:700;color:#0a2a5e;margin:16px 0 8px;">Column Resize &amp; Reorder</h4>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Feature</th><th>Behavior</th><th>MUI prop</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Column resize</strong></td><td>Enabled on all columns except checkbox and action columns. Min width: 80px. Persist user preferences in <code>localStorage</code>.</td><td><code>resizable</code> (Pro)</td></tr>
+              <tr><td><strong>Column reorder</strong></td><td>Enabled. Drag column header to reorder. Persist in <code>localStorage</code>.</td><td><code>disableColumnReorder={false}</code></td></tr>
+              <tr><td><strong>Column visibility</strong></td><td>Use the column visibility panel (toolbar) for optional columns. Required columns (Case ID, Status) cannot be hidden.</td><td><code>GridToolbarColumnsButton</code></td></tr>
+              <tr><td><strong>Cell editing</strong></td><td>Disabled in Neighborly DataGrids. All edits happen in the Case Viewer form, not inline in the grid.</td><td><code>editable: false</code> (default)</td></tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -2202,6 +2301,82 @@ sx={{ transition: theme.transitions.create(
   )}
 <span class="tag">/&gt;</span>
         </div>
+
+        <h3 class="subsection-title">Keyboard Behavior</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Key</th><th>Behavior</th></tr></thead>
+            <tbody>
+              <tr><td><kbd style="background:#F0F4F8;border:1px solid #D1D9E0;border-radius:3px;padding:1px 5px;font-size:11px;">↓ / ↑</kbd></td><td>Open dropdown / navigate options</td></tr>
+              <tr><td><kbd style="background:#F0F4F8;border:1px solid #D1D9E0;border-radius:3px;padding:1px 5px;font-size:11px;">Enter</kbd></td><td>Select highlighted option</td></tr>
+              <tr><td><kbd style="background:#F0F4F8;border:1px solid #D1D9E0;border-radius:3px;padding:1px 5px;font-size:11px;">Escape</kbd></td><td>Close dropdown, clear input (if <code>clearOnEscape</code>)</td></tr>
+              <tr><td><kbd style="background:#F0F4F8;border:1px solid #D1D9E0;border-radius:3px;padding:1px 5px;font-size:11px;">Backspace</kbd></td><td>In multi-select: remove last chip when input is empty</td></tr>
+              <tr><td><kbd style="background:#F0F4F8;border:1px solid #D1D9E0;border-radius:3px;padding:1px 5px;font-size:11px;">Tab</kbd></td><td>Accept first option if <code>autoSelect</code> is true; otherwise close dropdown</td></tr>
+              <tr><td><kbd style="background:#F0F4F8;border:1px solid #D1D9E0;border-radius:3px;padding:1px 5px;font-size:11px;">Alt + ↓</kbd></td><td>Open dropdown without filtering</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Async Loading &amp; Empty States</h3>
+        <div class="demo-box" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+          <!-- Loading -->
+          <div>
+            <p class="demo-label">Loading</p>
+            <div style="border:1px solid #188af4;border-radius:6px;padding:9px 12px;display:flex;align-items:center;gap:8px;background:#fff;">
+              <span style="font-size:13px;color:#5A6472;flex:1;">Searching programs…</span>
+              <span style="width:14px;height:14px;border:2px solid #E5E9EF;border-top-color:#188af4;border-radius:50%;display:inline-block;animation:spin 0.8s linear infinite;"></span>
+            </div>
+            <div style="border:1px solid #E5E9EF;border-top:none;border-radius:0 0 6px 6px;background:#fff;padding:12px;font-size:12px;color:#5A6472;text-align:center;">
+              Loading options…
+            </div>
+          </div>
+          <!-- No results -->
+          <div>
+            <p class="demo-label">No Results</p>
+            <div style="border:1px solid #E5E9EF;border-radius:6px;padding:9px 12px;background:#fff;">
+              <span style="font-size:13px;color:#181B1F;">xyz program</span>
+            </div>
+            <div style="border:1px solid #E5E9EF;border-top:none;border-radius:0 0 6px 6px;background:#fff;padding:12px;font-size:12px;color:#5A6472;text-align:center;">
+              No programs found for "xyz program"
+            </div>
+          </div>
+          <!-- Prepopulated (Equifax) -->
+          <div>
+            <p class="demo-label">Prepopulated (Equifax)</p>
+            <div style="border:1px solid #E5E9EF;border-radius:6px;padding:9px 12px;background:#F5F7FA;display:flex;align-items:center;gap:6px;">
+              <span style="font-size:13px;color:#181B1F;flex:1;">Sarah Chen</span>
+              <span style="background:#EBF4FF;color:#1278d8;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;white-space:nowrap;">Auto-filled</span>
+            </div>
+            <p style="font-size:11px;color:#5A6472;margin:4px 0 0;">Populated from Equifax identity match. User can override — never set <code>readOnly</code> on Equifax-filled fields.</p>
+          </div>
+        </div>
+
+        <div class="code-block">
+<span class="cm">// Async Autocomplete pattern with debounce</span>
+<span class="kw">const</span> [options, setOptions] = useState([]);
+<span class="kw">const</span> [loading, setLoading] = useState(<span class="val">false</span>);
+<span class="kw">const</span> fetchOptions = useMemo(() =&gt; debounce(<span class="kw">async</span> (query) =&gt; {
+  setLoading(<span class="val">true</span>);
+  <span class="kw">const</span> results = <span class="kw">await</span> api.searchPrograms(query);
+  setOptions(results);
+  setLoading(<span class="val">false</span>);
+}, <span class="val">300</span>), []);
+
+<span class="tag">&lt;Autocomplete</span>
+  <span class="attr">options</span>={options}
+  <span class="attr">loading</span>={loading}
+  <span class="attr">onInputChange</span>={(_e, val) =&gt; fetchOptions(val)}
+  <span class="attr">noOptionsText</span>=<span class="str">"No programs found"</span>
+  <span class="attr">loadingText</span>=<span class="str">"Searching programs…"</span>
+  <span class="attr">renderInput</span>={(params) =&gt; (
+    <span class="tag">&lt;TextField</span> {...params} <span class="attr">label</span>=<span class="str">"Program"</span>
+      <span class="attr">InputProps</span>={{ ...params.InputProps,
+        endAdornment: loading ? <span class="tag">&lt;CircularProgress size={16} /&gt;</span> : params.InputProps.endAdornment
+      }}
+    <span class="tag">/&gt;</span>
+  )}
+<span class="tag">/&gt;</span>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -2259,6 +2434,34 @@ sx={{ transition: theme.transitions.create(
 <span class="tag">&lt;/LocalizationProvider&gt;</span>
 
 <span class="comment">// Install: npm install @mui/x-date-pickers dayjs</span>
+        </div>
+
+        <h3 class="subsection-title">Date Format &amp; Localization</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Context</th><th>Display Format</th><th>Storage Format</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Application deadline</td><td>MM/DD/YYYY</td><td>ISO 8601 (YYYY-MM-DD)</td><td>US locale default; always store as ISO</td></tr>
+              <tr><td>Program year selection</td><td>YYYY</td><td>YYYY-01-01</td><td>Year-only picker; use <code>views={['year']}</code></td></tr>
+              <tr><td>Lease term (range)</td><td>MM/DD/YYYY – MM/DD/YYYY</td><td>ISO start + end</td><td>Use <code>DateRangePicker</code>; min gap = 1 day</td></tr>
+              <tr><td>Inspection scheduling</td><td>ddd, MMM D, YYYY</td><td>ISO 8601 with time (UTC)</td><td>Show day-of-week for scheduling clarity</td></tr>
+              <tr><td>DataGrid date column</td><td>MM/DD/YYYY</td><td>ISO 8601</td><td>Use <code>valueFormatter</code> for display</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Partial Entry &amp; Validation</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>State</th><th>Behavior</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Partial entry (e.g., "04/__/____")</strong></td><td>Do not validate until the field loses focus. Show helper text: "Enter a complete date (MM/DD/YYYY)." Never show an error while the user is still typing.</td></tr>
+              <tr><td><strong>Invalid date (e.g., "02/30/2025")</strong></td><td>Show error on blur: "Please enter a valid date." Clear the stored value — never store an invalid date.</td></tr>
+              <tr><td><strong>Date in the past (when future required)</strong></td><td>Use <code>minDate={dayjs()}</code>. Show error: "Date must be today or in the future."</td></tr>
+              <tr><td><strong>Date range: end before start</strong></td><td>Use <code>minDate={startDate}</code> on the end picker. Disable end picker until start is set.</td></tr>
+              <tr><td><strong>Cleared field</strong></td><td>Store <code>null</code>, not an empty string. Guard all date consumers with <code>if (date) …</code>.</td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -2325,6 +2528,48 @@ sx={{ transition: theme.transitions.create(
   <span class="tag">&lt;/Box&gt;</span>
   <span class="comment">{/* Drawer content */}</span>
 <span class="tag">&lt;/Drawer&gt;</span>
+        </div>
+
+        <h3 class="subsection-title">Width at Breakpoints</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Breakpoint</th><th>Drawer Width</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Desktop (≥1280px)</td><td>360px</td><td>Case notes, document preview, filter panel</td></tr>
+              <tr><td>Tablet (960–1279px)</td><td>320px</td><td>Same content; slightly narrower</td></tr>
+              <tr><td>Mobile (&lt;960px)</td><td>100vw</td><td>Full-width bottom sheet; use <code>anchor="bottom"</code></td></tr>
+            </tbody>
+          </table>
+          <div class="code-block" style="margin-top:12px;">
+<span class="tag">&lt;Drawer</span> <span class="attr">anchor</span>=<span class="str">"right"</span> <span class="attr">open</span>={open}
+  <span class="attr">PaperProps</span>={{ sx: { width: { xs: <span class="str">'100vw'</span>, sm: <span class="val">320</span>, lg: <span class="val">360</span> } } }}
+<span class="tag">&gt;</span>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Focus Management</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Event</th><th>Focus behavior</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Drawer opens</strong></td><td>Focus moves to the first focusable element inside the drawer (typically the close button or the first input). MUI handles this automatically via <code>autoFocus</code> on the Paper.</td></tr>
+              <tr><td><strong>Drawer closes</strong></td><td>Focus returns to the element that triggered the open (the "Add Note" button, the row action ⋯ button, etc.). Store the trigger ref and call <code>triggerRef.current.focus()</code> in the <code>onClose</code> handler.</td></tr>
+              <tr><td><strong>Tab key inside drawer</strong></td><td>Focus is trapped within the drawer while it is open. MUI's <code>Modal</code> base handles this. Do not disable it.</td></tr>
+              <tr><td><strong>Escape key</strong></td><td>Closes the drawer and returns focus to the trigger. This is the default MUI behavior — do not override it.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Persistent vs. Temporary</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Variant</th><th>When to use</th><th>MUI prop</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Temporary</strong> (default)</td><td>Overlays content; closes on backdrop click or Escape. Use for: case notes, document preview, filter panel, mobile nav.</td><td><code>variant="temporary"</code></td></tr>
+              <tr><td><strong>Persistent</strong></td><td>Pushes content to the side; stays open until explicitly closed. Use for: primary navigation on desktop, side-by-side comparison panels.</td><td><code>variant="persistent"</code></td></tr>
+              <tr><td><strong>Permanent</strong></td><td>Always visible; cannot be closed. Use only for the main sidebar navigation on desktop ≥1280px.</td><td><code>variant="permanent"</code></td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -3097,6 +3342,20 @@ sx={{ transition: theme.transitions.create(
             </div>
           </div>
         </div>
+
+        <h3 class="subsection-title">State Specifications</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Interaction / State</th><th>What happens</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Caseworker clicks "Approve" on a queue row</strong></td><td>1. Confirmation Dialog: "Approve CS-2024-0041? This will notify the applicant." 2. On confirm: status chip animates Pending Review &rarr; Approved (green). 3. Row moves to bottom of queue after 400ms. 4. Success Snackbar: "CS-2024-0041 approved."</td></tr>
+              <tr><td><strong>Dashboard loading (initial)</strong></td><td>4 stat card skeletons (same card dimensions). Queue shows 5 full-width row skeletons. Tab bar renders immediately &mdash; it is static and does not depend on the API.</td></tr>
+              <tr><td><strong>Dashboard API call fails</strong></td><td>Stat cards show error state: gray card with &ldquo;&#x26A0; Could not load &mdash; Retry&rdquo;. Queue shows Alert: &ldquo;Unable to load cases. Check your connection and retry.&rdquo; Retry re-fetches both.</td></tr>
+              <tr><td><strong>No cases in queue</strong></td><td>Empty state: clipboard icon + &ldquo;Your queue is clear&rdquo; + &ldquo;View all cases &rarr;&rdquo; link. Do not render the DataGrid at all.</td></tr>
+              <tr><td><strong>Stat card number changes (real-time)</strong></td><td>Number animates with a brief count-up (200ms). Do not flash the entire card &mdash; only the number value updates.</td></tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <!-- ============================================================
@@ -3339,6 +3598,20 @@ sx={{ transition: theme.transitions.create(
               </div>
             </div>
           </div>
+        </div>
+
+        <h3 class="subsection-title">State Specifications</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Interaction / State</th><th>What happens</th></tr></thead>
+            <tbody>
+              <tr><td><strong>User switches view tab</strong></td><td>Active tab gets blue underline. Column set changes immediately (data is pre-fetched on tab hover). Active filters are cleared when switching tabs.</td></tr>
+              <tr><td><strong>Bulk select &rarr; Archive</strong></td><td>Confirmation Dialog: &ldquo;Archive 3 cases? This cannot be undone.&rdquo; On confirm: rows fade out over 300ms. Success Snackbar: &ldquo;3 cases archived.&rdquo;</td></tr>
+              <tr><td><strong>Cases list loading</strong></td><td>Show 8 full-width row skeletons with column-width proportions matching the active view&rsquo;s column set. Filters and tab bar render immediately.</td></tr>
+              <tr><td><strong>Cases list API fails</strong></td><td>Full-page error Alert (not inline): &ldquo;Unable to load cases. Check your connection.&rdquo; with Retry button. Do not show a partially loaded grid.</td></tr>
+              <tr><td><strong>Filter applied, no results</strong></td><td>Empty state inside the grid area: &ldquo;No cases match your filters.&rdquo; + &ldquo;Clear filters&rdquo; link. Pagination shows &ldquo;0 of 0&rdquo;.</td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -3887,7 +4160,7 @@ sx={{ transition: theme.transitions.create(
   },
 
   typography: {
-    fontFamily: <span class="str">"'Avenir Next LT Pro', 'Avenir Next', 'Inter', -apple-system, sans-serif"</span>,
+    fontFamily: <span class="str">"'Nunito Sans', 'Avenir Next LT Pro', 'Avenir Next', -apple-system, sans-serif"</span>,
     h1: { fontWeight: 700 },
     h2: { fontWeight: 700 },
     h3: { fontWeight: 700 },
@@ -3973,13 +4246,17 @@ sx={{ transition: theme.transitions.create(
             </tbody>
           </table>
         </div>
+        <div style="background:#E8F5E9;border:1px solid #A5D6A7;border-radius:8px;padding:14px 18px;margin-bottom:20px;font-size:13px;color:#1B5E20;">
+          <strong>&#x2713; Source of Truth Resolution (v2.4)</strong><br>
+          As of v2.4, the MUI theme values in this design system are the canonical source of truth. <code>tokens.css</code> in the brand guidelines repo has been updated to match. The three-way conflict between <code>tokens.css</code>, <code>index.html</code>, and Storybook stories (documented in the v2.4 changelog) has been resolved. Going forward: <strong>change the MUI theme first, then regenerate <code>tokens.css</code> from it</strong>. Never update <code>tokens.css</code> independently.
+        </div>
         <h3 class="subsection-title">Figma &#8596; Token Sync</h3>
         <p style="font-size:14px;color:#5A6472;margin-bottom:16px;max-width:65ch;">The single biggest organizational risk is a designer updating a color in Figma that never makes it to <code>--nbl-primary</code>. The table below maps every Figma token name to its CSS variable and MUI palette key &mdash; this is the single source of truth for the sync pipeline.</p>
         <div class="demo-box">
           <table class="token-table" style="width:100%;">
             <thead><tr><th>Figma Token Name</th><th>CSS Variable</th><th>MUI Theme Key</th><th>Current Value</th></tr></thead>
             <tbody>
-              <tr><td><code>color/brand/primary</code></td><td><code>--nbl-primary</code></td><td><code>palette.primary.main</code></td><td>#188af4</td></tr>
+              <tr><td><code>color/brand/primary</code></td><td><code>--nbl-primary</code></td><td><code>palette.primary.main</code></td><td>#188af4 <span style="font-size:10px;color:#3aab5c;font-weight:700;">&#x2713; canonical</span></td></tr>
               <tr><td><code>color/brand/primary-dark</code></td><td><code>--nbl-primary-dark</code></td><td><code>palette.primary.dark</code></td><td>#1278d8</td></tr>
               <tr><td><code>color/brand/secondary</code></td><td><code>--nbl-secondary</code></td><td><code>palette.secondary.main</code></td><td>#00419D</td></tr>
               <tr><td><code>color/semantic/success</code></td><td><code>--nbl-success</code></td><td><code>palette.success.main</code></td><td>#3aab5c</td></tr>
@@ -4112,6 +4389,7 @@ sx={{ transition: theme.transitions.create(
           <table class="token-table" style="width:100%;">
             <thead><tr><th>Version</th><th>Date</th><th>Changes</th></tr></thead>
             <tbody>
+              <tr><td><strong>2.4.0</strong></td><td>Apr 2026</td><td>Color/font source-of-truth resolution; form validation; nav search/filter; Figma token sync; motion enforcement; dark mode toggle; file upload, multi-page form, role-based access, print/export patterns; DataGrid interaction specs; content/copy patterns; QA/testing integration</td></tr>
               <tr><td><strong>2.3.0</strong></td><td>Apr 2026</td><td>New MUI components (Autocomplete, DatePicker, Drawer, Menu), 4 real-product combination pages (Admin Dashboard, Cases List, Case Viewer, Messages, Participant Portal), sx vs styled() guide. Brand green corrected to #3aab5c.</td></tr>
               <tr><td>2.2.0</td><td>Feb 2026</td><td>Full accessibility sprint — WCAG 2.1 AA criterion table, VPAT framing, Windows High Contrast Mode, prefers-reduced-motion. Icons, Notifications, Responsive Tables, Readability, Brand Voice (Full) sections added.</td></tr>
               <tr><td>2.1.0</td><td>Nov 2025</td><td>Dark mode token mapping, additional pattern sections (User Types, Grant Pipeline, Empty States, Loading States, Brand Voice). Governance workflow with CI gates.</td></tr>
@@ -4884,9 +5162,213 @@ sx={{ transition: theme.transitions.create(
         </div>
       </section>
 
+
+      <!-- ══════════════════════════════════════════════════════════════
+           § 50. CONTENT & COPY PATTERNS
+      ══════════════════════════════════════════════════════════════ -->
+      <section class="ds-section" id="content-copy" aria-labelledby="content-copy-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">50</div>
+          <h2 id="content-copy-heading">Content &amp; Copy Patterns</h2>
+        </div>
+        <p class="ds-section-desc">Writing conventions for UI text in Neighborly — button labels, error messages, empty states, confirmation dialogs, and status labels. Consistent copy reduces cognitive load and builds trust with applicants.</p>
+
+        <h3 class="subsection-title">Button Labels</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Context</th><th>Use</th><th>Avoid</th></tr></thead>
+            <tbody>
+              <tr><td>Primary action</td><td>Submit Application, Save &amp; Continue, Approve Case</td><td>OK, Submit, Click Here, Proceed</td></tr>
+              <tr><td>Destructive action</td><td>Archive Case, Delete Document, Remove Applicant</td><td>Delete, Remove (without object), Yes</td></tr>
+              <tr><td>Cancel / secondary</td><td>Cancel, Go Back, Keep Editing</td><td>No, Close, Dismiss (for actions — OK for dialogs)</td></tr>
+              <tr><td>Loading state</td><td>Saving…, Submitting…, Uploading…</td><td>Please wait, Loading, Processing</td></tr>
+              <tr><td>Navigation</td><td>View Case, Open Application, Go to Dashboard</td><td>Click, Here, More</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Error Messages</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Type</th><th>Pattern</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Validation (field-level)</strong></td><td>Say what's wrong and how to fix it. Never blame the user.</td><td>"Enter a valid email address (e.g., name@example.com)" — not "Invalid email"</td></tr>
+              <tr><td><strong>Required field</strong></td><td>"[Field name] is required." — not "This field is required."</td><td>"Annual income is required."</td></tr>
+              <tr><td><strong>Format error</strong></td><td>Show the expected format.</td><td>"Enter a 9-digit SSN (e.g., 123-45-6789)"</td></tr>
+              <tr><td><strong>System error (API)</strong></td><td>Apologize briefly, explain what failed, offer a path forward.</td><td>"We couldn't save your application. Check your connection and try again. If the problem continues, contact support."</td></tr>
+              <tr><td><strong>Permission error</strong></td><td>Explain what the user can't do and why (if safe to say).</td><td>"You don't have permission to approve cases. Contact your administrator."</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Empty State Copy</h3>
+        <div class="demo-box" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div>
+            <p class="demo-label">Admin / Caseworker (Operational)</p>
+            <div style="background:#F5F7FA;border:1px solid #E5E9EF;border-radius:8px;padding:24px;text-align:center;">
+              <div style="font-size:28px;margin-bottom:8px;">📋</div>
+              <div style="font-weight:700;color:#181B1F;font-size:14px;margin-bottom:4px;">No cases in your queue</div>
+              <div style="color:#5A6472;font-size:12px;margin-bottom:12px;">Cases assigned to you will appear here.</div>
+              <a href="#" style="color:#188af4;font-size:12px;font-weight:600;">View all cases →</a>
+            </div>
+          </div>
+          <div>
+            <p class="demo-label">Participant (Welcoming)</p>
+            <div style="background:#F5F7FA;border:1px solid #E5E9EF;border-radius:8px;padding:24px;text-align:center;">
+              <div style="font-size:28px;margin-bottom:8px;">🏡</div>
+              <div style="font-weight:700;color:#181B1F;font-size:14px;margin-bottom:4px;">Welcome to your Neighborhood</div>
+              <div style="color:#5A6472;font-size:12px;margin-bottom:12px;">Browse available programs and start your first application.</div>
+              <button class="btn btn-contained-primary" style="font-size:12px;padding:6px 14px;">Browse Programs</button>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Confirmation Dialog Copy</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Element</th><th>Pattern</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Title</strong></td><td>Action + object. No question mark.</td><td>"Archive CS-2024-0041" — not "Are you sure?"</td></tr>
+              <tr><td><strong>Body</strong></td><td>One sentence explaining the consequence. Mention irreversibility if true.</td><td>"This will remove the case from active queues. This action cannot be undone."</td></tr>
+              <tr><td><strong>Confirm button</strong></td><td>Repeat the action verb. Destructive = red.</td><td>"Archive Case" (red) — not "Yes" or "OK"</td></tr>
+              <tr><td><strong>Cancel button</strong></td><td>"Cancel" — always. Never "No" or "Go Back" in dialogs.</td><td>"Cancel"</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Status Label Vocabulary</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Status</th><th>Label (display)</th><th>Chip color</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Awaiting caseworker action</td><td><span style="background:#FFF3E0;color:#E65100;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">Pending Review</span></td><td>Warning orange</td><td>Default for newly submitted applications</td></tr>
+              <tr><td>Caseworker reviewing</td><td><span style="background:#E3F2FD;color:#1565C0;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">In Review</span></td><td>Info blue</td><td>Set when caseworker opens the case</td></tr>
+              <tr><td>Missing documents</td><td><span style="background:#FFF3E0;color:#E65100;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">Pending Docs</span></td><td>Warning orange</td><td>Triggers participant notification</td></tr>
+              <tr><td>Application approved</td><td><span style="background:#E8F5E9;color:#1B5E20;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">Approved</span></td><td>Success green</td><td>Triggers award notification</td></tr>
+              <tr><td>Application denied</td><td><span style="background:#FFEBEE;color:#B71C1C;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">Denied</span></td><td>Error red</td><td>Triggers denial letter; terminal state</td></tr>
+              <tr><td>Under appeal</td><td><span style="background:#F3E5F5;color:#4A148C;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">Appeal Pending</span></td><td>Purple</td><td>Blocks archival until resolved</td></tr>
+              <tr><td>Funds disbursed</td><td><span style="background:#E8F5E9;color:#1B5E20;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">Closed — Funded</span></td><td>Success green</td><td>Terminal state</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           § 51. QA & TESTING INTEGRATION
+      ══════════════════════════════════════════════════════════════ -->
+      <section class="ds-section" id="qa-testing" aria-labelledby="qa-testing-heading">
+        <div class="ds-section-header">
+          <div class="section-num" aria-hidden="true">51</div>
+          <h2 id="qa-testing-heading">QA &amp; Testing Integration</h2>
+        </div>
+        <p class="ds-section-desc">How the design system integrates with automated testing. Every component demo in this system is built with <code>data-testid</code> attributes and ARIA roles that map directly to the testing patterns below.</p>
+
+        <h3 class="subsection-title">data-testid Naming Convention</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Pattern</th><th>Format</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td>Page container</td><td><code>[page]-page</code></td><td><code>data-testid="dashboard-page"</code></td></tr>
+              <tr><td>Section / panel</td><td><code>[section]-panel</code></td><td><code>data-testid="case-notes-panel"</code></td></tr>
+              <tr><td>Primary action button</td><td><code>[action]-btn</code></td><td><code>data-testid="approve-btn"</code></td></tr>
+              <tr><td>Form field</td><td><code>[field-name]-input</code></td><td><code>data-testid="annual-income-input"</code></td></tr>
+              <tr><td>DataGrid row</td><td><code>case-row-[caseId]</code></td><td><code>data-testid="case-row-CS-2024-0041"</code></td></tr>
+              <tr><td>Status chip</td><td><code>[caseId]-status-chip</code></td><td><code>data-testid="CS-2024-0041-status-chip"</code></td></tr>
+              <tr><td>Error message</td><td><code>[field-name]-error</code></td><td><code>data-testid="email-error"</code></td></tr>
+              <tr><td>Snackbar / toast</td><td><code>snackbar-[severity]</code></td><td><code>data-testid="snackbar-success"</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Component Test Patterns (React Testing Library)</h3>
+        <div class="code-block">
+<span class="cm">// Button — test by accessible name, not testid</span>
+<span class="kw">const</span> approveBtn = screen.getByRole(<span class="str">'button'</span>, { name: <span class="str">/approve case/i</span> });
+expect(approveBtn).toBeEnabled();
+userEvent.click(approveBtn);
+<span class="kw">await</span> waitFor(() =&gt; expect(screen.getByText(<span class="str">/approved/i</span>)).toBeInTheDocument());
+
+<span class="cm">// TextField — test by label</span>
+<span class="kw">const</span> incomeField = screen.getByLabelText(<span class="str">/annual income/i</span>);
+userEvent.type(incomeField, <span class="str">'45000'</span>);
+expect(incomeField).toHaveValue(<span class="str">'45000'</span>);
+
+<span class="cm">// Autocomplete — open dropdown, select option</span>
+<span class="kw">const</span> programInput = screen.getByLabelText(<span class="str">/program/i</span>);
+userEvent.click(programInput);
+<span class="kw">const</span> option = <span class="kw">await</span> screen.findByRole(<span class="str">'option'</span>, { name: <span class="str">/ERAP/i</span> });
+userEvent.click(option);
+expect(programInput).toHaveValue(<span class="str">'ERAP'</span>);
+
+<span class="cm">// Dialog — test open/close</span>
+userEvent.click(screen.getByRole(<span class="str">'button'</span>, { name: <span class="str">/archive case/i</span> }));
+<span class="kw">const</span> dialog = screen.getByRole(<span class="str">'dialog'</span>);
+expect(dialog).toBeInTheDocument();
+userEvent.click(screen.getByRole(<span class="str">'button'</span>, { name: <span class="str">/cancel/i</span> }));
+expect(dialog).not.toBeInTheDocument();
+
+<span class="cm">// DataGrid row — test by testid</span>
+<span class="kw">const</span> row = screen.getByTestId(<span class="str">'case-row-CS-2024-0041'</span>);
+expect(row).toBeInTheDocument();
+expect(within(row).getByTestId(<span class="str">'CS-2024-0041-status-chip'</span>)).toHaveTextContent(<span class="str">'Pending Review'</span>);
+        </div>
+
+        <h3 class="subsection-title">Accessibility Testing (axe-core)</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>Tool</th><th>When to run</th><th>Command / integration</th></tr></thead>
+            <tbody>
+              <tr><td><strong>axe-core</strong> (jest-axe)</td><td>Every component render test</td><td><code>expect(await axe(container)).toHaveNoViolations()</code></td></tr>
+              <tr><td><strong>axe-core</strong> (Playwright)</td><td>Every E2E page test</td><td><code>await checkA11y(page)</code> via <code>axe-playwright</code></td></tr>
+              <tr><td><strong>GitHub Actions CI</strong></td><td>Every PR</td><td>Runs axe on all combination pages; fails PR if violations found</td></tr>
+              <tr><td><strong>Lighthouse CI</strong></td><td>Every PR</td><td>Accessibility score must be ≥ 95 to pass</td></tr>
+            </tbody>
+          </table>
+          <div class="code-block" style="margin-top:12px;">
+<span class="cm">// jest-axe setup (add to every component test file)</span>
+<span class="kw">import</span> { axe, toHaveNoViolations } from <span class="str">'jest-axe'</span>;
+expect.extend(toHaveNoViolations);
+
+it(<span class="str">'has no accessibility violations'</span>, <span class="kw">async</span> () =&gt; {
+  <span class="kw">const</span> { container } = render(<span class="tag">&lt;CaseCard case={mockCase} /&gt;</span>);
+  expect(<span class="kw">await</span> axe(container)).toHaveNoViolations();
+});
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Visual Regression (Storybook + Chromatic)</h3>
+        <div class="demo-box">
+          <table class="token-table" style="width:100%;">
+            <thead><tr><th>What's tested</th><th>Approach</th></tr></thead>
+            <tbody>
+              <tr><td>Component visual states (default, hover, focus, error, disabled)</td><td>Each state is a separate Storybook story. Chromatic snapshots all stories on every PR.</td></tr>
+              <tr><td>Dark mode</td><td>Each story has a dark mode variant using the <code>[data-theme="dark"]</code> decorator.</td></tr>
+              <tr><td>Responsive breakpoints</td><td>Chromatic tests at 375px (mobile), 768px (tablet), and 1440px (desktop).</td></tr>
+              <tr><td>Token changes</td><td>A <code>tokens.css</code> change triggers a full Chromatic run. Any visual diff requires explicit approval before merge.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">PR Checklist</h3>
+        <div class="demo-box">
+          <div style="background:#F5F7FA;border:1px solid #E5E9EF;border-radius:8px;padding:16px 20px;font-size:13px;">
+            <p style="font-weight:700;color:#0a2a5e;margin:0 0 10px;">Before merging any UI change:</p>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" checked /> All new components have <code>data-testid</code> attributes following the naming convention</label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" checked /> <code>jest-axe</code> passes with no violations</label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" checked /> Chromatic visual diff reviewed and approved</label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" /> Keyboard navigation tested manually (Tab, Shift+Tab, Enter, Escape, Arrow keys)</label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" /> Screen reader tested with NVDA (Windows) or VoiceOver (Mac)</label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" /> No hardcoded hex values — all colors use <code>theme.palette.*</code> or <code>var(--nbl-*)</code></label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" /> No hardcoded durations — all transitions use <code>theme.transitions.create()</code></label>
+            </div>
+          </div>
+        </div>
+      </section>
+
             <footer style="border-top:2px solid #E5E9EF; padding-top:32px; margin-top:56px; text-align:center; color:#9AA4AD; font-size:13px;">
         <img src="assets/logo.svg" alt="Neighborly Software" style="height:24px; opacity:0.5; display:block; margin:0 auto 12px;" />
-        <strong style="color:#5A6472;">Neighborly Software Design System</strong> — Version 2.3<br>
+        <strong style="color:#5A6472;">Neighborly Software Design System</strong> — Version 2.4<br>
         Built with MUI v5 · Helping Communities Help People
       </footer>
 
