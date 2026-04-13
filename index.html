@@ -126,7 +126,7 @@
     /* Mobile sidebar toggle */
     #sidebar-toggle {
       display: none; position: fixed; top: 14px; left: 14px; z-index: 1100;
-      background: #0a2a5e; color: #fff; border: none; border-radius: 6px;
+      background: #00419D; color: #fff; border: none; border-radius: 6px;
       width: 36px; height: 36px; font-size: 20px; cursor: pointer;
       align-items: center; justify-content: center;
     }
@@ -523,7 +523,7 @@
        MUI SNACKBAR
     ============================================================ */
     .snackbar-container { position: fixed; bottom: 24px; right: 24px; z-index: 1400; display: flex; flex-direction: column; gap: 8px; max-width: 400px; }
-    .mui-snackbar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 4px; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08); animation: slideIn 0.2s ease-out; min-width: 300px; max-width: 400px; }
+    .mui-snackbar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 8px; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08); animation: slideIn 0.2s ease-out; min-width: 300px; max-width: 400px; }
     @keyframes slideIn { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .snackbar-close { margin-left: auto; background: none; border: none; color: inherit; cursor: pointer; font-size: 18px; padding: 0 4px; opacity: 0.6; }
     .snackbar-close:hover { opacity: 1; }
@@ -878,8 +878,8 @@
     .easing-canvas-wrap canvas { position:absolute; top:0; left:0; width:100%; height:100%; }
     .easing-ball-track { height:40px; background:#f0f4f8; border-radius:6px; position:relative; overflow:hidden; margin-bottom:10px; }
     .easing-ball { width:28px; height:28px; border-radius:50%; background:#1278d8; position:absolute; top:6px; left:4px; will-change:transform; }
-    .easing-play-btn { background:#0a2a5e; color:#fff; border:none; border-radius:6px; padding:6px 14px; font-size:11px; font-weight:600; cursor:pointer; width:100%; transition:background 0.15s; }
-    .easing-play-btn:hover { background:#1278d8; }
+    .easing-play-btn { background:#00419D; color:#fff; border:none; border-radius:20px; padding:6px 14px; font-size:11px; font-weight:600; cursor:pointer; width:100%; transition:background 0.15s; }
+    .easing-play-btn:hover { background:#188af4; }
     .easing-play-btn:focus-visible { outline:2px solid #1278d8; outline-offset:2px; }
     .motion-playground { background:#f8fafc; border:1px solid #e2e6ea; border-radius:10px; padding:20px 24px; margin:16px 0; }
     .motion-playground h4 { font-size:12px; font-weight:700; color:#0a2a5e; margin:0 0 12px; }
@@ -887,11 +887,11 @@
     .motion-controls label { font-size:11.5px; color:#3d4a5c; font-weight:600; }
     .motion-demo-stage { height:64px; background:#fff; border:1px solid #e2e6ea; border-radius:8px; position:relative; overflow:hidden; display:flex; align-items:center; padding:0 12px; }
     .motion-demo-el { background:#1278d8; color:#fff; border-radius:6px; padding:8px 16px; font-size:12px; font-weight:600; position:absolute; left:12px; white-space:nowrap; will-change:transform,opacity; }
-    .motion-trigger-btn { background:#3aab5c; color:#fff; border:none; border-radius:6px; padding:7px 16px; font-size:11.5px; font-weight:600; cursor:pointer; margin-top:10px; transition:background 0.15s; }
+    .motion-trigger-btn { background:#3aab5c; color:#fff; border:none; border-radius:20px; padding:7px 16px; font-size:11.5px; font-weight:600; cursor:pointer; margin-top:10px; transition:background 0.15s; }
     .motion-trigger-btn:hover { background:#2d8a49; }
     /* ── Live token preview widget ────────────────────────── */
     .token-preview-widget { background:#fff; border:1px solid #e2e6ea; border-radius:12px; overflow:hidden; margin:16px 0; }
-    .tpw-header { background:#0a2a5e; color:#fff; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; }
+    .tpw-header { background:#00419D; color:#fff; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; }
     .tpw-header h4 { font-size:13px; font-weight:700; margin:0; }
     .tpw-header span { font-size:11px; color:#93b4e8; }
     .tpw-body { display:grid; grid-template-columns:280px 1fr; }
@@ -903,24 +903,24 @@
     .tpw-control-row input[type=color] { width:32px; height:28px; border:1px solid #ccc; border-radius:5px; cursor:pointer; padding:1px; }
     .tpw-control-row input[type=range] { flex:1; }
     .tpw-val { font-size:10.5px; color:#5a6270; font-family:monospace; min-width:52px; }
-    .tpw-token-name { font-size:10.5px; color:#0a2a5e; font-family:monospace; }
+    .tpw-token-name { font-size:10.5px; color:#00419D; font-family:monospace; }
     .tpw-preview { padding:20px; display:flex; flex-direction:column; gap:14px; }
     .tpw-preview-label { font-size:10px; font-weight:700; color:#8a96a3; text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
-    .tpw-reset-btn { background:#f0f4f8; color:#0a2a5e; border:1px solid #d0d8e4; border-radius:6px; padding:5px 12px; font-size:11px; font-weight:600; cursor:pointer; margin-top:4px; }
+    .tpw-reset-btn { background:#f0f4f8; color:#00419D; border:1px solid #d0d8e4; border-radius:20px; padding:5px 12px; font-size:11px; font-weight:600; cursor:pointer; margin-top:4px; }
     .tpw-reset-btn:hover { background:#e2e8f0; }
-    .tpw-copy-btn { background:#1278d8; color:#fff; border:none; border-radius:6px; padding:5px 12px; font-size:11px; font-weight:600; cursor:pointer; margin-top:4px; margin-left:6px; }
-    .tpw-copy-btn:hover { background:#0e5fb5; }
+    .tpw-copy-btn { background:#188af4; color:#fff; border:none; border-radius:20px; padding:5px 12px; font-size:11px; font-weight:600; cursor:pointer; margin-top:4px; margin-left:6px; }
+    .tpw-copy-btn:hover { background:#1278d8; }
     /* ── Scoped token override demo ──────────────────────── */
     .scoped-demo-wrap { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
     @media(max-width:700px){ .scoped-demo-wrap { grid-template-columns:1fr; } }
     .scoped-demo-panel { border:1px solid #e2e6ea; border-radius:10px; overflow:hidden; }
     .scoped-demo-panel-header { padding:10px 14px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
     .scoped-demo-panel-body { padding:16px; }
-    .scoped-global-header { background:#e8f0fe; color:#1a3a7a; }
+    .scoped-global-header { background:#EEF2FF; color:#00419D; }
     .scoped-override-header { background:#e8f5e9; color:#1b5e20; }
-    .scope-btn-global { background:#0a2a5e; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:13px; font-weight:600; cursor:default; }
+    .scope-btn-global { background:#00419D; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:13px; font-weight:600; cursor:default; }
     .scope-btn-participant { background:#3aab5c; color:#fff; border:none; border-radius:20px; padding:10px 22px; font-size:14px; font-weight:600; cursor:default; }
-    .scope-chip-global { display:inline-flex;align-items:center;padding:3px 10px;font-size:11px;font-weight:700;border-radius:4px;background:#e3f2fd;color:#0d47a1; }
+    .scope-chip-global { display:inline-flex;align-items:center;padding:3px 10px;font-size:11px;font-weight:700;border-radius:6px;background:#e3f2fd;color:#00419D; }
     .scope-chip-participant { display:inline-flex;align-items:center;padding:4px 12px;font-size:12px;font-weight:700;border-radius:16px;background:#e8f5e9;color:#1b5e20; }
   </style>
 </head>
@@ -1365,19 +1365,19 @@ npm install @fontsource/nunito-sans
               <div class="tpw-control-group">
                 <label>Brand Colors</label>
                 <div class="tpw-control-row">
-                  <input type="color" id="tpw-primary" value="#0a2a5e" oninput="tpwUpdate()" aria-label="Primary navy" />
-                  <span class="tpw-token-name">--color-primary</span>
-                  <span class="tpw-val" id="tpw-primary-val">#0a2a5e</span>
+                  <input type="color" id="tpw-primary" value="#188af4" oninput="tpwUpdate()" aria-label="Primary blue" />
+                  <span class="tpw-token-name">--nbl-primary</span>
+                  <span class="tpw-val" id="tpw-primary-val">#188af4</span>
                 </div>
                 <div class="tpw-control-row">
                   <input type="color" id="tpw-green" value="#3aab5c" oninput="tpwUpdate()" aria-label="Brand green" />
-                  <span class="tpw-token-name">--color-brand-green</span>
+                  <span class="tpw-token-name">--nbl-success</span>
                   <span class="tpw-val" id="tpw-green-val">#3aab5c</span>
                 </div>
                 <div class="tpw-control-row">
-                  <input type="color" id="tpw-blue" value="#1278d8" oninput="tpwUpdate()" aria-label="Primary blue" />
-                  <span class="tpw-token-name">--color-primary-blue</span>
-                  <span class="tpw-val" id="tpw-blue-val">#1278d8</span>
+                  <input type="color" id="tpw-blue" value="#00419D" oninput="tpwUpdate()" aria-label="Secondary navy" />
+                  <span class="tpw-token-name">--nbl-secondary</span>
+                  <span class="tpw-val" id="tpw-blue-val">#00419D</span>
                 </div>
               </div>
               <div class="tpw-control-group">
@@ -1405,9 +1405,9 @@ npm install @fontsource/nunito-sans
               <div>
                 <div class="tpw-preview-label">Buttons</div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-                  <button id="tpw-btn-primary" style="padding:8px 20px;font-size:13px;font-weight:600;border:none;cursor:pointer;color:#fff;border-radius:6px;background:#0a2a5e;">Primary</button>
-                  <button id="tpw-btn-outlined" style="padding:7px 19px;font-size:13px;font-weight:600;cursor:pointer;background:#fff;border-radius:6px;border:1.5px solid #0a2a5e;color:#0a2a5e;">Outlined</button>
-                  <button id="tpw-btn-green" style="padding:8px 20px;font-size:13px;font-weight:600;border:none;cursor:pointer;color:#fff;border-radius:6px;background:#3aab5c;">Success</button>
+                  <button id="tpw-btn-primary" style="padding:8px 20px;font-size:13px;font-weight:600;border:none;cursor:pointer;color:#fff;border-radius:20px;background:#188af4;">Primary</button>
+                  <button id="tpw-btn-outlined" style="padding:7px 19px;font-size:13px;font-weight:600;cursor:pointer;background:#fff;border-radius:20px;border:1.5px solid #188af4;color:#188af4;">Outlined</button>
+                  <button id="tpw-btn-green" style="padding:8px 20px;font-size:13px;font-weight:600;border:none;cursor:pointer;color:#fff;border-radius:20px;background:#3aab5c;">Success</button>
                 </div>
               </div>
               <div>
@@ -1420,13 +1420,13 @@ npm install @fontsource/nunito-sans
               </div>
               <div>
                 <div class="tpw-preview-label">Alert</div>
-                <div id="tpw-alert" style="border-left:3px solid #3aab5c;padding:10px 14px;border-radius:6px;font-size:12.5px;background:#e8f5e920;color:#0a2a5e;">
+                <div id="tpw-alert" style="border-left:3px solid #3aab5c;padding:10px 14px;border-radius:6px;font-size:12.5px;background:#e8f5e920;color:#181B1F;">
                   <strong>Application submitted</strong> &#8212; We'll review your documents within 5 business days.
                 </div>
               </div>
               <div>
                 <div class="tpw-preview-label">Navigation header</div>
-                <div id="tpw-nav" style="display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:6px;background:#0a2a5e;color:#fff;">
+                <div id="tpw-nav" style="display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:6px;background:#00419D;color:#fff;">
                   <span style="font-size:13px;font-weight:700;">Neighborly</span>
                   <span style="font-size:12px;opacity:0.75;">Dashboard</span>
                   <span style="font-size:12px;opacity:0.75;">Cases</span>
@@ -8499,28 +8499,44 @@ it(<span class="str">'has no accessibility violations'</span>, <span class="kw">
     // SNACKBAR / TOAST
     // ============================================================
     const toastColors = {
-      success: { bg: '#edf7ed', border: '#2e7d32', iconColor: '#2e7d32', textColor: '#1e4620', icon: 'check_circle' },
-      error:   { bg: '#fdeded', border: '#d32f2f', iconColor: '#d32f2f', textColor: '#5f2120', icon: 'error' },
-      warning: { bg: '#fff4e5', border: '#ed6c02', iconColor: '#ed6c02', textColor: '#663c00', icon: 'warning' },
-      info:    { bg: '#e5f6fd', border: '#0288D1', iconColor: '#0288D1', textColor: '#014361', icon: 'info' },
+      success: { bg: '#edf7ed', border: '#2e7d32', iconColor: '#2e7d32', textColor: '#1e4620',
+        icon: '<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>' },
+      error:   { bg: '#fdeded', border: '#d32f2f', iconColor: '#d32f2f', textColor: '#5f2120',
+        icon: '<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>' },
+      warning: { bg: '#fff4e5', border: '#ed6c02', iconColor: '#ed6c02', textColor: '#663c00',
+        icon: '<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.345 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>' },
+      info:    { bg: '#e5f6fd', border: '#0288D1', iconColor: '#0288D1', textColor: '#014361',
+        icon: '<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>' },
     };
-    function showToast(message, severity = 'info') {
-      const container = document.getElementById('snackbar-container');
-      const { bg, border, iconColor, textColor, icon } = toastColors[severity] || toastColors.info;
-      const toast = document.createElement('div');
+    function showToast(message, severity) {
+      severity = severity || 'info';
+      var container = document.getElementById('snackbar-container');
+      if (!container) return;
+      var tc = toastColors[severity] || toastColors.info;
+      var toast = document.createElement('div');
       toast.className = 'mui-snackbar';
-      toast.style.background = bg;
-      toast.style.borderLeft = '4px solid ' + border;
-      toast.style.color = textColor;
+      toast.style.background = tc.bg;
+      toast.style.borderLeft = '4px solid ' + tc.border;
+      toast.style.color = tc.textColor;
       toast.setAttribute('role', 'alert');
-      toast.innerHTML = `
-        <span class="material-icons" style="font-size:20px;color:${iconColor};">${icon}</span>
-        <span style="flex:1;">${message}</span>
-        <button class="snackbar-close" aria-label="Dismiss notification" style="color:${textColor};opacity:0.6;">&times;</button>
-      `;
-      toast.querySelector('.snackbar-close').addEventListener('click', () => toast.remove());
+      var iconWrap = document.createElement('span');
+      iconWrap.style.cssText = 'flex-shrink:0;color:' + tc.iconColor + ';display:flex;align-items:center;';
+      iconWrap.innerHTML = tc.icon;
+      var msgSpan = document.createElement('span');
+      msgSpan.style.flex = '1';
+      msgSpan.textContent = message;
+      var closeBtn = document.createElement('button');
+      closeBtn.className = 'snackbar-close';
+      closeBtn.setAttribute('aria-label', 'Dismiss notification');
+      closeBtn.style.color = tc.textColor;
+      closeBtn.style.opacity = '0.6';
+      closeBtn.innerHTML = '&times;';
+      closeBtn.addEventListener('click', function() { toast.remove(); });
+      toast.appendChild(iconWrap);
+      toast.appendChild(msgSpan);
+      toast.appendChild(closeBtn);
       container.appendChild(toast);
-      setTimeout(() => { if (toast.parentNode) toast.remove(); }, 5000);
+      setTimeout(function() { if (toast.parentNode) toast.remove(); }, 5000);
     }
 
     // fireToast(severity, iconChar, title, body)
@@ -8865,46 +8881,47 @@ it(<span class="str">'has no accessibility violations'</span>, <span class="kw">
 
     function init(){
       if(window.initEasingCanvases) window.initEasingCanvases();
-      if(window.tpwUpdate) window.tpwUpdate();
+      // tpwUpdate is defined after this IIFE — defer to next tick
+      setTimeout(function(){ if(typeof window.tpwUpdate==='function') window.tpwUpdate(); }, 50);
     }
     if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
-    else setTimeout(init,150);
+    else setTimeout(init,200);
   })();
 
   window.tpwUpdate = function() {
     function gv(id,def){var el=document.getElementById(id);return el?el.value:def;}
     function sv(id,v){var el=document.getElementById(id);if(el)el.textContent=v;}
     function ss(id,k,v){var el=document.getElementById(id);if(el)el.style[k]=v;}
-    var primary=gv('tpw-primary','#0a2a5e'), green=gv('tpw-green','#3aab5c');
-    var blue=gv('tpw-blue','#1278d8'), radius=gv('tpw-radius','6'), scale=gv('tpw-fontscale','100');
+    var primary=gv('tpw-primary','#188af4'), green=gv('tpw-green','#3aab5c');
+    var blue=gv('tpw-blue','#00419D'), radius=gv('tpw-radius','6'), scale=gv('tpw-fontscale','100');
     var r=radius+'px', fs=(13*scale/100).toFixed(1)+'px';
     sv('tpw-primary-val',primary); sv('tpw-green-val',green); sv('tpw-blue-val',blue);
     sv('tpw-radius-val',r); sv('tpw-fontscale-val',scale+'%');
     var bp=document.getElementById('tpw-btn-primary');
-    if(bp){bp.style.background=primary;bp.style.borderRadius=r;bp.style.fontSize=fs;}
+    if(bp){bp.style.background=primary;bp.style.borderRadius='20px';bp.style.fontSize=fs;}
     var bo=document.getElementById('tpw-btn-outlined');
-    if(bo){bo.style.border='1.5px solid '+primary;bo.style.color=primary;bo.style.borderRadius=r;bo.style.fontSize=fs;}
+    if(bo){bo.style.border='1.5px solid '+primary;bo.style.color=primary;bo.style.borderRadius='20px';bo.style.fontSize=fs;}
     var bg=document.getElementById('tpw-btn-green');
-    if(bg){bg.style.background=green;bg.style.borderRadius=r;bg.style.fontSize=fs;}
+    if(bg){bg.style.background=green;bg.style.borderRadius='20px';bg.style.fontSize=fs;}
     var ca=document.getElementById('tpw-chip-approved');
     if(ca){ca.style.background=green+'22';ca.style.color=green;}
     var al=document.getElementById('tpw-alert');
-    if(al){al.style.borderColor=green;al.style.background=green+'11';al.style.color=primary;al.style.fontSize=fs;}
+    if(al){al.style.borderColor=green;al.style.background=green+'11';al.style.color='#181B1F';al.style.fontSize=fs;}
     var nav=document.getElementById('tpw-nav');
-    if(nav){nav.style.background=primary;}
+    if(nav){nav.style.background=blue;}
   };
 
   window.tpwReset = function() {
     function sv(id,v){var el=document.getElementById(id);if(el)el.value=v;}
-    sv('tpw-primary','#0a2a5e');sv('tpw-green','#3aab5c');sv('tpw-blue','#1278d8');
+    sv('tpw-primary','#188af4');sv('tpw-green','#3aab5c');sv('tpw-blue','#00419D');
     sv('tpw-radius','6');sv('tpw-fontscale','100');
     window.tpwUpdate();
   };
 
   window.tpwCopy = function() {
     function gv(id,def){var el=document.getElementById(id);return el?el.value:def;}
-    var primary=gv('tpw-primary','#0a2a5e'), green=gv('tpw-green','#3aab5c');
-    var blue=gv('tpw-blue','#1278d8'), radius=gv('tpw-radius','6'), scale=gv('tpw-fontscale','100');
+    var primary=gv('tpw-primary','#188af4'), green=gv('tpw-green','#3aab5c');
+    var blue=gv('tpw-blue','#00419D'), radius=gv('tpw-radius','6'), scale=gv('tpw-fontscale','100');
     var css=':root {\n  --color-primary: '+primary+';\n  --color-brand-green: '+green+';\n  --color-primary-blue: '+blue+';\n  --shape-border-radius-button: '+radius+'px;\n  --typography-base-scale: '+scale+'%;\n}';
     if(navigator.clipboard&&navigator.clipboard.writeText){
       navigator.clipboard.writeText(css).then(function(){
